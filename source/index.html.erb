@@ -7,13 +7,15 @@ layout: layout
 </div>
 <hr/>
 
-<h2>Articles</h2>
+<h4>Articles</h4>
 
+<ul>
 <% blog.articles.each do |article| %>
   <article>
-    <h3>
+    <li>
       <time><%= article.date.strftime('%e %b %Y') %></time> &raquo;
       <a href="<%= article.url %>"><%= article.title %></a>
-    </h3>
+    </li>
   </article>
 <% end %>
+</ul>
