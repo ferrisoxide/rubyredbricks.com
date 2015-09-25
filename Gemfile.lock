@@ -1,8 +1,9 @@
 GIT
   remote: git://github.com/wingrunr21/flat-ui-sass.git
-  revision: 97b99ebd00a73c17b55cfb537722aede93cc7e49
+  revision: 5ad8b9697e743c243a97f2a4d3a9a60cc45c4410
+  branch: 2-2-support
   specs:
-    flat-ui-sass (2.1.3)
+    flat-ui-sass (2.2.1)
       bootstrap-sass (>= 3.1)
       sass (>= 3.2.0)
 

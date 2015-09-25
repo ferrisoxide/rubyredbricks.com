@@ -1,5 +1,5 @@
 //$brand-primary: #E74C3C;
-$font-family-sans-serif:  "Lato";
+//$font-family-sans-serif:  "Lato";
 $jumbotron-bg: #FFF;
 $jumbotron-padding: 0px;
 @import "bootstrap-sprockets";
@@ -7,4 +7,5 @@ $jumbotron-padding: 0px;
 @import "custom";
 @import 'flat-ui/variables';
 @import 'bootstrap';
+@import 'flat-ui-sprockets';
 @import 'flat-ui';
