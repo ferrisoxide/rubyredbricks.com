@@ -4,7 +4,6 @@ created_at: 2013-12-14 17:26
 description:
 kind: article
 comments: true
-layout: post
 ---
 
 ![DigitalOcean logo with tick](/images/posts/digital-ocean-logo-with-tick.png){: class="left image"}

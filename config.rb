@@ -15,7 +15,7 @@ activate :blog do |blog|
   # # # Matcher for blog source files
   # blog.sources = "{year}-{month}-{day}-{title}.markdown"
   # blog.taglink = "tags/{tag}.html"
-  blog.layout = "post"
+  blog.layout = "layout"
   # blog.summary_separator = /(READMORE)/
   # blog.summary_length = 250
   # blog.year_link = "{year}"
@@ -73,6 +73,11 @@ end
 
 # Reload the browser automatically whenever files change
 activate :directory_indexes
+
+activate :syntax
+
+set :markdown_engine, :redcarpet
+set :markdown, :fenced_code_blocks => true, :smartypants => true
 
 # Methods defined in the helpers block are available in templates
 # helpers do

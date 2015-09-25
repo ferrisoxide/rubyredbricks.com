@@ -4,7 +4,6 @@ title: "The (Irritating) Design of Everyday Things"
 created_at: 2012-08-30 07:13
 comments: true
 categories: public-transport, the-world-of-things
-layout: post
 ---
 
 A few months ago the Adelaide Metro began rolling out the new ticket machines on all its buses, trams and trains. These units introduce the "MetroCard" system to Adelaide - a "tap on, tap off" electronic card similar to those used in other Australian states - while still allowing commuters to use the magnetic-stripped cards that have worked for decades.

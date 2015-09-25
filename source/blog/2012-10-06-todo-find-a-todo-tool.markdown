@@ -4,7 +4,6 @@ title: "TODO: Find a todo tool"
 created_at: 2012-10-06 09:05
 comments: true
 categories: project-argh, ruby
-layout: post
 ---
 
 This is a follow-on from an [earlier post](/blog/2012/10/04/ordering-my-brain-with-ruby/) about getting

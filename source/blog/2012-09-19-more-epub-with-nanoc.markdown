@@ -4,7 +4,6 @@ title: "More ePub with nanoc"
 created_at: 2012-09-19 07:09
 comments: true
 categories: epub, ruby
-layout: post
 ---
 
 A little way back I posted a [lengthy article](/blog/2012/09/06/quick-and-dirty-epub-with-nanoc/) on

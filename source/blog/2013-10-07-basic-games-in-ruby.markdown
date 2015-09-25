@@ -4,7 +4,6 @@ created_at: 2013-10-07 17:34
 description: This is the description
 kind: article
 comments: true
-layout: post
 ---
 
 ![BASIC Computer Games Ruby Edition](/images/posts/basic-computer-games-ruby-edition.jpg){: class="image right"}

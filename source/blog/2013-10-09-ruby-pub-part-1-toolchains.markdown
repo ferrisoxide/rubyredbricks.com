@@ -4,7 +4,6 @@ created_at: 2013-10-09 21:49
 description:
 kind: article
 comments: true
-layout: post
 ---
 
 ![Ruby Pub](/images/posts/ruby-pub.png){: class="image left"}

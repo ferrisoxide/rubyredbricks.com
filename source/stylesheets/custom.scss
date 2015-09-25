@@ -1,3 +1,5 @@
+@import "flat-ui/variables";
+
 .container-centered {
   margin: 0 auto;
   margin-top: 0px;
@@ -29,6 +31,8 @@
 .banner h1 {
   color: #E74C3C;
   font-weight: 700;
+  margin-top: 15px;
+  font-size: floor(($font-size-base * 2.4));
 }
 
 .jumbotron {
@@ -39,13 +43,45 @@
   margin-top: 0px;
 }
 
-ul {
-    list-style-type: none;
+.contact ul {
+  list-style-type: none;
+  overflow: hidden;
 }
 
-//.contact span:after {
-//    content: '*';
-//}
-//.contact span.last:after {
-//    content: '';
-//}
+.contact div {
+ 	float: right;
+}
+
+.contact li {
+  display:inline;
+  margin: 15px 10px 10px 10px;
+  font-size: floor(($font-size-base * 1.5));
+}
+
+.image img {
+	border-radius: 0.35em;
+	display: block;
+}
+
+.image.left {
+	float: left;
+	margin: 0 1.5em 1em 0;
+	top: 0.25em;
+}
+
+.image.right {
+	float: right;
+	margin: 0 0 1em 1.5em;
+	top: 0.25em;
+}
+
+.image.left, .image.right {
+	max-width: 40%;
+}
+
+.post h2 {
+  font-size: floor(($font-size-base * 1.2));
+}
+
+
+

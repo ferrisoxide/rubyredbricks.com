@@ -4,7 +4,6 @@ title: "Day zero of giving up smoking"
 created_at: 2012-10-23 19:35
 comments: true
 categories:
-layout: post
 ---
 
 **Reasons for Quitting**

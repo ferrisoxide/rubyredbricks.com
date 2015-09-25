@@ -4,7 +4,6 @@ created_at: 2013-10-06 11:35
 description: "Note to Parents: Your Kids Are Being Trolled (And Trolling) On Minecraft"
 kind: article
 comments: true
-layout: post
 ---
 
 ![Minecraft Troll](/images/posts/minecraft-creeper-troll.jpg){: class="image left"}

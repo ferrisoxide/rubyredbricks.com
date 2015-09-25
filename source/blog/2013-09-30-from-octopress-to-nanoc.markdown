@@ -4,7 +4,6 @@ created_at: 2013-09-30 21:33
 description: This is the description
 kind: article
 comments: true
-layout: post
 ---
 
 Regular visitors will have noticed recent changes to the Ruby Red Bricks blog. There are some

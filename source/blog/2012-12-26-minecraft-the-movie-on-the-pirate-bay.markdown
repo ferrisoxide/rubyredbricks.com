@@ -4,7 +4,6 @@ title: "Minecraft the Movie on TPB - how much does 'free' cost?"
 created_at: 2012-12-26 14:48
 comments: true
 categories:
-layout: post
 ---
 
 _NB: written back in December 2012, only published Feb 22, 2013_

@@ -4,7 +4,6 @@ created_at: 2013-10-02 21:34
 description: Creating an eBook using Ruby and HPub
 kind: article
 comments: true
-layout: post
 ---
 
 The Tachypomp project is an attempt to build an ebook, using Ruby to convert a Markdown-based text into a variety of e-publishing formats. The [first cut](/blog/2013/05/06/nanoc-novel/) of the project served as a "proof of concept" for producing content in both ePub and HTML formats.

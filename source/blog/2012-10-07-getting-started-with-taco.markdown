@@ -4,7 +4,6 @@ title: "Getting started with taco, more links"
 created_at: 2012-10-07 11:54
 comments: true
 categories: project-argh, ruby
-layout: post
 ---
 
 I've been in touch with Matt Sears, of the [Matt Sears Todo.rb Gist](https://gist.github.com/1259080) fame, he tells me that he's been working on [taco](https://github.com/mattsears/taco) - a gem-ified version of todo.rb with tweaks and extra features.

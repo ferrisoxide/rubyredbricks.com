@@ -4,7 +4,6 @@ title: "Ruby as CMS"
 created_at: 2012-08-27 18:01
 comments: true
 categories: ruby, content-management
-layout: post
 ---
 
 In a nutshell

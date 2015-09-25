@@ -4,7 +4,6 @@ title: "ordering my brain with ruby"
 created_at: 2012-10-04 21:05
 comments: true
 categories: project-argh, ruby
-layout: post
 ---
 
 My brain is chaos. I have so many things to do, so many things to remember, so many time critical moments; it's an unfortunate fact that things get missed.

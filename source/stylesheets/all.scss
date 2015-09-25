@@ -1,11 +1,18 @@
-//$brand-primary: #E74C3C;
-//$font-family-sans-serif:  "Lato";
+$link-color: #E74C3C;
+$link-hover-color:      darken($link-color, 30%) !default;
+$local-font-path: '/fonts/flat-ui/lato/';
+$flat-ui-icon-font-path: '/fonts/flat-ui/glyphicons/';
 $jumbotron-bg: #FFF;
 $jumbotron-padding: 0px;
+//$code-color: #ECF0F1;
+//$code-bg: #95A5A6;
+
 @import "bootstrap-sprockets";
 //@import "bootstrap";
-@import "custom";
 @import 'flat-ui/variables';
 @import 'bootstrap';
 @import 'flat-ui-sprockets';
 @import 'flat-ui';
+@import "custom";
+
+

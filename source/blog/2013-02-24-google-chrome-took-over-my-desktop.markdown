@@ -4,7 +4,6 @@ title: "Google Chrome Took Over My Desktop"
 created_at: 2013-02-24 12:59
 comments: true
 categories:
-layout: post
 ---
 
 Gosh.

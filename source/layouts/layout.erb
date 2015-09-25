@@ -6,73 +6,72 @@
     <title>Ruby Red Bricks<%= ' - ' + current_article.title unless current_article.nil? %></title>
     <%= feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed" %>
     <%= stylesheet_link_tag "all" %>
-    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <div class="container">
       <div class="container-centered">
         <div class="banner">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
               <a href="/">
                 <img src="/images/avatar.png" class="image avatar">
               </a>
             </div>
-            <div class="col-md-8">
-              <h3>Ruby Red Bricks</h3>
+            <div class="col-md-9">
+              <a href="/">
+                <h1>Ruby Red Bricks</h1>
+              </a>
             </div>
           </div>
         </div>
         <div class="row"><hr/></div>
-        <div class="row">
+        <div class="<%= current_article ? 'row post' : 'row' %>">
           <%= yield %>
         </div>
         <div class="row"><hr/></div>
 
         <div class="row contact">
-          <h4>Follow</h4>
-          <span class="fui-facebook"></span>
-          <p>
-            <ul class="icons">
+          <div class="col-md-5">
+          <ul class="icons">
             <li>
-              <a href="https://github.com/ferrisoxide" class="icon fa-github">
-                <span class="label">GitHub</span>
+                <a href="https://github.com/ferrisoxide" class="icon fa-github" target="_blank">
+                  <span class="fui-github"></span>
               </a>
             </li>
 
             <li>
-              <a href="https://twitter.com/ferrisoxide" class="icon fa-twitter">
-                <span class="label">Twitter</span>
+                <a href="https://twitter.com/ferrisoxide" class="icon fa-twitter" target="_blank">
+                  <span class="fui-twitter"></span>
+                </a>
               </a>
             </li>
 
             <li>
-              <a href="https://linkedin.com/in/ferrisoxide" class="icon fa-linkedin">
-                <span class="label">LinkedIn</span>
+              <a href="https://linkedin.com/in/ferrisoxide" class="icon fa-linkedin" target="_blank">
+                <span class="fui-linkedin"></span>
               </a>
             </li>
 
             <li>
-              <a href="https://plus.google.com/+TomTuddenham" class="icon fa-google-plus">
-                <span class="label">Google+</span>
+              <a href="https://plus.google.com/+TomTuddenham" class="icon fa-google-plus" target="_blank">
+                <span class="fui-google-plus"></span>
               </a>
             </li>
 
             <li>
-              <a href="https://www.facebook.com/tom.tuddenham.7" class="icon fa-facebook">
-                <span class="label">Facebook</span>
+              <a href="https://www.facebook.com/tom.tuddenham.7" class="icon fa-facebook" target="_blank">
+                <span class="fui-googleplus"></span>
               </a>
             </li>
 
             <li>
               <a href="mailto:ferrisoxide@gmail.com" class="icon fa-envelope-o">
-                <span class="label">Email</span>
+                <span class="fui-mail"></span>
               </a>
             </li>
-
           </ul>
-          </p>
         </div>
+      </div>
       </div>
     </div>
   </body>

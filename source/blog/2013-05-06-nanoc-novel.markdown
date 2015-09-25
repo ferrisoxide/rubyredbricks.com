@@ -4,7 +4,6 @@ title: "nanoc-novel"
 created_at: 2013-05-06 15:01
 comments: true
 categories:
-layout: post
 ---
 
 ![nanoc and ePub logos](/images/posts/nanoc-epub-logos.png){: class="image right"}
