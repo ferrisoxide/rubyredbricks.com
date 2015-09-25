@@ -1,0 +1,40 @@
+.container-centered {
+  margin: 0 auto;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  max-width: 800px;
+}
+
+.image.avatar {
+	border-radius: 100%;
+}
+
+.image.avatar:before {
+	display: none;
+}
+
+.image.avatar img {
+	border-radius: 100%;
+	width: 100%;
+}
+
+.banner {
+//  border-bottom: 1px solid #eeeeee;
+  margin-top: 18px;
+//  padding-bottom: 34px;
+}
+
+.banner h1 {
+  color: #E74C3C;
+  font-weight: 700;
+}
+
+.jumbotron {
+  text-align: center;
+}
+
+.jumbotron h2 {
+  margin-top: 0px;
+}
