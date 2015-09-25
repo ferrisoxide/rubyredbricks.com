@@ -46,6 +46,10 @@ activate :deploy do |deploy|
   deploy.strategy = :force_push
 end
 
+activate :disqus do |disqus|
+  disqus.shortname = 'rubyredbricks' # Replace with your Disqus shortname.
+end
+
 # activate :deploy do |deploy|
 #   deploy.deploy_method = :git
 #   # Optional Settings

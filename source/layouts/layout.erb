@@ -30,6 +30,14 @@
         </div>
         <div class="row"><hr/></div>
 
+        <% if current_article %>
+          <div class="row">
+            <%= disqus %>
+          </div>
+        <% end %>
+
+        <div class="row"><hr/></div>
+
         <div class="row contact">
           <div class="col-md-5">
           <ul class="icons">
@@ -74,6 +82,8 @@
       </div>
       </div>
     </div>
+
+    <%= partial "layouts/shared/google_analytics" %>
   </body>
   <%= javascript_include_tag  "all" %>
 </html>
