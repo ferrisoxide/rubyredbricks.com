@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <title>Ruby Red Bricks - From Octopress to nanoc</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/feed.xml" />
+    <link href="/stylesheets/all.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-centered">
+        <div class="banner">
+          <div class="row">
+            <div class="col-md-3">
+              <a href="/">
+                <img src="/images/avatar.png" class="image avatar">
+              </a>
+            </div>
+            <div class="col-md-9">
+              <a href="/">
+                <h1>Ruby Red Bricks</h1>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row"><hr/></div>
+        <div class="row post">
+          <p>Regular visitors will have noticed recent changes to the Ruby Red Bricks blog. There are some
+visual differences, but more significantly the blog has been ported completely from
+<a href="http://octopress.org">Octopress</a> to <a href="http://nanoc.ws/">nanoc</a>.</p>
+
+<!---->
+
+<h2 id="why-the-change">Why the Change?</h2>
+
+<p>The time I get to code is extremely limited - mainly on the bus to and fro work. Both Octopress and nanoc are excellent tools and - while I'd like to be able to keep my options option - I don't have the time to keep up to date with both static site compilers.</p>
+
+<p>It also seems a little silly blogging about playing with nanoc using a Jekyll-based blogging tool. Running the whole show with nanoc gives me an opportunity to get half-decent with one tool (instead of being crap at two).</p>
+
+<h2 id="but-octopress-is-awesome">But Octopress is Awesome!</h2>
+
+<p>Yes, Octopress is a fantastic blogging tool and has so much going for it: the Octopress community is as vibrant as the nanoc community (judging by Google Groups posts); it is part of the larger <a href="http://jekyllrb.com/">Jekyll</a> family; and Octopress comes with pretty much everything you need for blogging, right out the box.</p>
+
+<p>Octopress also comes with a bunch of stuff I never had any use for. I could have trimmed it down a little, but some of the code seems a bit magical - and I never knew what I might break. Octopress sites also tend to look like other Octpress sites. This is not a slight against Octopress - more an issue with me being lazy / time-poor.</p>
+
+<p><img alt="Sad Octopress" class="image left" src="/images/posts/sad-octopress.jpg" /></p>
+
+<p>In many ways it's not fair to compare the two systems, as Octopress is a much more a complete blogging tool than nanoc. With nanoc I had to build many things up from scratch, using advice from <a href="http://jakoblaegdsmand.com/blog/2013/01/easy-blogging-with-nanoc/">here</a> and <a href="https://github.com/crazysim/nanoc-foundation-blog">there</a> in the community. Though there's still work to be done, the  first cut has a smaller and more focused codebase than the original blog.</p>
+
+<p>I'm sorry if I've made you sad, little Octopress creature, but I wish you all the best. And I really enjoyed the time we spent together.</p>
+
+<h2 id="nanoc-is-awesome-too">nanoc is Awesome Too!</h2>
+
+<p>Where Octopress is reasonably prescriptive in how to construct blogs - it's probably fair to call it an "opinionated" blogging tool - nanoc is pretty much open-ended. There are benefits in its openness - I was able to move to <a href="http://foundation.zurb.com/">Zurb's Foundation</a> framework for the front-end - but the cost is having to rewrite much of the support code by hand.</p>
+
+<p>nanoc does come with tools for maintaining blogs.  <a href="http://nanoc.ws/docs/api/Nanoc/Helpers/Blogging.html"><code>Nanoc::Helpers::Blogging</code></a> and related modules makes it relatively simple to port some of the parts of an Octopress blog. Rewriting the <a href="/archives">Archives</a> section was straightforward, thanks to all the blog articles being automatically collected in reverse date order within nanoc's <a href="http://nanoc.ws/docs/api/Nanoc/Helpers/Blogging.html#sorted_articles-instance_method"><code>sorted_articles</code></a> array.</p>
+
+<p>Adding an RSS link was a painless one-liner, using the <a href="http://nanoc.ws/docs/api/Nanoc/Helpers/Blogging.html#atom_feed-instance_method"><code>atom_feed</code></a> method. But that's about where the easy fun stopped and we moved into "why am I doing this again?" territory.</p>
+
+<h2 id="porting">Porting</h2>
+
+<p>Moving from Octopress to nanoc took about four or five hours. There were a couple of near rage-quit moments, but mostly due to my stupidity. Overall the process went fairly smoothly, thanks to a great deal of similarity between the two systems.</p>
+
+<h3 id="meta-data">Meta-data</h3>
+
+<p>Octopress and nanoc share the same basic model for content. The meta-data header for pages is essentially the same and - apart from inserting a <code>kind: article</code> entry in each post header - there was nothing to change other than move all the pages and posts into nanoc's <code>/content</code> folder.</p>
+
+<h3 id="markup">Markup</h3>
+
+<p>Markup proved a little trickier. Both nanoc and Octpress make use of a Mardown-style markup. Octopress also uses <a href="http://liquidmarkup.org/">Liquid Markup</a> for more programmatic bits, but Liquid support was removed from nanoc quite some time ago. nanoc has a range of filters available, but the most natural seemed to be a mixture of <code>kramdown</code> (for Markdown) and <code>erb</code> (for the programmatic parts). The porting process was mostly a matter of seeing what broke, and fixing with either layout changes or creating helper methods.</p>
+
+<h3 id="layouts-and-style">Layouts and Style</h3>
+
+<p>Thankfully I hadn't used much of the plugins packaged with Octopress, otherwise I would have had more trouble replacing functionality. Rebuilding the layouts was more a matter of taking the example Foundation blog layout and reworking it to render the nanoc <code>item</code> objects.</p>
+
+<p>One neat trick I lifted from <a href="http://clarkdave.net/2012/02/building-a-static-blog-with-nanoc/">Dave Clarke's blog</a> is displaying an excerpt of recent blog posts on the front page. Previously Octopress would display the complete post for any recent articles, increasing the page load time. The front page is a lot shorter, with links to the full article. I'm hoping this will incline people to read and reply to comments, as the the Disqus widgets were not available on the index page. We'll have to see how that goes.</p>
+
+<p>Foundation is a bit of a task master. There's no simple way to make use of the grid within Mardown posts, unless you're willing to sprinkle your otherwise clean text with a bunch of <code>divs</code>. I had to cheat a bit, floating images to the left or right. It's not perfect, and I'm pretty sure it will choke the responsive layout. But it's a start.</p>
+
+<p>One word about using the Foundation gem: pulling in the assets via Compass (<a href="https://github.com/ferrisoxide/rubyredbricks.com/blob/master/compass/config.rb">source</a>) sprinkles the root of the project with <code>robots.txt</code> and other related files. I don't know how to prevent this, but it's just a matter of cleaning up after the event.</p>
+
+<h3 id="helpers--commands">Helpers &amp; Commands</h3>
+
+<p>As noted before, the standard <code>Nanoc::Helpers::Blogging</code> module simplifies some of the core blogging functionality. It's missing the Twitter, Google Plus One, Disqus, Pinboard, Delicious and Google Analytics plugins provided by Octopress by default - but of these I was only really using Twitter, Disqus and Google Analytics.</p>
+
+<p>The Twitter plugin stopped working when Twitter changed the terms of their API, so I've dropped that until I can think of a way to integrate it again (maybe as a third-party service). Google Analytics and Disqus integration is straightforward - it's just as simple as dropping the widget code into the layouts.</p>
+
+<p>A modification of the <code>nanoc create_post</code> command pilfered from <a href="http://jakoblaegdsmand.com/blog/2013/01/easy-blogging-with-nanoc/">Jakob Lægdsmand's blog</a> to build the scaffold for each new post and I had an almost complete blogging system again.</p>
+
+<h3 id="images">Images</h3>
+
+<p>Octopress uses a helper provided via Liquid to create image tags. While I like the model, it seems unnecessary when ordinary Markdown offers a similar feature. Adding CSS - to float left and right as mentioned earlier - doesn't seem to be supported by the standard Markdown syntax, but thankfully the Kramdown filter adds support without the resulting code looking too weird.</p>
+
+<p>So the original Octopress image tag:</p>
+
+<pre><code>   \{\% img left /images/posts/adelaide-metro-old-style-ticket-machine.jpg 250 250 Adelaide Metro Ticket Machine in Action \%\}
+</code></pre>
+
+<p>becomes something very similar (but more Markdowny).</p>
+
+<pre><code>    ![Adelaide Metro Ticket Machine in Action](/images/posts/adelaide-metro-old-style-ticket-machine.jpg){: class="image left"}
+</code></pre>
+
+<h3 id="codeblocks">Codeblocks</h3>
+
+<p>Codeblocks was where things really came unstuck. There are a few options in nanoc-land, but most seemed a bit clunky - at least compared to Octopress's really nice <a href="http://ethanschoonover.com/solarized">Solarised</a> solution.</p>
+
+<p>I opted for simple, using Kramdown's built in support for Coderay. It doesn't look anywhere near as nice as the Octopress solution, but it will do in the short-term.</p>
+
+<p>You can see various samples of Coderay in action in the refurbished <a href="/blog/2012/09/19/more-epub-with-nanoc/">More ePub with nanoc</a> post from last year.</p>
+
+<h2 id="the-future">The Future</h2>
+
+<p>So where to from here? The blog is back up and running but will need a bit of tweaking - mostly removing inline CSS and other crufty artefacts from the port. I need to clean up the repo as well, as there are a few odd files left over from Octopress.</p>
+
+<p>There's a hint of irony in what I've ended up with. Having wanting to move away from a blog that looks like other Octopress blogs, I've ended up with something that looks like every other Foundation based site. But the structure is in place now - there's something I feel I can work on.</p>
+
+<p>The move has given me a fresh mindset. I like the simplicity of the new look and will strive to keep it like that. The main job ahead is to keep the content interesting and useful, so I've come up with a few basic rules I think will help:</p>
+
+<h3 id="keep-it-focused">1. Keep It Focused</h3>
+
+<p>This is a technical blog, and it should stay that way.</p>
+
+<p>Politics, religion and pop music should stay where belong - on Facebook. If I'm inclined to post personal rants, there are other places on the internet for that.</p>
+
+<h3 id="keep-it-real">2. Keep It Real</h3>
+
+<p>Ruby and Lego™ - and other things I dig? So where's the Lego?</p>
+
+<p>I kinda got distracted from the main game early on. This blog was meant to be about the fun to be had playing with Ruby and Lego, with the odd bit of interesting tech thrown in. I want to get back to that and, wherever possible, bring the two worlds of Lego™ and Ruby together.</p>
+
+<p>And the things I dig? Cue <a href="http://www.youtube.com/watch?v=k2rDbRUDkds">joke for the kids</a>.</p>
+
+<h3 id="maintain-the-joy">3. Maintain the Joy</h3>
+
+<p>This is my happy place. This is where I come to experiment with and think about code and stuff. In a world where I'm banned from bringing Nerf guns to work (well.. I did shoot one of the other senior managers in a surprise dive from behind the printer), this is my little space to remember the good times. Back when my business card read "Code Poet" and the Internet felt like a magic sandbox.</p>
+
+<h3 id="blog-early-blog-often">4. Blog Early, Blog Often</h3>
+
+<p>As <a href="https://twitter.com/technicalmoses">Jon Moses</a> commented on an <a href="/blog/2013/05/06/nanoc-novel/">old post</a>, "If you're not embarrassed (in some way) by code you release, you waited too long to release it." Ditto for blogging. Any ideas I have can live or die under the unyielding scrutiny of the internet, or be shaped into something new by smarter minds than my own.</p>
+
+<p>I've yet to find my voice as a blogger - or even as a writer in general. The path is through practise, practise, practise. There's no short cuts - and there's no shortage of things I want to write about.</p>
+
+<h2 id="final-notes">Final Notes</h2>
+
+<p>Finally, a thank you. Firstly to you, for reading yet another lengthy blog post. Secondly, to the nanoc crowd, whose numerous posts helped get me back on track. But lastly to Octopress - thanks for a great tool that kept the blog running the last couple of years.</p>
+
+<h3 id="the-code">The Code</h3>
+
+<p>You can grab the code for this blog from <a href="https://github.com/ferrisoxide/rubyredbricks.com">Github</a>. If you want to see the nitty-gritty of the changes feel free to trawl through the commit log. You probably won't find anything revolutionary, and I expect anyone doing the same sort of thing would do it a completely different way. But the meandering path is there for all to see.</p>
+
+<h3 id="credits">Credits</h3>
+
+<p>I lifted most of the code from other people, so feel free to nick stuff from me. If I have pilfered code without appropriate attribution, please take me up on it. And if there's anyone I've forgotten to mention, let me know. But here's a list of nanoc people I feel I owe a debt to:</p>
+
+<ul>
+  <li><a href="http://jakoblaegdsmand.com/blog/2013/01/easy-blogging-with-nanoc/">Jakob Lægdsmand</a></li>
+  <li><a href="http://clarkdave.net/2012/02/building-a-static-blog-with-nanoc/">Dave Clarke</a></li>
+  <li><a href="http://www.danhoey.com/blog/2011_09_23_building_a_blog_with_nanoc/">Daniel Hoey</a></li>
+  <li><a href="http://www.mindflakes.com/">Nelson Chen</a></li>
+  <li><a href="http://www.starryhope.com/going-static-with-nanoc/">Jim Mendenhall</a></li>
+</ul>
+
+<p>and of course:</p>
+
+<ul>
+  <li><a href="http://stoneship.org/">Denis Defreyne</a></li>
+</ul>
+
+        </div>
+        <div class="row"><hr/></div>
+
+          <div class="row">
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+//<![CDATA[
+                  var disqus_shortname = 'rubyredbricks';
+                        var disqus_url = 'http://rubyredbricks.com/blog/2013/09/30/from-octopress-to-nanoc/';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ %>
+          </div>
+
+        <div class="row"><hr/></div>
+
+        <div class="row contact">
+          <div class="col-md-5">
+          <ul class="icons">
+            <li>
+                <a href="https://github.com/ferrisoxide" class="icon fa-github" target="_blank">
+                  <span class="fui-github"></span>
+              </a>
+            </li>
+
+            <li>
+                <a href="https://twitter.com/ferrisoxide" class="icon fa-twitter" target="_blank">
+                  <span class="fui-twitter"></span>
+                </a>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://linkedin.com/in/ferrisoxide" class="icon fa-linkedin" target="_blank">
+                <span class="fui-linkedin"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://plus.google.com/+TomTuddenham" class="icon fa-google-plus" target="_blank">
+                <span class="fui-google-plus"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://www.facebook.com/tom.tuddenham.7" class="icon fa-facebook" target="_blank">
+                <span class="fui-googleplus"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="mailto:ferrisoxide@gmail.com" class="icon fa-envelope-o">
+                <span class="fui-mail"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-4121694-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+  <script src="/javascripts/all.js"></script>
+</html>

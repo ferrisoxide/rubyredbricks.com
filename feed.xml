@@ -1,0 +1,1050 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Blog Name</title>
+  <subtitle>Blog subtitle</subtitle>
+  <id>http://blog.url.com/blog</id>
+  <link href="http://blog.url.com/blog"/>
+  <link href="http://blog.url.com/feed.xml" rel="self"/>
+  <updated>2013-12-14T10:30:00+10:30</updated>
+  <author>
+    <name>Blog Author</name>
+  </author>
+  <entry>
+    <title>DigitalOcean - the Good, the Bad and .. well the Good</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2013/12/14/digitalocean-the-good-the-bad-and-well-the-good/"/>
+    <id>http://blog.url.com/blog/2013/12/14/digitalocean-the-good-the-bad-and-well-the-good/</id>
+    <published>2013-12-14T10:30:00+10:30</published>
+    <updated>2015-09-26T17:55:31+09:30</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="DigitalOcean logo with tick" class="left image" src="/images/posts/digital-ocean-logo-with-tick.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Many readers have probably seen the advertising for &lt;a target="_blank" href="http://digitalocean.com"&gt;DigitalOcean&lt;/a&gt; around the traps. Their logo appears pretty consistently in my Facebook advertising feed, probably FB clueing in to my general interest in all things webby.&lt;/p&gt;
+
+&lt;p&gt;My kids had been hassling me for a new Minecraft server, mostly to play with different mods and the like. Given their idea of "monetising Minecraft" hasn't paid off (what is it with kids these days - they all want to be e-entrepreneurs), the DigitalOcean offering seemed a reasonably inexpensive way for them to play.&lt;/p&gt;
+
+&lt;p&gt;Super impressed with the speed of set-up with DigitalOcean. We had a server up and running within minutes, and then a little bit of configuration to get the kids &lt;a target="_blank" href="http://www.spigotmc.org/"&gt;Spigot&lt;/a&gt; based server running. All up we probably spent no more than a couple of hours getting things in a reasonable shape.&lt;/p&gt;
+
+&lt;p&gt;The server ran smoothly for a month without any problems, then suddenly the server disappeared, with this message appearing in my inbox:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;Oh no! We've found an issue with your account and issued you a new ticket
+that needs to be addressed as soon as possible.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'm pretty used to VM hosts sending bad news - when they actually have the capacity to detect that something has gone wrong. Not all of them do. Assuming the worst, it looked like DigitalOcean had picked up a fault and were letting me know.&lt;/p&gt;
+
+&lt;p&gt;I logged into their support page to find out what had happened… and that's where the confusion started.&lt;/p&gt;
+
+&lt;!----&gt;
+
+&lt;p&gt;This is the first message I received from the support team:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;Hi,
+
+We're excited to have you as a customer of DigitalOcean, we would
+like to verify your account.
+
+Please provide us with the following:
+
+- Your Name
+- Location
+- Phone Number
+- Type of Traffic you will be sending from the server
+- 1 or more of the following:
+1. Your public twitter handle
+2. Your blog
+3. Your company or personal website
+4. Your public facebook profile
+
+Thanks,
+Support
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;O..K.. Needing to know my name and phone number I get, but locked out because DigitalOcean don't know my Facebook profile? What the hell?&lt;/p&gt;
+
+&lt;p&gt;After a series of back and forth messages I finally found eked out from the support team what the issue was. Apparently the server the kids had been running Minecraft on had been involved in fraudulent activity. They needed something to reassure them that I was who I said I was. Frustratingly, there was no way I could get back in to see what was going on until I verified who I was and gave them my personal details. After much to-and-fro'ing I relented and gave them the information they were after, thinking "If you want to see what I'm going to write about this, I'm happy to give you a link to my blog."&lt;/p&gt;
+
+&lt;p&gt;Slightly freaking out over what could have possibly happened, I spent the next few hours pouring over every log file I could find.&lt;/p&gt;
+
+&lt;p&gt;Nothing…&lt;/p&gt;
+
+&lt;p&gt;Not a hint…&lt;/p&gt;
+
+&lt;p&gt;Every single access could be accounted for, down to the IP address. Still worried (rootkit? some crazy Minecraft exploit? what?) I got back in touch with DigitalOcean to report on what I'd garnered from the logs - only to receive the &lt;em&gt;best apology&lt;/em&gt; I've seen from a VM provider.&lt;/p&gt;
+
+&lt;p&gt;They screwed up. I won't go into the details, but basically activity that occurred before I'd even been a customer had triggered off their fraud detection system.&lt;/p&gt;
+
+&lt;p&gt;But they apologised. And offered a rather decent credit as compensation. While the money isn't important, and probably didn't compensate me for the time spent on the issue anyway, it was a nice touch.&lt;/p&gt;
+
+&lt;p&gt;Even though I was ready to rage-quit at one stage, I have to give DigitalOcean points for the following reasons:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The VM hosting service DigitalOcean provide is solid and represents decent value for money.&lt;/li&gt;
+  &lt;li&gt;Their support team are personable and not dismissive when someone asks technical questions.&lt;/li&gt;
+  &lt;li&gt;They proactively look for problems.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But most importantly:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;When they make a mistake, they own up and take steps to make sure it doesn't happen again.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Even though they detected a false-positive in my case, I still rate them for looking out for these sorts of issues. I'd rather know the hosting provider I'm using is doing their best to monitor and protect their environment, than just hoping for the best.&lt;/p&gt;
+
+&lt;p&gt;There's a relatively well known provider (that I won't name) who will happily just let your servers die and not bother to inform you. Same provider, when confronted with evidence from the logs that a VM just dropped out without even so much as a kernal panic, responded with "Doesn't mean much to me. I'm not really a Linux person".&lt;/p&gt;
+
+&lt;p&gt;Really? Go find someone who is and solve the problem. Don't throw it back to me as the customer.&lt;/p&gt;
+
+&lt;p&gt;I've had hosting providers force system changes, right in the middle of other important work. I've had conversations with 2nd tier support, after catastrophic infrastructure failure, that revealed magical thinking:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;[Me]&lt;/em&gt; So what exactly are you doing to move our reboot to the top of the queue?&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;[Support]&lt;/em&gt; I keep clicking on your VM in the list.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;[Me]&lt;/em&gt; And that changes the priority?&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;[Support]&lt;/em&gt; I don't know, but it seems to have helped in the past.&lt;/p&gt;
+
+&lt;p&gt;Just to clarify, this is &lt;strong&gt;not&lt;/strong&gt; the kind of dialogue I've had with DigitalOcean.&lt;/p&gt;
+
+&lt;p&gt;With some providers, often when there's a stuff up it becomes an exercise in blame shifting or moving the work back to the customer:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;"The issue is with our upstream provider"&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;"You really should move to our new shiny, shiny infrastructure"&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;"I'll need to get you to log a support ticket before I can help you with that"&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I'd never speak to a client like that.&lt;/p&gt;
+
+&lt;p&gt;At the end of the day, VM hosting providers are supplying a service to actual, real-life people. Having the technical competence is one thing. But to not acknowledge that someone is hurting is a terrible way to do business. If I want to keep a customer, my job is to make the problem go away - as best as I can.&lt;/p&gt;
+
+&lt;p&gt;I've also had some great experiences. One server, running on &lt;a target="_blank" href="https://www.linode.com/"&gt;Linode&lt;/a&gt; had over a thousand days of uptime before Linode's admins asked me to schedule a reboot because of infrastructure changes. And again, Linode were apologetic that the reboot had to happen, let me know well in advance and actually gave me the power to schedule the downtime so it could fit in with my needs. Total downtime in three years, less than an hour. And I remain a happy customer.&lt;/p&gt;
+
+&lt;p&gt;The VM hosting market is wide and varied, and there's plenty good and bad players in the market. For the low-end of the market (in price and VM size) I'm pretty happy with the quality of the service that DigitalOcean offer. They are a relatively new player, but with their solid technical offering I imagine they are going to be around for a while. Their support may need a little tweaking, but they acknowledge that - and that's the main reason I'm staying.&lt;/p&gt;
+
+&lt;p&gt;In the end, it's all about keeping your customers happy and treating them with respect. So that's a big tick to you DigitalOcean.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Ruby Pub - Part 1: Toolchains</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2013/10/09/ruby-pub-part-1-toolchains/"/>
+    <id>http://blog.url.com/blog/2013/10/09/ruby-pub-part-1-toolchains/</id>
+    <published>2013-10-09T10:30:00+10:30</published>
+    <updated>2015-09-26T17:55:31+09:30</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="Ruby Pub" class="image left" src="/images/posts/ruby-pub.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Part 1 of a series investigating the development of a Ruby-based e-Publishing system.&lt;/p&gt;
+
+&lt;p&gt;Before progressing too far in building a toolchain for publishing e-books, I want to have a look at the current state of the art - just to see what's out there and check that I'm not re-inventing the wheel.&lt;/p&gt;
+
+&lt;!----&gt;
+
+&lt;p&gt;A surprising number of successful authors already use Ruby to drive their e-publishing toolchains. This post looks at a two of these systems: &lt;a target="_blank" href="https://github.com/fnando/kitabu"&gt;Kitabu&lt;/a&gt; and &lt;a target="_blank" href="https://github.com/blueheadpublishing/bookshop"&gt;Bookshop&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="kitabu"&gt;Kitabu&lt;/h2&gt;
+
+&lt;p&gt;Jesse Storimer uses Kitabu in the production of his &lt;a target="_blank" href="http://www.jstorimer.com/pages/books"&gt;series of books&lt;/a&gt; on working with low-level Unix sockets, TCP/IP and threads. He gives a more detailed explanation of how he uses Kitabu &lt;a target="_blank" href="http://www.jstorimer.com/blogs/workingwithcode/7766061-my-ebook-publishing-process"&gt;on his blog&lt;/a&gt; than I will go into here.&lt;/p&gt;
+
+&lt;h3 id="installing-kitabu"&gt;Installing Kitabu&lt;/h3&gt;
+
+&lt;p&gt;Installing &lt;a target="_blank" href="https://github.com/fnando/kitabu"&gt;Kitabu&lt;/a&gt; is slightly complicated, due to its dependency (via the eeepub gem) on RubyZip. RubyZip's interface changed in version 1.0, so to be able to install Kitabu we have to make use of an earlier version of the gem.&lt;/p&gt;
+
+&lt;p&gt;To install Kitabu:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;gem install rubyzip -v 0.9.9
+gem install kitabu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As a side note, this also affects the &lt;a target="_blank" href="https://github.com/ferrisoxide/tachypomp"&gt;Tachypomp&lt;/a&gt; project.&lt;/p&gt;
+
+&lt;p&gt;Once installed Kitabu has some nice features. Executing &lt;code&gt;kitabu check&lt;/code&gt; from the command line produces the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;Prince XML: Converts HTML files into PDF files.
+Not installed.
+
+KindleGen: Converts ePub e-books into .mobi files.
+Not installed.
+
+html2text: Converts HTML documents into plain text.
+Not installed.
+
+pygments.rb: A generic syntax highlight. If installed, replaces CodeRay.
+Not installed.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As the output suggests, Kitabu is capable of producing e-books in a variety of formats, including HTML, Kindle .mobi, PDF and text. PDF generation requires &lt;a target="_blank" href="http://www.princexml.com/"&gt;Prince XML&lt;/a&gt;, a commercial tool for building high-quality documents. At $495 USD for a single user licence, Prince isn't an inexpensive solution, but it does produce exceptional PDF documents. If your goal is to produce print-ready PDFs then investing in Prince shouldn't be too onerous.&lt;/p&gt;
+
+&lt;p&gt;It would be nice if Kitabu could default to an open-source PDF generator (&lt;em&gt;e.g.&lt;/em&gt; Prawn) in the absence of Prince, but pretty much all PDF generating gems have their own interfaces and it'd be a lot of work to maintain support for both.&lt;/p&gt;
+
+&lt;h3 id="working-with-kitabu"&gt;Working with Kitabu&lt;/h3&gt;
+
+&lt;p&gt;Kitabu works with Markdown, Textile or HTML formatted files. All the contents are maintained in the &lt;code&gt;/text&lt;/code&gt; folder, indexed by the convention of adding a sequence number at the start of each filename (&lt;em&gt;e.g&lt;/em&gt; &lt;code&gt;01_first_chapter.markdown&lt;/code&gt;, &lt;code&gt;02_second_chapter.markdown&lt;/code&gt;, …). It's also possible to nest sections within chapters.&lt;/p&gt;
+
+&lt;p&gt;Running &lt;code&gt;kitabu new my_book_title&lt;/code&gt; creates boilerplate layouts, templates, etc in the created &lt;code&gt;my_book_title&lt;/code&gt; directory. There are various config files available to tweak, but that's beyond the scope of this post.&lt;/p&gt;
+
+&lt;p&gt;Kitabu's implementation of syntax highlighting is quite novel. Inline styling is supported by either CodeRay or Pygments, but Kitabu also allows you to declare references to code source files:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;@@@ ruby code/example-1.rb @@@
+
+In this example...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you are working on a technical book this would probably prove handy, in that you can keep all your source code examples separate from the main text.&lt;/p&gt;
+
+&lt;p&gt;Another nice feature is &lt;code&gt;kitabu stats&lt;/code&gt;. Running this command against the Tachypomp contents (ported to Kitabu) produced the following report:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;Chapters: 8
+Words: 34155
+Images: 0
+Links: 2
+Footnotes: 0
+Code blocks: 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you're wanting to keep tabs on your progress, I can see this being a handy feature.&lt;/p&gt;
+
+&lt;p&gt;Kitabu uses Sass under the hood to manage CSS. The ePub and HTML stylesheets are kept separate from each other in the &lt;code&gt;/templates&lt;/code&gt; folder, allowing different styling for different representations of the content. This is a must, given ePub 2's limited support for CSS.&lt;/p&gt;
+
+&lt;p&gt;Kitabu has some built-in commands for generating content. For instance, the &amp;lt;%= toc %&amp;gt; will build a table of contents wherever declared. It may very well be possible to generate other common content using &lt;code&gt;erb&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id="exporting-content"&gt;Exporting Content&lt;/h3&gt;
+
+&lt;p&gt;Running &lt;code&gt;kitabu export&lt;/code&gt; will build HTML and ePub versions of your content by default, and PDF and .mobi versions if you have the right gems installed. The output is a little terse (&lt;code&gt;** e-book has been exported&lt;/code&gt;), but the content is generated cleanly in your book project's &lt;code&gt;/output&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;I'm not sure if I did something wrong, but running Tachypomp through Kitabu generated an ePub document with a garbled front page. Looking through the unzipped ePub file doesn't reveal anything, so I suspect this is an issue with Calibre not rendering .png files properly.&lt;/p&gt;
+
+&lt;p&gt;The generated HTML ends up being in a single page. While useful for debugging, I wouldn't want people to have to download an entire novel in one hit. Not sure if there's any way to change Kitabu's behaviour, but it doesn't seem likely. There's also no built-in mechanism for deploy HTML to a server, though writing a simple &lt;code&gt;rake&lt;/code&gt; task wouldn't be too difficult.&lt;/p&gt;
+
+&lt;p&gt;Though I didn't install Prince or .mobi support, the &lt;a target="_blank" href="https://github.com/fnando/kitabu#samples"&gt;sample documents&lt;/a&gt; do show off its competent PDF generation capabilities.&lt;/p&gt;
+
+&lt;h3 id="summary"&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;The framework isn't as extensible as either nanoc or Jekyll, but it's a purpose-built tool that does one thing well. Kitabu would be ideal as the main components of a publishing pipeline targeting off-line reading system like the Kindle or PDFs.&lt;/p&gt;
+
+&lt;p&gt;The inflexibility in managing HTML content, and the lack of nanoc-style filters to refine the generation of content, would drive me away from adopting Kitabu, but it's a nice and simple pipeline for producing e-books out of the box without having to write any custom code. Compared to &lt;code&gt;nanoc&lt;/code&gt;, which requires a reasonable amount of configuration (e.g. the Rules file, custom commands) to get it to produce e-books, Kitabu assumes a sensible default model for e-book content.&lt;/p&gt;
+
+&lt;p&gt;In particular I like the &lt;code&gt;kitabu stats&lt;/code&gt; command and would probably consider writing something similar as an extension to nanoc.&lt;/p&gt;
+
+&lt;h2 id="bookshop"&gt;Bookshop&lt;/h2&gt;
+
+&lt;p&gt;Pat Shaughnessy wrote his &lt;a target="_blank" href="http://patshaughnessy.net/ruby-under-a-microscope"&gt;Ruby Under the Microscope&lt;/a&gt; using the &lt;a target="_blank" href="https://github.com/blueheadpublishing/bookshop"&gt;Bookshop&lt;/a&gt; gem.&lt;/p&gt;
+
+&lt;p&gt;As for Jesse Storimer, Pat does a &lt;a target="_blank" href="http://patshaughnessy.net/2012/11/27/my-ebook-build-process-and-some-pdf-epub-and-mobi-tips"&gt;much better job than I&lt;/a&gt; going through the ins and outs of using Bookshop. I will, however, endeavour to give it my best shot.&lt;/p&gt;
+
+&lt;h3 id="installing-bookshop"&gt;Installing Bookshop&lt;/h3&gt;
+
+&lt;p&gt;Keeping the gem environment clean, so I don't pollute the common setup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;rvm use 1.9.3
+rvm gemset use bookshop --create
+gem install bookshop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I actually did something similar with Kitabu - I just neglected to mention it. Bookshop really seems to need &lt;a target="_blank" href="http://www.princexml.com/"&gt;PrinceXML&lt;/a&gt; installed before being able to do anything reasonable. On the Mac this is fairly straight forward. After downloading the &lt;a target="_blank" href="http://www.princexml.com/download/"&gt;PrinceXML package&lt;/a&gt; it's just a matter of unpacking the archive and running &lt;code&gt;/.install.sh&lt;/code&gt;. Flawless. It doesn't matter if you install this before or after installing the Bookshop gem.&lt;/p&gt;
+
+&lt;p&gt;Bookshop required Java 1.5 or better installed, presumably to run &lt;a target="_blank" href="https://code.google.com/p/epubcheck/"&gt;epubcheck&lt;/a&gt; - a tool for validating ePub files.&lt;/p&gt;
+
+&lt;h3 id="using-bookshop"&gt;Using Bookshop&lt;/h3&gt;
+
+&lt;p&gt;Building a basic outline for an e-book is simple:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;bookshop new my_new_book
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bookshop is a much bigger beastie than Kitabu. The generated scaffolding is quite extensive, with a clean separation of content into &lt;code&gt;/frontmatter&lt;/code&gt;, &lt;code&gt;/bodymatter&lt;/code&gt; and &lt;code&gt;/backmatter&lt;/code&gt; folders.&lt;/p&gt;
+
+&lt;p&gt;Bookshop uses HTML5 as the basis for generating content in different formats, not Markdownm and makes extensive use of &lt;code&gt;erb&lt;/code&gt; to prepare the e-book text. It can also vary the generated content depending on the target format:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;&amp;lt;% if @output == (:pdf or :html) %&amp;gt;
+  &amp;lt;%= import('frontmatter/cover.html.erb')%&amp;gt;
+&amp;lt;% end %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While not as versatile as nanoc's representations, it certainly allows for variations in content between delivery formats. The &lt;code&gt;import&lt;/code&gt; method is also interesting - you can organise your book in whatever files and folders suits you and pull the content in where appropriate. Because it's all &lt;code&gt;erb&lt;/code&gt;-driven I imagine this would lend itself to reusing common content (&lt;em&gt;e.g.&lt;/em&gt; copyright notices) or even a Rails-style templating system at a pinch. This is in contrast to the way I prefer to work, where a single source file is broken down using my &lt;a target="_blank" href="https://github.com/ferrisoxide/breakdown"&gt;Breakdown gem&lt;/a&gt;. But I can see this working for what is probably a more typical writing workflow.&lt;/p&gt;
+
+&lt;p&gt;Defining the table of contents is a little irksome. You have to build &lt;code&gt;toc.ncx.erb&lt;/code&gt; (for ePub / .mobi) and &lt;code&gt;toc.html.erb&lt;/code&gt; (for HTML5 / PDF) separately by hand. It would be nice to have a single metadata file - say a &lt;code&gt;contents.yml&lt;/code&gt; - that defines the table of contents in the one place, and generate the required artefacts automatically.&lt;/p&gt;
+
+&lt;h3 id="exporting-content-1"&gt;Exporting Content&lt;/h3&gt;
+
+&lt;p&gt;Running &lt;code&gt;bookshop build&lt;/code&gt; gives a list of available formats and the location of build artefacts:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;$ bookshop build
+
+Usage: bookshop build [ARGS]
+
+The most common build commands are:
+ pdf          Builds a new pdf  at /builds/pdf/book.pdf
+ html         Builds a new html at /builds/html/book.html
+ epub         Builds a new epub at /builds/epub/book.epub
+ mobi         Builds a new mobi at /builds/mobi/book.mobi
+ all          Builds all formats above
+
+All commands can be run with -h for more information.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As with Kitabu, the generated HTML ends up in a single file. Not particularly useful (at least to me), but the focus is very much on building content for offline delivery. Generating content in ePub format produces the following output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;$ bookshop build epub
+
+Deleting any old builds
+rm -r
+cp -r book/epub/META-INF builds/epub/
+cp -r book/epub/mimetype builds/epub/
+Generating new html from erb
+Generating new cover.html from erb
+Generating new toc.html from erb
+Generating new content.opf from erb
+Generating new toc.ncx from erb
+cp -r book/assets builds/epub/OEBPS/assets/
+Zipping up into epub
+  adding: mimetype (stored 0%)
+  adding: META-INF/container.xml (deflated 32%)
+  adding: OEBPS/assets/css/page-template.xpgt (deflated 78%)
+  adding: OEBPS/assets/css/stylesheet.epub.css (deflated 65%)
+  adding: OEBPS/images/canvas.jpg (deflated 0%)
+  adding: OEBPS/images/cover.png (deflated 0%)
+  adding: OEBPS/images/draft.png (deflated 6%)
+  adding: OEBPS/images/html-18.png (deflated 2%)
+  adding: OEBPS/book.html (deflated 59%)
+  adding: OEBPS/content.opf (deflated 60%)
+  adding: OEBPS/cover.html (deflated 34%)
+  adding: OEBPS/toc.html (deflated 61%)
+  adding: OEBPS/toc.ncx (deflated 70%)
+Validating with epubcheck
+Epubcheck Version 1.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It interesting to note the &lt;code&gt;Validating with epubcheck&lt;/code&gt; output. One nice feature of Bookshop is that it makes sure the generated content is valid ePub, something that Kitabu (and my own Tachypomp for that matter) trusts the eeepub gem to do for you. As it happens, I didn't suffer the same sort of weirdness generating ePub content that I did in Kitabu. Both systems created an image as part of the front page, with the Kitabu-generated front page seeming to scramble in Calibre. I didn't have any similar problems with Bookshop.&lt;/p&gt;
+
+&lt;p&gt;All the zipping is done with the Unix &lt;code&gt;zip&lt;/code&gt; command. On Windows it's assumed that a &lt;code&gt;zip.exe&lt;/code&gt; is available on the path. Bookshop doesn't use eeepub or any other gems for generating ePub 2 content. While there is more internal code to generate the ePub book, there's no reliance on third party gems like RubyZip.&lt;/p&gt;
+
+&lt;p&gt;Building a PDF file generates clean, print-ready documents - though it does require a commercial licence from Prince.&lt;/p&gt;
+
+&lt;p&gt;I didn't try creating a Kindle .mobi file, but as this just pipes the ePub contents through &lt;a target="_blank" href="http://www.amazon.com/gp/feature.html?ie=UTF8&amp;amp;docId=1000765211"&gt;Amazon's Kindlegem&lt;/a&gt; executable I don't imagine there would be any real problems. I don't have a Kindle to test against, so I'm going to assume this just works.&lt;/p&gt;
+
+&lt;h3 id="summary-1"&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;One major downside of Bookshop is that it is entirely driven by HTML5 - there doesn't seem to be any simple way to introduce Markdown or other alternative markup languages into the mix. There's also no mechanism to add additional formats (&lt;em&gt;e.g.&lt;/em&gt; HPub). Having said that, the code is clean and easier to understand - it wouldn't take a massive effort to add either (hint: have a look at &lt;code&gt;/lib/bookshop/commands/build.rb&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;I really like the epubcheck integration. Knowing the generated content matches the ePub specification creates peace of mind. As a basic QA check I can't see any reason not to integrate this into a nanoc-based system.&lt;/p&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;While both Kitabu and Bookshop do an admirable job of producing e-books in a variety of formats, I can't say I'm compelled to walk away from nanoc. The limited options for generating HTML content are probably fine in general, but doesn't support the online / offline publishing model I'm pursuing.&lt;/p&gt;
+
+&lt;p&gt;There's nothing either can do that can't be replicated in nanoc and - while it may require additional coding - I'd prefer the flexibility of a general purpose tool. There are a lot of good ideas in both systems examined, and I undoubtedly look to stealing some of these for my own system.&lt;/p&gt;
+
+&lt;p&gt;In short, I expect the majority of authors looking to produce content for offline readers would do well to look at either Kitabu (if your preference is for writing in Markdown) or Bookshop (for HTML based content).&lt;/p&gt;
+
+&lt;p&gt;In follow up posts I'll be looking at commercial e-publishing systems, examining how Ruby can be used to build an open source e-publishing system that takes written content all the way through to delivery, promotion and selling. And naturally enough I intend getting round to actually coding my own platform, building on what I've seen in Kitabu and Bookshop - and lessons learned from the &lt;a href="/blog/2013/10/02/ruby-and-hpub/"&gt;Tachypomp&lt;/a&gt; project.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>BASIC Games in Ruby</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2013/10/07/basic-games-in-ruby/"/>
+    <id>http://blog.url.com/blog/2013/10/07/basic-games-in-ruby/</id>
+    <published>2013-10-07T10:30:00+10:30</published>
+    <updated>2015-09-26T17:55:31+09:30</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="BASIC Computer Games Ruby Edition" class="image right" src="/images/posts/basic-computer-games-ruby-edition.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOSTALGIA WARNING!!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Recently I rediscovered my copy of &lt;a href="http://www.atariarchives.org/basicgames/index.php"&gt;BASIC Computer Games - Microcomputer Edition&lt;/a&gt;, sitting on my oldest son's bookshelf.&lt;/p&gt;
+
+&lt;!----&gt;
+
+&lt;p&gt;Finding this battered old tome evoked many happy memories; typing reams of ALL-CAPS code into the brand-spanking new &lt;a href="http://en.wikipedia.org/wiki/Micromation"&gt;Micromation&lt;/a&gt;, an &lt;a href="http://en.wikipedia.org/wiki/MP/M"&gt;MP/M&lt;/a&gt; machine my school purchased through a long-running fundraising campaign. This was before I got my hands on a VIC-20, a machine that booted directly into a &lt;a href="http://en.wikipedia.org/wiki/Commodore_BASIC"&gt;Commodore BASIC&lt;/a&gt; shell, and lost whole Summer holidays to simple, joyful coding.&lt;/p&gt;
+
+&lt;p&gt;BASIC was a big part of growing up with computers for my crowd. Looking back now, it was a terrible first language to learn, and I wonder how much further I would be now if I'd had something like Ruby available to me when I was a kid. With a hint of nostalgia, I decided to sit down with my son and see what a Ruby version of a BASIC Computer Game might look like - if we ported one of these old games to a new language.&lt;/p&gt;
+
+&lt;h2 id="always-something-there-to-remind-me"&gt;Always Something There to Remind Me&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/David_H._Ahl"&gt;David Ahl's&lt;/a&gt; collection of BASIC Computer Games has a bit of history. Originally intended as an educational tool, it came illustrated with &lt;a href="http://www.bekerbots.com/"&gt;George Becker's&lt;/a&gt; wonderful &lt;a href="http://blastprocessing.blogspot.com.au/2009/04/robots-of-george-beker.html"&gt;"Beker Bots"&lt;/a&gt;, suggestive of a magical, robotised world beyond the code laid bare in Ahl's book.&lt;/p&gt;
+
+&lt;p&gt;My own copy has travelled with me, from job to job, from city to city. It was borrowed from Greg S. - a childhood friend with more access to ready-funds than I did, who kept me supplied with books and copies of &lt;a href="http://en.wikipedia.org/wiki/Your_Computer_(Australian_magazine)"&gt;Your Computer (Australia)&lt;/a&gt; and inadvertently financed my early eduction in computing. Sadly, I lost contact with Greg over the years and never got to return his book. So it has stayed with me, a pointer to an old place in memory.&lt;/p&gt;
+
+&lt;h2 id="terrible-terrible-code"&gt;Terrible, Terrible Code&lt;/h2&gt;
+
+&lt;p&gt;One thing that stood out re-reading old BASIC code is just how absolutely horrible the language was. &lt;a href="http://en.wikipedia.org/wiki/BASIC"&gt;BASIC&lt;/a&gt; - or Beginner's All-purpose Symbolic Instruction Language for the kids who have never seen it without the 'Visual' prefix - was probably the first programming language for old coders like myself who grew up in the 80s.&lt;/p&gt;
+
+&lt;p&gt;BASIC taught me the (ahem) basics of variable assignment, looping and conditional statements. It also taught me how to write sloppy, unstructured code.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately many of the games collected in Ahl's book reflect some of these bad programming practices, reinforcing &lt;a href="http://en.wikipedia.org/wiki/Edsger_Dijkstra"&gt;Edsger Dijkstra's&lt;/a&gt; famous claim that the &lt;a href="http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html"&gt;Go To Statement (should be) Considered Harmful&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="but-what-if-my-first-language-was-ruby"&gt;But What If My First Language Was Ruby?&lt;/h2&gt;
+
+&lt;p&gt;I'm slightly envious of my kids growing up with a plethora of really decent computer languages available to them. My oldest knows a little Ruby and my youngest is a keen &lt;a href="http://scratch.mit.edu/"&gt;Scratch&lt;/a&gt; programmer. With that in mind I had some trepidation in exposing them to the world of BASIC. Much like showing someone how to rub two sticks together so they can appreciate matches, I sat down with my 13-year old to take apart an old BASIC game - and put it back together in Ruby.&lt;/p&gt;
+
+&lt;p&gt;I was surprised how much I remembered BASIC - and how easy it was to explain things to my son ("&lt;code&gt;print&lt;/code&gt; is just like &lt;code&gt;puts&lt;/code&gt;"). BASIC's accessibility is really central to its charm. We started with the first game in the book: &lt;a href="http://www.atariarchives.org/basicgames/showpage.php?page=2"&gt;Acey Ducey&lt;/a&gt;, a simulation of a simple card game where two cards are drawn and the player bets on whether or not the next card will fall between the two.&lt;/p&gt;
+
+&lt;p&gt;You can draw you own conclusion on the &lt;a href="http://www.atariarchives.org/basicgames/showpage.php?page=2"&gt;original source code&lt;/a&gt;. Delving into the mechanism, we came across a curious algorithm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-basic"&gt;260 PRINT"HERE ARE YOUR NEXT TWO CARDS"
+270 A=INT(14*RND(1))+2
+280 IF A&amp;lt;2 THEN 270
+290 IF A&amp;gt;14 THEN 270
+300 B=INT(14*RND(1))+2
+310 IF B&amp;lt;2 THEN 300
+320 IF B&amp;gt;14 THEN 300
+330 IF A&amp;gt;=B THEN 270
+350 IF A&amp;lt;11 THEN 400
+360 IF A=11 THEN 420
+370 IF A=12 THEN 440
+380 IF A=13 THEN 460
+390 IF A=14 THEN 480
+400 PRINT A
+410 GOTO 500
+420 PRINT "JACK"
+430 GOTO 500
+440 PRINT "QUEEN"
+450 GOTO 500
+460 PRINT "KING"
+470 GOTO 500
+480 PRINT "ACE"
+500 IF B&amp;lt;11 THEN 550
+...
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So…lines 270 to 300 basically loop until the condition of "two cards, with the first being smaller than the first" occurs. "That's just silly," declared my son, "You already know what the first card is. Why can't you pick the second one going from that?" Why indeed. Ah.. kids. Here's our effort:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;puts "Here are your next two cards:"
+card_a = rand(12) + 2
+card_b = rand(14 - card_a) + card_a + 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;PRINT "JACK"&lt;/code&gt;, &lt;code&gt;PRINT "QUEEN"&lt;/code&gt; pattern is repeated throughout the game, wherever there is a need to convert the number representing a card to a string. This is slightly unforgivable, as even BASIC had the concept of subroutines (the delightfully named &lt;code&gt;GOSUB&lt;/code&gt;). A rough equivalent in Ruby:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;def card_to_s(index)
+  if index &amp;lt; 11
+    return index.to_s
+  elsif index == 11
+    return "Jack"
+  elsif index == 12
+    return "Queen"
+  elsif index == 13
+    return "King"
+  elsif index == 14
+    return "Ace"
+  end
+end
+
+puts card_to_s(card_a)
+puts card_to_s(card_b)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Even that is a little verbose. It could rewritten without becoming too obscure using Ruby's &lt;code&gt;each_with_object&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;cards = (2..10).each_with_object({}) { |num, hash| hash[num] = num.to_s }
+cards.merge!(11 =&amp;gt; 'Jack', 12 =&amp;gt; 'Queen', 13 =&amp;gt; 'King', 14 =&amp;gt; 'Ace')
+
+puts cards[card_a]
+puts cards[card_b]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My lad and I pursued the port with some simple rules: (a) No comments, (b) No specs. Just like the good old days.&lt;/p&gt;
+
+&lt;p&gt;The source code can be found on &lt;a href="https://github.com/ferrisoxide/basic-computer-games-ruby-edition"&gt;Github&lt;/a&gt;. There's nothing particular special about the &lt;code&gt;acey-ducey.rb&lt;/code&gt; code, but it is shorter than the BASIC version by about 40%. It's also - in my opinion - orders of magnitude more readable. Here's a snippet:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;while money &amp;gt; 0 do
+
+  puts "You have #{money} dollars."
+
+  puts "Here are your next two cards:"
+
+  card_a = rand(12) + 2
+  card_b = rand(14 - card_a) + card_a + 1
+
+  puts card_to_s(card_a)
+  puts card_to_s(card_b)
+
+  valid_bet = false
+
+  while valid_bet == false do
+    puts "What is your bet?"
+    bet = gets.chomp.to_i
+    if bet == 0
+      puts "Chicken!!"
+      valid_bet = true
+    elsif bet &amp;gt; money
+      puts "Sorry, my friend but you have bet to much."
+      puts "You have only #{money} dollars to bet."
+    elsif
+      valid_bet = true
+    end
+  end
+  ...
+  ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The output is reasonably faithful to the original:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;Acey Ducey is played in the following manner:
+The dealer (computer) deals two cards face up
+You have an option to bet or not to bet depending
+on whether or not you feel the card will have
+a value between the first two.
+If you do not want to bet, input a 0.
+You have 100 dollars.
+Here are your next two cards:
+8
+Queen
+What is your bet?
+10
+The card was 10.
+You win!!!
+You have 110 dollars.
+Here are your next two cards:
+6
+7
+What is your bet?
+0
+Chicken!!
+You have 110 dollars.
+Here are your next two cards:
+Queen
+King
+What is your bet?
+0
+Chicken!!
+You have 110 dollars.
+Here are your next two cards:
+3
+Queen
+What is your bet?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Exciting, eh? No wonder we needed all those pictures of Beker's robots to keep us going.&lt;/p&gt;
+
+&lt;h2 id="what-did-i-get-out-of-this"&gt;What Did I Get Out of This?&lt;/h2&gt;
+
+&lt;p&gt;Well.. not much. As much as BASIC gave me my entry into programming I'd never want to go back there again. My son and I planned on working our way through the rest of the book but I was so turned off by the next game (&lt;a href="http://www.atariarchives.org/basicgames/showpage.php?page=3"&gt;Amazing&lt;/a&gt;, a nest of &lt;code&gt;GOTO&lt;/code&gt;s that's harder to traverse than the mazes it generates) it felt better for everyone's state of mind to just walk away. We may come back to it again at some stage as there is some absolute gold in Ahl's book.  &lt;a href="http://www.atariarchives.org/basicgames/showpage.php?page=4"&gt;Animal&lt;/a&gt;, written well, would be a great intro into binary searches. &lt;a href="http://www.atariarchives.org/basicgames/showpage.php?page=124"&gt;Orbit&lt;/a&gt; deals with with &lt;a href="http://en.wikipedia.org/wiki/Law_of_cosines"&gt;The Law of Cosines&lt;/a&gt; and other fun maths. And &lt;a href="http://www.atariarchives.org/basicgames/showpage.php?page=157"&gt;Super Star Trek&lt;/a&gt; is an absolute gem.&lt;/p&gt;
+
+&lt;p&gt;To see these old classics recreated in a modern language I'd be willing to put some more time into revisiting the worlds of BASIC. If only it wasn't for all those goddamed &lt;code&gt;GOTO&lt;/code&gt;s. But there's only so much time available, and I'd rather be coding new stuff with my kids than indulging in my own nostalgic kick-back.&lt;/p&gt;
+
+&lt;p&gt;It's time to let go. So Greg, if you want your book back.. just let me know.&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>Your Kids Are Being Trolled On Minecraft</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2013/10/06/your-kids-are-being-trolled-on-minecraft/"/>
+    <id>http://blog.url.com/blog/2013/10/06/your-kids-are-being-trolled-on-minecraft/</id>
+    <published>2013-10-06T10:30:00+10:30</published>
+    <updated>2015-09-26T17:55:31+09:30</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="Minecraft Troll" class="image left" src="/images/posts/minecraft-creeper-troll.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Note to parents: your kids are being trolled (and trolling) in Minecraft.&lt;/p&gt;
+
+&lt;!----&gt;
+
+&lt;p&gt;The act of trolling is as old as the internet - probably older. Its intent is to provoke an emotional response by engaging in behaviour likely to upset its target. In the early days of the internet, "trolling" was generally associated with posting inflammatory comments in news groups. More recently, the word is used to describe a wide range of online harassment.&lt;/p&gt;
+
+&lt;p&gt;Arguably there is good trolling and bad trolling, as extolled in The Age's article &lt;a href="http://www.theage.com.au/small-business/finance/blogs/the-big-idea/why-do-people-troll-20131002-2url0.html"&gt;Why People Troll&lt;/a&gt;. Good trolling creates debate, questions our assumptions and makes us think. Bad trolling, as generally evident in Minecraft games, serves no other purpose than to offend and upset its victims - and is nothing short of a cyber-bullying.&lt;/p&gt;
+
+&lt;p&gt;Trolling in Minecraft - or "griefing" as it's known - can take various forms: from beating up players, stealing or damaging their virtual property; or by exploiting bugs in Minecraft and its extensions to interfere with the play of others.&lt;/p&gt;
+
+&lt;p&gt;None of this will be new to regular players of Minecraft. But many parents may be blissfully unaware of what their kids are being subject to (and subjecting other kids to) during the many hours they spend in this virtual world.&lt;/p&gt;
+
+&lt;h2 id="its-a-troll-world-after-all"&gt;It's a Troll World After All&lt;/h2&gt;
+
+&lt;p&gt;There is a slew of YouTube videos demonstrating how to grief other players in Minecraft. Many have titles like &lt;a href="http://www.youtube.com/watch?v=LJmbHgHybKk"&gt;6 year old Trolled on Minecraft&lt;/a&gt; or &lt;a href="http://www.youtube.com/watch?v=fF1aY0I-8-E"&gt;Trolling an angry kid on Minecraft and Skype&lt;/a&gt;. Judging by the ratio of "Likes" versus "Dislikes", there is a ready and eager audience for this form of alleged entertainment.&lt;/p&gt;
+
+&lt;p&gt;Playing pranks is part of being a kid, and you can always expect a bit of horseplay where groups of children get together. Where the situation gets more than a little sinister is when adults engage in deliberately humiliating young kids and posting their efforts up on the internet.&lt;/p&gt;
+
+&lt;h3 id="mr-man-being-a-dick"&gt;Mr Man Being a Dick&lt;/h3&gt;
+
+&lt;p&gt;In this YouTube clip, the ironically titled "Mr Man" trolls an 11-year old by destroying his creation - a recreation of the US aircraft carrier 'USS Nimitz'.&lt;/p&gt;
+
+&lt;div class="flex-video"&gt;
+&lt;iframe width="560" height="315" src="http://www.youtube.com/embed/8p2BFHk6vuM" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The 11-year old is clearly quite proud of his work, and demonstrates considerable knowledge of his subject. Mr Man's angle for his trolling is that the kid's work is definitely worth inclusion in a "Top Ten" list of Minecraft videos Mr Man is putting together, feeding the boy's ego while at the same time surreptitiously planning to wreck the creation in an unrecoverable way.&lt;/p&gt;
+
+&lt;p&gt;The most disturbing part of this - apart from a grown man causing emotional pain to young children - is that Mr Man will probably be generating income from the distress caused. I'm disinclined to suggest that you watch the video. The video is quite lengthy - it goes for about 30mins - but regardless, any viewing has the potential to line Mr Man's pockets with advertising revenue. Naturally, If you do watch this you have the option to "Dislike" the video - or even report it if you think the content is inappropriate. That is completely up to you.&lt;/p&gt;
+
+&lt;h3 id="year-old-being-trolled"&gt;6-year old being trolled&lt;/h3&gt;
+
+&lt;p&gt;In this clip an older player trolls a 6-year old, apparently as pay-back for the child throwing away the virtual possessions of the troller's cousin.&lt;/p&gt;
+
+&lt;div class="flex-video"&gt;
+&lt;iframe width="560" height="315" src="http://www.youtube.com/embed/LJmbHgHybKk" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The 6-year old can be heard getting hysterical as he is repeatedly tricked and abused by other players. In a follow up to this video the child is encouraged to throw his character off a high building by the troll.&lt;/p&gt;
+
+&lt;p&gt;The 6-year old may have been acting out in the first case, but how we get to the point where anyone thinks this is a reasonable way to discipline a 6-year old is beyond me. And why no adult intervenes is also a mystery.&lt;/p&gt;
+
+&lt;p&gt;I'm fully aware that this article is likely to garner negative feedback from some readers. But any suggestion that I don't have a sense of humour will be blithely ignored. There is &lt;em&gt;&lt;a href="http://en.wikipedia.org/wiki/Schadenfreude"&gt;schadenfreude&lt;/a&gt;&lt;/em&gt;, and there is picking on young children. And only one is truly funny.&lt;/p&gt;
+
+&lt;h2 id="your-kids-are-trolling-too"&gt;Your kids are trolling too&lt;/h2&gt;
+
+&lt;p&gt;In the videos above, other children are witnessing - and sometimes directly participating in - the online harassment of other children, made easy by the lack of personal consequence. While the videos represent the most public form of bullying, day-to-day playing with Minecraft can include more persistent and subtle bullying. At least in the playground there's potentially a teacher within earshot who can intervene if play gets out of hand. Online, there's often no such overview.&lt;/p&gt;
+
+&lt;p&gt;In a way, kids are just learning about how to exist in a digital, semi-anonymous world. But an important lesson should be that your actions do have consequences - at least to the victims - and accepting trolling is normalising brutality.&lt;/p&gt;
+
+&lt;p&gt;My own kids have their own private Minecraft server, intended to provide a safe play space for them and their friends. Regardless of controls they've put in place, we've still seen a reasonable amount of aberrant behaviour. Kids being kids, it's expected that they will push the limits - especially when they think no grownups are watching. Griefing from "friends of friends" who had been invited on to the server without my boys' knowledge was common, resulted in more restrictive levels of access for most players.&lt;/p&gt;
+
+&lt;p&gt;In one incident a child resorted to threats "I won't be your friend anymore" and suggestions of self-harm lest he get his way - all undeniably forms of psychological bullying. A quick phone call to this parents resolved the situation, but also revealed that the parents had no idea what was going on only a few feet away.&lt;/p&gt;
+
+&lt;h2 id="advice-to-parents"&gt;Advice to Parents&lt;/h2&gt;
+
+&lt;p&gt;Nothing here is meant to denigrate the role of parents. It's quite a task to keep up with your children's online activities. Technology is changing quickly and your children are adapting much faster than you are.&lt;/p&gt;
+
+&lt;p&gt;From my point of view though, I have a right and a responsibility to know what my kids are up to online. It's a little bit easier for me, coming from an IT background, but I think we all need to keep ourselves informed. In general I'd suggest that keeping the lines of communication open is by far the best approach.&lt;/p&gt;
+
+&lt;h3 id="keep-an-eye-on-things"&gt;Keep an eye on things&lt;/h3&gt;
+
+&lt;p&gt;Our boys spend a lot of time on the internet - possibly too much, but we are a bit of a geek family. We're not restrictive about the kids use of computers, but we do like to keep an ear out for trouble.&lt;/p&gt;
+
+&lt;p&gt;If you hear online chats ramping up in intensity, it's probably a good time to ask what's going on. Over the weekend my oldest was being griefed by someone running an exploit, constantly killing my son's character and changing his spawn point so he couldn't re-engage with the game.&lt;/p&gt;
+
+&lt;p&gt;His conversations with other players became more and more frantic. I wished we'd stepped in earlier, but we did intervene. I'd hate to think how he'd be feeling if we'd just left him to get more and more worked up over it.&lt;/p&gt;
+
+&lt;p&gt;It may only be a game, but what happens in Minecraft can be as real to your kids as something happening in the real world. If your child seems sullen after a Minecraft session it might not be a bad idea to ask how things are going.&lt;/p&gt;
+
+&lt;h3 id="talk-to-your-kids"&gt;Talk to your kids&lt;/h3&gt;
+
+&lt;p&gt;Kids need to have strategies for dealing with bullies - whether in real-life or on the internet. Having something they have worked on for hours - or even weeks - destroyed by some idiot will have an effect on their happiness, and they won't learn how to be resilient from a wiki page.&lt;/p&gt;
+
+&lt;p&gt;Ask what servers are your children are using on regular basis. Is there any kind of supervision on these servers? Do the administrators enforce any kind of rules to keep the servers fun and fair? Many servers will have policies against griefing, but it's good to who you or your kids can talk to if they are getting harassed.&lt;/p&gt;
+
+&lt;p&gt;But most of all ask your kids how they deal with bullies online. They need advice on what to do when they are being victimised. Sometimes it's just as simple as suggesting they walk away from the game for a while, or trying a different server. But they need advice from someone they can trust, not advice from someone in an online forum.&lt;/p&gt;
+
+&lt;p&gt;Kids also need to understand how to keep themselves safe online. They need to be able to protect their online identity. Minecraft itself offers a level of anonymity while playing, but using other services may expose information about your child's identity. When I hear about kids being griefed over Skype I wonder what else their attackers possibly know about them.&lt;/p&gt;
+
+&lt;p&gt;You need to keep yourself safe as well. If your children are running servers on your home network there is an opportunity for someone to compromise your internet security. Are your kids running Minecraft servers from home? Have they installed plugins? Do they know where the plugins come from? How can they trust the source? These are important things to know.&lt;/p&gt;
+
+&lt;h3 id="play-with-your-kids"&gt;Play with your kids&lt;/h3&gt;
+
+&lt;p&gt;Before you say anything about "being too old to play with computers", put down your iPhone and have a look at what your kids are engaging with.&lt;/p&gt;
+
+&lt;p&gt;Minecraft is the virtual equivalent of a getting out a big box of Lego. It's an incredible amount of fun and there's really no end of things that can be learned through it. Kids are learning about architecture, design, logic and maths. They are learning how to solve problems and work co-operatively with people all around the planet. The more technical kids are learning about managing servers, about operating systems and programming.&lt;/p&gt;
+
+&lt;p&gt;There's so much good stuff in Minecraft, it almost seems trite to point out the negatives. It really is a lot of fun to play - and play is something we can easily forget about in our busy, self-serious adult lives.&lt;/p&gt;
+
+&lt;p&gt;The worst thing you could possibly do is ban your kids from playing Minecraft. They are learning new skills that will help them on the journey into the kind of life and work that we can't even imagine.&lt;/p&gt;
+
+&lt;h2 id="credits"&gt;Credits&lt;/h2&gt;
+
+&lt;p&gt;The original "Creeper looking through broken glass" image was sourced from &lt;a href="http://hdw.eweb4.com/out/945751.html"&gt;http://hdw.eweb4.com/out/945751.html&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Tachypomp: from ePub to HPub</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2013/10/02/ruby-and-hpub/"/>
+    <id>http://blog.url.com/blog/2013/10/02/ruby-and-hpub/</id>
+    <published>2013-10-02T09:30:00+09:30</published>
+    <updated>2015-09-26T17:55:31+09:30</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;The Tachypomp project is an attempt to build an ebook, using Ruby to convert a Markdown-based text into a variety of e-publishing formats. The &lt;a href="/blog/2013/05/06/nanoc-novel/"&gt;first cut&lt;/a&gt; of the project served as a "proof of concept" for producing content in both ePub and HTML formats.&lt;/p&gt;
+
+&lt;!----&gt;
+
+&lt;p&gt;The next stage looks at producing an eBook within the &lt;a href="http://bakerframework.com/"&gt;Baker Framework&lt;/a&gt;, a e-publishing system for producing ebooks for the iPad. The Tachypomp project aims to produce content in HTML, ePub and the Baker Framework's &lt;a href="https://github.com/Simbul/baker/wiki/hpub-specification"&gt;HPub&lt;/a&gt; formats, using the &lt;a href="http://nanoc.ws/"&gt;nanoc&lt;/a&gt; gem to generate content in all formats from the same source text.&lt;/p&gt;
+
+&lt;p&gt;This project is still very much a work in progress. The long-term goal is to develop a general-purpose framework for
+publishing content in a wide range of formats.&lt;/p&gt;
+
+&lt;h2 id="the-tachypomp-and-other-stories"&gt;The Tachypomp and Other Stories&lt;/h2&gt;
+
+&lt;p&gt;&lt;img alt="Edward Page Mitchell" class="image right" src="/images/posts/edward-page-mitchell.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The source text for the project has an interesting background. &lt;a href="http://en.wikipedia.org/wiki/Edward_Page_Mitchell"&gt;Edward Page Mitchell&lt;/a&gt; first published 'The Tachypomp' in 1874, while working as an editor for a New York City newspaper. Over the next decade and a half he produced several short stories that contain ideas and writing styles that were both novel and prescient - or at least interesting to look back at through the lens of time.&lt;/p&gt;
+
+&lt;p&gt;Often publishing anonymously, Edward Page Mitchell was only recognised as a leading early science-fiction author many years after his death in 1927. His work predates H.G. Wells own time-travel stories by several years.&lt;/p&gt;
+
+&lt;p&gt;Several articles have been written about Edward Page Mitchell, and are worthwhile reading by fans of speculative fiction:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="http://autodidactproject.org/bib/timemachine03.html"&gt;Edward Page Mitchell (1852-1927), Science Fiction Pioneer&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.unwinnable.com/2010/09/27/the-man-that-time-forgot-%E2%80%93-edward-page-mitchell-and-the-burden-of-anonymity/"&gt;The Man That Time Forgot&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Mitchell also has an entry in &lt;a href="http://www.sf-encyclopedia.com/entry/mitchell_edward_page"&gt;The Encyclopedia of Science Fiction&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The original text was sourced from the &lt;a href="http://gutenberg.net.au/ebooks06/0602521.txt"&gt;Gutenberg Project&lt;/a&gt;. The copyright has expired and these wonderful stories and now part of the public domain.&lt;/p&gt;
+
+&lt;h2 id="hpub---an-open-specification"&gt;HPub - an Open Specification&lt;/h2&gt;
+
+&lt;p&gt;&lt;img alt="Baker Logo" class="image left" src="/images/posts/baker-logo.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="http://bakerframework.com/"&gt;Baker Framework&lt;/a&gt; is an open-source publishing system for producing content for the iPad and similar devices. It packages ebooks by wrapping a small executable around HTML content and allows the inclusion of Javascript and CSS to create compelling, interactive e-reading experiences.&lt;/p&gt;
+
+&lt;p&gt;A showcase of the kind of publications that can be generated using the framework is available on the &lt;a href="http://bakerframework.com/books"&gt;Backer Framework website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The principles behind the &lt;a href="https://github.com/Simbul/baker/wiki/hpub-specification"&gt;HPub specification&lt;/a&gt; that forms the core of the Baker Framework declares a digital publishing format that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Allows great designs&lt;/li&gt;
+  &lt;li&gt;Allows both pixel-perfect and flexible reflowable publications&lt;/li&gt;
+  &lt;li&gt;Is simple for authors&lt;/li&gt;
+  &lt;li&gt;Is simple for parsers&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The heart of the HPub specification is JSON-based manifest file that declares the properties of a publication. A example (taken from the Tachypomp project):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+  "hpub": 1,
+  "title": "The Tachypomp and Other Stories",
+  "author": [
+    "Edward Page Mitchells"
+  ],
+  "creator": [
+    "Project Gutenberg"
+  ],
+  "date": "2006-07-01",
+  "url": "book://tachypomp.rubyredbricks.com/ebook",
+  "contents": [
+    "index.html",
+    "table-of-contents.html",
+    "section-1.html",
+    "section-2.html",
+    "section-3.html",
+
+    ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Individual sections are created as HTML5 pages and compiled using an XCode project included in the Baker Framework into an executable application suitable for delivery via Apple's iTunes store.&lt;/p&gt;
+
+&lt;p&gt;For Android users, the compatible &lt;a href="http://www.friarframework.com/"&gt;Friar Framework&lt;/a&gt; provides equivalent functionality, and can use the same JSON manifest and HTML5 pages as defined in the HPub Specification.&lt;/p&gt;
+
+&lt;h2 id="nanoc-representations"&gt;nanoc Representations&lt;/h2&gt;
+
+&lt;p&gt;One of the key features of nanoc is the ability to have &lt;a href="http://nanoc.ws/docs/glossary/#glossary-representation"&gt;different representations of the same source&lt;/a&gt;. For instance, in the &lt;code&gt;Rules&lt;/code&gt; file below the default representation uses the 'default' layout, whereas the epub and hpub representations use 'epub' and 'hpub' layouts respectively.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;compile '*' do
+  if item.binary?
+    # don’t filter binary items
+  else
+    filter :erb
+    filter :kramdown
+    layout 'default'
+  end
+end
+
+compile '*', :rep =&amp;gt; :epub do
+  if item.binary?
+    # don’t filter binary items
+  else
+    filter :erb
+    filter :kramdown
+    layout 'epub'
+  end
+end
+
+compile '*', :rep =&amp;gt; :hpub do
+  if item.binary?
+    # don’t filter binary items
+  else
+    filter :erb
+    filter :kramdown
+    layout 'hpub'
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;:rep =&amp;gt; [:name]&lt;/code&gt; parameter provides differing compilation rules for the same basic items. In Tachypomp's case, generating XHTML (for ePub) and HTML5 (for online and HPub) allows for different presentation models for the different output formats.&lt;/p&gt;
+
+&lt;p&gt;Similarly nanoc representations allow the generated content to be created in different target locations.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;route '*' do
+  if item.binary?
+    # Write item with identifier /foo/ to /foo.ext
+    item.identifier.chop + '.' + item[:extension]
+  else
+    # Write item with identifier /foo/ to /foo/index.html
+    item.identifier + 'index.html'
+  end
+end
+
+route '*', :rep =&amp;gt; :epub do
+  if item.binary?
+    # Don't build binary items
+  else
+    item_identifier = item.identifier.chop
+    item_identifier = '/index' if item_identifier.empty?
+    '/epub' + item_identifier + '.xhtml'
+  end
+end
+
+route '*', :rep =&amp;gt; :hpub do
+  if item.binary?
+    # Don't build binary items
+  else
+    item_identifier = item.identifier.chop
+    item_identifier = '/index' if item_identifier.empty?
+    '/hpub' + item_identifier + '.html'
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this example the default online representation is generated in nanoc's &lt;code&gt;/output&lt;/code&gt; folder. ePub and HPub representions are generated in &lt;code&gt;/output/epub&lt;/code&gt; and &lt;code&gt;/output/hpub&lt;/code&gt; respectively.&lt;/p&gt;
+
+&lt;p&gt;This outlines how nanoc processes the items normally found in nanoc's &lt;code&gt;/content&lt;/code&gt; folder. Importing the content and generating packages ready for delivery requires stepping through Tachypomp's installation process.&lt;/p&gt;
+
+&lt;h2 id="installation"&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;Clone the project into your local filesystem:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;git clone git@github.com:ferrisoxide/tachypomp.git
+cd tachypomp
+cp nanoc.yaml.example nanoc.yaml
+bundle install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The project assumes Ruby 1.9.3 is installed and will use RVM if available.&lt;/p&gt;
+
+&lt;h2 id="importing-content"&gt;Importing Content&lt;/h2&gt;
+
+&lt;p&gt;The sample text "The Tachypomp and Other Stories" is a collection of short stories. The source is maintained in a single text file to simplify editing. A &lt;code&gt;ebook.yaml&lt;/code&gt; file is expected to be found in the project's root directory, defining the location of the source text and related meta data.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-yaml"&gt;source: the-tachypomp-and-other-stories.md
+
+meta:
+  title: The Tachypomp and Other Stories
+  creator: Edward Page Mitchells
+  publisher: Project Gutenberg
+  date: 2006-07-1
+
+epub:
+  identifier:
+      url: :scheme =&amp;gt; 'URL'
+      id: ??
+  uid: ??
+
+hpub:
+  version: 1
+  url: book://tachypomp.rubyredbricks.com/ebook
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To import the source text, run the following from within the project's root folder:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;nanoc import&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will generate content files by breaking the larger file into several smaller ones, using the &lt;a href="https://github.com/ferrisoxide/breakdown"&gt;Breakdown gem&lt;/a&gt;. The Breakdown gem is also used to insert nanoc meta data into each processed page.&lt;/p&gt;
+
+&lt;p&gt;The import process will also create an &lt;code&gt;book.json&lt;/code&gt; file in the &lt;code&gt;/content folder&lt;/code&gt;. The &lt;code&gt;book.json&lt;/code&gt; file is loosely based on the hPub ebook specification, and is used by other processes to build table of contents for alternative formats.&lt;/p&gt;
+
+&lt;h2 id="compiling-content"&gt;Compiling Content&lt;/h2&gt;
+
+&lt;p&gt;The imported content will need to be compiled using nanoc:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;nanoc compile&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Once the content is compiled it can be packaged into different formats. Currently only ePub 2 and HPub formats are supported, but there's no reason why alternative formats (&lt;em&gt;e.g.&lt;/em&gt; PDF) couldn't also be added. To package the ebook run the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;nanoc build&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will build ePub and hPub compatible files in &lt;code&gt;/output/ebook&lt;/code&gt; and &lt;code&gt;/output/hpub&lt;/code&gt; respectively. The process also generates a zipped version of the HPub book with the &lt;code&gt;/output/ebook&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;h2 id="viewing-the-epub-book"&gt;Viewing the ePub Book&lt;/h2&gt;
+
+&lt;p&gt;&lt;img alt="Tachypomp view in Calibre" class="image-left image-medium" src="/images/posts/tachypomp-calibre.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Open the generated &lt;code&gt;/output/ebook/tachypomp.epub&lt;/code&gt; in any ePub reader. I use &lt;a href="http://calibre-ebook.com/"&gt;Calibre&lt;/a&gt; on the Mac, but any eBook reader capable of rendering ePub v 2 format books should work.&lt;/p&gt;
+
+&lt;p&gt;The output isn't particularly beautiful, but the ePub version is currently lacking any stylesheets. CSS support in ePub 2 is quite limited, so the options that will be available will be to just format the layout a little better.&lt;/p&gt;
+
+&lt;p&gt;There's no mechanism to add more interactive content via Javascript - though ePub 3 does have some support for more dynamic content. At present I can't find a decent ePub 3 reader for testing the content, but I can't imagine adding support will be much harder than developing the HPub version.&lt;/p&gt;
+
+&lt;h2 id="building-the-hpub-book"&gt;Building the HPub Book&lt;/h2&gt;
+
+&lt;p&gt;&lt;img alt="Tachypomp view in iPad simulator" class="image-right image-medium" src="/images/posts/tachypomp-ipad.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Download the &lt;a href="http://bakerframework.com/"&gt;Backer Framework&lt;/a&gt;. NB: you must have a recent version of XCode installed.&lt;/p&gt;
+
+&lt;p&gt;Copy the &lt;code&gt;/output/hpub/&lt;/code&gt; folder from the Tachypomp project into the &lt;code&gt;/Baker Framework [version]/books/&lt;/code&gt; folder, overwriting the existing &lt;code&gt;/book&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;Open the &lt;code&gt;/Baker Framework [version]/Baker.xcodeproj&lt;/code&gt; file in XCode and build it. You should be able to run the book as an app within an iPad simulator.&lt;/p&gt;
+
+&lt;p&gt;As for the ePub version, there are no CSS styles applied. The Baker Framework does support CSS3 - adding a stylesheet simply wasn't a high priority for this proof-of-concept.&lt;/p&gt;
+
+&lt;p&gt;There are also some odd artefacts in the text where “ and ” aren't rendered properly. This may be related to the original source being in Latin-1 encoding. These could be cleaned up using a nanoc filter.&lt;/p&gt;
+
+&lt;h2 id="end-notes"&gt;End Notes&lt;/h2&gt;
+
+&lt;p&gt;While overall I'm happy with this as a proof-of-concept, there is a lot to do to take this prototype and work it into something useful. Not the least of which, I need to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Clean up the code (was a bit of a hack)&lt;/li&gt;
+  &lt;li&gt;Add support for PDF&lt;/li&gt;
+  &lt;li&gt;Stylesheets for ePub and hPub versions&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I also intend moving much of the functionality into a Ruby gem to simplify the process of building new e-books.&lt;/p&gt;
+
+&lt;p&gt;Longer term the goal is to develop a complete publishing solution around nanoc.&lt;/p&gt;
+
+&lt;p&gt;You can view the online version at &lt;a href="http://tachypomp.rubyredbricks.com"&gt;tachypomp.rubyredbricks.com&lt;/a&gt;. The source code for this project can be found on &lt;a href="https://github.com/ferrisoxide/tachypomp"&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>From Octopress to nanoc</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2013/09/30/from-octopress-to-nanoc/"/>
+    <id>http://blog.url.com/blog/2013/09/30/from-octopress-to-nanoc/</id>
+    <published>2013-09-30T09:30:00+09:30</published>
+    <updated>2015-09-26T17:55:31+09:30</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Regular visitors will have noticed recent changes to the Ruby Red Bricks blog. There are some
+visual differences, but more significantly the blog has been ported completely from
+&lt;a href="http://octopress.org"&gt;Octopress&lt;/a&gt; to &lt;a href="http://nanoc.ws/"&gt;nanoc&lt;/a&gt;.&lt;/p&gt;
+
+&lt;!----&gt;
+
+&lt;h2 id="why-the-change"&gt;Why the Change?&lt;/h2&gt;
+
+&lt;p&gt;The time I get to code is extremely limited - mainly on the bus to and fro work. Both Octopress and nanoc are excellent tools and - while I'd like to be able to keep my options option - I don't have the time to keep up to date with both static site compilers.&lt;/p&gt;
+
+&lt;p&gt;It also seems a little silly blogging about playing with nanoc using a Jekyll-based blogging tool. Running the whole show with nanoc gives me an opportunity to get half-decent with one tool (instead of being crap at two).&lt;/p&gt;
+
+&lt;h2 id="but-octopress-is-awesome"&gt;But Octopress is Awesome!&lt;/h2&gt;
+
+&lt;p&gt;Yes, Octopress is a fantastic blogging tool and has so much going for it: the Octopress community is as vibrant as the nanoc community (judging by Google Groups posts); it is part of the larger &lt;a href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt; family; and Octopress comes with pretty much everything you need for blogging, right out the box.&lt;/p&gt;
+
+&lt;p&gt;Octopress also comes with a bunch of stuff I never had any use for. I could have trimmed it down a little, but some of the code seems a bit magical - and I never knew what I might break. Octopress sites also tend to look like other Octpress sites. This is not a slight against Octopress - more an issue with me being lazy / time-poor.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Sad Octopress" class="image left" src="/images/posts/sad-octopress.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;In many ways it's not fair to compare the two systems, as Octopress is a much more a complete blogging tool than nanoc. With nanoc I had to build many things up from scratch, using advice from &lt;a href="http://jakoblaegdsmand.com/blog/2013/01/easy-blogging-with-nanoc/"&gt;here&lt;/a&gt; and &lt;a href="https://github.com/crazysim/nanoc-foundation-blog"&gt;there&lt;/a&gt; in the community. Though there's still work to be done, the  first cut has a smaller and more focused codebase than the original blog.&lt;/p&gt;
+
+&lt;p&gt;I'm sorry if I've made you sad, little Octopress creature, but I wish you all the best. And I really enjoyed the time we spent together.&lt;/p&gt;
+
+&lt;h2 id="nanoc-is-awesome-too"&gt;nanoc is Awesome Too!&lt;/h2&gt;
+
+&lt;p&gt;Where Octopress is reasonably prescriptive in how to construct blogs - it's probably fair to call it an "opinionated" blogging tool - nanoc is pretty much open-ended. There are benefits in its openness - I was able to move to &lt;a href="http://foundation.zurb.com/"&gt;Zurb's Foundation&lt;/a&gt; framework for the front-end - but the cost is having to rewrite much of the support code by hand.&lt;/p&gt;
+
+&lt;p&gt;nanoc does come with tools for maintaining blogs.  &lt;a href="http://nanoc.ws/docs/api/Nanoc/Helpers/Blogging.html"&gt;&lt;code&gt;Nanoc::Helpers::Blogging&lt;/code&gt;&lt;/a&gt; and related modules makes it relatively simple to port some of the parts of an Octopress blog. Rewriting the &lt;a href="/archives"&gt;Archives&lt;/a&gt; section was straightforward, thanks to all the blog articles being automatically collected in reverse date order within nanoc's &lt;a href="http://nanoc.ws/docs/api/Nanoc/Helpers/Blogging.html#sorted_articles-instance_method"&gt;&lt;code&gt;sorted_articles&lt;/code&gt;&lt;/a&gt; array.&lt;/p&gt;
+
+&lt;p&gt;Adding an RSS link was a painless one-liner, using the &lt;a href="http://nanoc.ws/docs/api/Nanoc/Helpers/Blogging.html#atom_feed-instance_method"&gt;&lt;code&gt;atom_feed&lt;/code&gt;&lt;/a&gt; method. But that's about where the easy fun stopped and we moved into "why am I doing this again?" territory.&lt;/p&gt;
+
+&lt;h2 id="porting"&gt;Porting&lt;/h2&gt;
+
+&lt;p&gt;Moving from Octopress to nanoc took about four or five hours. There were a couple of near rage-quit moments, but mostly due to my stupidity. Overall the process went fairly smoothly, thanks to a great deal of similarity between the two systems.&lt;/p&gt;
+
+&lt;h3 id="meta-data"&gt;Meta-data&lt;/h3&gt;
+
+&lt;p&gt;Octopress and nanoc share the same basic model for content. The meta-data header for pages is essentially the same and - apart from inserting a &lt;code&gt;kind: article&lt;/code&gt; entry in each post header - there was nothing to change other than move all the pages and posts into nanoc's &lt;code&gt;/content&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;h3 id="markup"&gt;Markup&lt;/h3&gt;
+
+&lt;p&gt;Markup proved a little trickier. Both nanoc and Octpress make use of a Mardown-style markup. Octopress also uses &lt;a href="http://liquidmarkup.org/"&gt;Liquid Markup&lt;/a&gt; for more programmatic bits, but Liquid support was removed from nanoc quite some time ago. nanoc has a range of filters available, but the most natural seemed to be a mixture of &lt;code&gt;kramdown&lt;/code&gt; (for Markdown) and &lt;code&gt;erb&lt;/code&gt; (for the programmatic parts). The porting process was mostly a matter of seeing what broke, and fixing with either layout changes or creating helper methods.&lt;/p&gt;
+
+&lt;h3 id="layouts-and-style"&gt;Layouts and Style&lt;/h3&gt;
+
+&lt;p&gt;Thankfully I hadn't used much of the plugins packaged with Octopress, otherwise I would have had more trouble replacing functionality. Rebuilding the layouts was more a matter of taking the example Foundation blog layout and reworking it to render the nanoc &lt;code&gt;item&lt;/code&gt; objects.&lt;/p&gt;
+
+&lt;p&gt;One neat trick I lifted from &lt;a href="http://clarkdave.net/2012/02/building-a-static-blog-with-nanoc/"&gt;Dave Clarke's blog&lt;/a&gt; is displaying an excerpt of recent blog posts on the front page. Previously Octopress would display the complete post for any recent articles, increasing the page load time. The front page is a lot shorter, with links to the full article. I'm hoping this will incline people to read and reply to comments, as the the Disqus widgets were not available on the index page. We'll have to see how that goes.&lt;/p&gt;
+
+&lt;p&gt;Foundation is a bit of a task master. There's no simple way to make use of the grid within Mardown posts, unless you're willing to sprinkle your otherwise clean text with a bunch of &lt;code&gt;divs&lt;/code&gt;. I had to cheat a bit, floating images to the left or right. It's not perfect, and I'm pretty sure it will choke the responsive layout. But it's a start.&lt;/p&gt;
+
+&lt;p&gt;One word about using the Foundation gem: pulling in the assets via Compass (&lt;a href="https://github.com/ferrisoxide/rubyredbricks.com/blob/master/compass/config.rb"&gt;source&lt;/a&gt;) sprinkles the root of the project with &lt;code&gt;robots.txt&lt;/code&gt; and other related files. I don't know how to prevent this, but it's just a matter of cleaning up after the event.&lt;/p&gt;
+
+&lt;h3 id="helpers--commands"&gt;Helpers &amp;amp; Commands&lt;/h3&gt;
+
+&lt;p&gt;As noted before, the standard &lt;code&gt;Nanoc::Helpers::Blogging&lt;/code&gt; module simplifies some of the core blogging functionality. It's missing the Twitter, Google Plus One, Disqus, Pinboard, Delicious and Google Analytics plugins provided by Octopress by default - but of these I was only really using Twitter, Disqus and Google Analytics.&lt;/p&gt;
+
+&lt;p&gt;The Twitter plugin stopped working when Twitter changed the terms of their API, so I've dropped that until I can think of a way to integrate it again (maybe as a third-party service). Google Analytics and Disqus integration is straightforward - it's just as simple as dropping the widget code into the layouts.&lt;/p&gt;
+
+&lt;p&gt;A modification of the &lt;code&gt;nanoc create_post&lt;/code&gt; command pilfered from &lt;a href="http://jakoblaegdsmand.com/blog/2013/01/easy-blogging-with-nanoc/"&gt;Jakob Lægdsmand's blog&lt;/a&gt; to build the scaffold for each new post and I had an almost complete blogging system again.&lt;/p&gt;
+
+&lt;h3 id="images"&gt;Images&lt;/h3&gt;
+
+&lt;p&gt;Octopress uses a helper provided via Liquid to create image tags. While I like the model, it seems unnecessary when ordinary Markdown offers a similar feature. Adding CSS - to float left and right as mentioned earlier - doesn't seem to be supported by the standard Markdown syntax, but thankfully the Kramdown filter adds support without the resulting code looking too weird.&lt;/p&gt;
+
+&lt;p&gt;So the original Octopress image tag:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   \{\% img left /images/posts/adelaide-metro-old-style-ticket-machine.jpg 250 250 Adelaide Metro Ticket Machine in Action \%\}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;becomes something very similar (but more Markdowny).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    ![Adelaide Metro Ticket Machine in Action](/images/posts/adelaide-metro-old-style-ticket-machine.jpg){: class="image left"}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="codeblocks"&gt;Codeblocks&lt;/h3&gt;
+
+&lt;p&gt;Codeblocks was where things really came unstuck. There are a few options in nanoc-land, but most seemed a bit clunky - at least compared to Octopress's really nice &lt;a href="http://ethanschoonover.com/solarized"&gt;Solarised&lt;/a&gt; solution.&lt;/p&gt;
+
+&lt;p&gt;I opted for simple, using Kramdown's built in support for Coderay. It doesn't look anywhere near as nice as the Octopress solution, but it will do in the short-term.&lt;/p&gt;
+
+&lt;p&gt;You can see various samples of Coderay in action in the refurbished &lt;a href="/blog/2012/09/19/more-epub-with-nanoc/"&gt;More ePub with nanoc&lt;/a&gt; post from last year.&lt;/p&gt;
+
+&lt;h2 id="the-future"&gt;The Future&lt;/h2&gt;
+
+&lt;p&gt;So where to from here? The blog is back up and running but will need a bit of tweaking - mostly removing inline CSS and other crufty artefacts from the port. I need to clean up the repo as well, as there are a few odd files left over from Octopress.&lt;/p&gt;
+
+&lt;p&gt;There's a hint of irony in what I've ended up with. Having wanting to move away from a blog that looks like other Octopress blogs, I've ended up with something that looks like every other Foundation based site. But the structure is in place now - there's something I feel I can work on.&lt;/p&gt;
+
+&lt;p&gt;The move has given me a fresh mindset. I like the simplicity of the new look and will strive to keep it like that. The main job ahead is to keep the content interesting and useful, so I've come up with a few basic rules I think will help:&lt;/p&gt;
+
+&lt;h3 id="keep-it-focused"&gt;1. Keep It Focused&lt;/h3&gt;
+
+&lt;p&gt;This is a technical blog, and it should stay that way.&lt;/p&gt;
+
+&lt;p&gt;Politics, religion and pop music should stay where belong - on Facebook. If I'm inclined to post personal rants, there are other places on the internet for that.&lt;/p&gt;
+
+&lt;h3 id="keep-it-real"&gt;2. Keep It Real&lt;/h3&gt;
+
+&lt;p&gt;Ruby and Lego™ - and other things I dig? So where's the Lego?&lt;/p&gt;
+
+&lt;p&gt;I kinda got distracted from the main game early on. This blog was meant to be about the fun to be had playing with Ruby and Lego, with the odd bit of interesting tech thrown in. I want to get back to that and, wherever possible, bring the two worlds of Lego™ and Ruby together.&lt;/p&gt;
+
+&lt;p&gt;And the things I dig? Cue &lt;a href="http://www.youtube.com/watch?v=k2rDbRUDkds"&gt;joke for the kids&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="maintain-the-joy"&gt;3. Maintain the Joy&lt;/h3&gt;
+
+&lt;p&gt;This is my happy place. This is where I come to experiment with and think about code and stuff. In a world where I'm banned from bringing Nerf guns to work (well.. I did shoot one of the other senior managers in a surprise dive from behind the printer), this is my little space to remember the good times. Back when my business card read "Code Poet" and the Internet felt like a magic sandbox.&lt;/p&gt;
+
+&lt;h3 id="blog-early-blog-often"&gt;4. Blog Early, Blog Often&lt;/h3&gt;
+
+&lt;p&gt;As &lt;a href="https://twitter.com/technicalmoses"&gt;Jon Moses&lt;/a&gt; commented on an &lt;a href="/blog/2013/05/06/nanoc-novel/"&gt;old post&lt;/a&gt;, "If you're not embarrassed (in some way) by code you release, you waited too long to release it." Ditto for blogging. Any ideas I have can live or die under the unyielding scrutiny of the internet, or be shaped into something new by smarter minds than my own.&lt;/p&gt;
+
+&lt;p&gt;I've yet to find my voice as a blogger - or even as a writer in general. The path is through practise, practise, practise. There's no short cuts - and there's no shortage of things I want to write about.&lt;/p&gt;
+
+&lt;h2 id="final-notes"&gt;Final Notes&lt;/h2&gt;
+
+&lt;p&gt;Finally, a thank you. Firstly to you, for reading yet another lengthy blog post. Secondly, to the nanoc crowd, whose numerous posts helped get me back on track. But lastly to Octopress - thanks for a great tool that kept the blog running the last couple of years.&lt;/p&gt;
+
+&lt;h3 id="the-code"&gt;The Code&lt;/h3&gt;
+
+&lt;p&gt;You can grab the code for this blog from &lt;a href="https://github.com/ferrisoxide/rubyredbricks.com"&gt;Github&lt;/a&gt;. If you want to see the nitty-gritty of the changes feel free to trawl through the commit log. You probably won't find anything revolutionary, and I expect anyone doing the same sort of thing would do it a completely different way. But the meandering path is there for all to see.&lt;/p&gt;
+
+&lt;h3 id="credits"&gt;Credits&lt;/h3&gt;
+
+&lt;p&gt;I lifted most of the code from other people, so feel free to nick stuff from me. If I have pilfered code without appropriate attribution, please take me up on it. And if there's anyone I've forgotten to mention, let me know. But here's a list of nanoc people I feel I owe a debt to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="http://jakoblaegdsmand.com/blog/2013/01/easy-blogging-with-nanoc/"&gt;Jakob Lægdsmand&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://clarkdave.net/2012/02/building-a-static-blog-with-nanoc/"&gt;Dave Clarke&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.danhoey.com/blog/2011_09_23_building_a_blog_with_nanoc/"&gt;Daniel Hoey&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.mindflakes.com/"&gt;Nelson Chen&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.starryhope.com/going-static-with-nanoc/"&gt;Jim Mendenhall&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;and of course:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="http://stoneship.org/"&gt;Denis Defreyne&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+</feed>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <title>Ruby Red Bricks - Quick and dirty ePub with nanoc</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/feed.xml" />
+    <link href="/stylesheets/all.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-centered">
+        <div class="banner">
+          <div class="row">
+            <div class="col-md-3">
+              <a href="/">
+                <img src="/images/avatar.png" class="image avatar">
+              </a>
+            </div>
+            <div class="col-md-9">
+              <a href="/">
+                <h1>Ruby Red Bricks</h1>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row"><hr/></div>
+        <div class="row post">
+          <h2 id="bit-of-background">Bit of background</h2>
+
+<p>First off, this is a bit of a hack. At best it's a jump headfirst into publishing an ePub document using <strong>nanoc</strong>, while knowing very little of the former and only a fraction more of the latter.</p>
+
+<p>We're aiming for a quick way of producing ePub books, using <strong>nanoc</strong> to do the bulk of the
+heavy lifting while other gems and custom code fill in the rest.</p>
+
+<!---->
+
+<p>A sample project demonstrating this approach can be found at <a href="http://thispurpleworld.com">thispupleworld.com</a>, with the source code available on <a href="https://github.com/ferrisoxide/this-purple-world">Github</a>.</p>
+
+<h2 id="an-epub-primer">An ePub Primer</h2>
+
+<p>ePub is a set of standards produced by the International Digital Publishing Forum. There are two main versions currently in use: <a href="http://idpf.org/epub/201">ePub 2.0.1</a> and <a href="http://idpf.org/epub/30">ePub 3.0</a>. ePub 3.0 introduces some interesting features, including interactivity via Javascript and support for SVG and MathML, but the tools and content we'll be looking at here use version 2.0.1</p>
+
+<p>ePub is essentially a packaging model for electronic books. Content (pages, chapters, <em>etc</em>) is represented as XHTML documents, styled with CSS and bundled together in a zip file. Two special xml-based files, <em>toc.ncx</em> and <em>content.opf</em>, contain the table of contents and overall descriptive data for your book.</p>
+
+<p>It is possible to bundle fonts, images and other elements into your ePub package. For now we're just going to worry about text content. It's also possible to create nested documents in ePub, but in our first cut we'll be assuming a flat structure.</p>
+
+<p><em>Step 1:</em> make it work. <em>Step 2:</em> make it pretty.</p>
+
+<h2 id="setup-nanoc">Setup nanoc</h2>
+
+<p>Let's set up an empty <strong>nanoc</strong> site to start filling with the content.</p>
+
+<pre><code class="language-text">gem install nanoc
+nanoc create_site my-epub-project
+cd my-epub-project
+</code></pre>
+
+<p>Create a <em>/Gemfile</em> in the same directory.</p>
+
+<pre><code class="language-ruby">source "http://rubygems.org"
+
+gem 'nanoc'         # here for convenience
+gem 'adsf'          # simple web server for previewing content
+gem 'kramdown'      # used to generate Markdown content
+gem 'systemu'       # used when deploying via rsync
+gem 'eeepub'        # ePub generator
+</code></pre>
+
+<p>The <a href="https://github.com/jugyo/eeepub">eeepub</a> gem provides a simple DSL for packaging XHTML documents. It also provides lower level tools for manipulating <em>toc.ncx</em> and <em>content.opf</em> files, but we won't be using these.</p>
+
+<p>Install the gems using bundler:</p>
+
+<pre><code class="language-text">bundle install
+</code></pre>
+
+<h2 id="setup-eeepub">Setup eeepub</h2>
+
+<p><strong>nanoc</strong> allows for multiple layouts. Create an alternative layout for generating the ePub XHTML documents in the project's <em>/layouts</em> directory. NB: <code>&lt;meta&gt;</code> tags need to be terminated with a closing <code>/&gt;</code> in XHTML.</p>
+
+<pre><code class="language-text">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
+  &lt;head&gt;
+    &lt;title&gt;
+      &lt;meta name="generator" content="*nanoc* &lt;%= Nanoc::VERSION %&gt;" /&gt;
+    &lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="main"&gt;
+      &lt;%= yield %&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><strong>nanoc</strong> also allows for multiple representations, meaning the same content item can be rendered in different formats. We'll make use of this to render the website in both HTML (for viewing online) and XHMTL (for ePub). In the project's <em>/Rules</em> file add the following compile declaration to the rules <strong>nanoc</strong> created by default:</p>
+
+<p><strong>/Rules</strong></p>
+
+<pre><code class="language-ruby">compile '*', :rep =&gt; :epub do
+  if item.binary?
+    # don’t filter binary items
+  else
+    filter :erb
+    filter :kramdown
+    layout 'epub'
+  end
+end
+</code></pre>
+
+<p>Note we're using both <strong>:erb</strong> and <strong>:kramdown</strong> filter types. We'll come back the reason for this later. The compile declaration includes a <strong>:rep =&gt; :epub</strong> option and changes the layout to use the <em>epub.html</em> template created before.</p>
+
+<p>In the same <em>/Rules</em> file add the following routing rule:</p>
+
+<p><strong>/Rules</strong></p>
+
+<pre><code class="language-ruby">route '*', :rep =&gt; :epub do
+  if item.identifier == '/'
+    # Exclude the root index.html from the epub version
+  else
+    # Write item with identifier /foo/ to /epub/foo.html
+   '/epub' + item.identifier.chop + '.html'
+  end
+end
+</code></pre>
+
+<p>Again, the route includes the <strong>:rep =&gt; :epub</strong> option. The route rule explicitly removes the default <em>/index.html</em> created by <strong>nanoc</strong> when initially generating the site, as this will only be used in the web version. We may change this later, but I wanted to illustrate that you can vary the content between representations using route and compile declarations.</p>
+
+<p>We'll store the configuration data <strong>eeepub</strong> and our custom code will need in <em>/epub.yaml</em>. Create this file
+in the project's root directory.</p>
+
+<p><strong>/epub.yaml</strong></p>
+
+<pre><code class="language-yaml">meta:
+  title: My ePub Project
+  creator: Me!
+  publisher: Me!
+  created_at: 2012-09-07
+  identifier:
+    url: http://my-epub-project.com/book
+    id:: BookId
+  uid: BookId
+
+filename: my-epub-project.epub
+output_dir: output/book
+</code></pre>
+
+<p>I'll have to admit, I don't really know what the <strong>identifier</strong> and <strong>uid</strong> attributes are for - other than they end up included in the generated ePub meta data. I plan on looking into the ePub meta data further.</p>
+
+<p>The <strong>filename</strong> and <strong>output_dir</strong> attributes will be used to generate the actual <em>.epub</em> file.</p>
+
+<h2 id="creating-pages">Creating Pages</h2>
+
+<p>While ePub allows for hierarchical ordering of content, we're going to use a flat structure for now. In
+your project root, execute the following on the command line:</p>
+
+<pre><code class="language-text">nanoc create_item "001"
+nanoc create_item "002"
+</code></pre>
+
+<p><strong>nanoc</strong> will have created two files in the <em>/content</em> folder. Naming each page '001', '002' and so on
+is just a convention we'll make use of custom code later on. We could have just as easily use 'Page 1', 'Page 2', <em>etc</em> for our convention.</p>
+
+<p>Edit both with some random text for now, but I'll ask you to do something a bit odd with them.
+Somewhere in text add an <strong>erb</strong> style tag like below. Do the same for the text you add to the second file.</p>
+
+<p><strong>content/001.html</strong></p>
+
+<pre><code class="language-text">---
+title: 001
+---
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+imperdiet est sit amet quam placerat ac mollis est viverra. Nunc
+adipiscing purus sit amet lorem imperdiet vitae aliquet sem tincidunt.
+Proin pretium ultrices nulla, at tincidunt lacus tempus in.
+Etiam sollicitudin odio &amp;lt;%= link_to_next_page 'in dui elementum vulputate' %&amp;gt;
+</code></pre>
+
+<p>The <strong>link_to_next_page</strong> method is not built into <strong>nanoc</strong> - it's a style of linking between pages
+I've used in <a href="http://thispurpleworld.com">this purple world</a>. It may not be useful to you, but I want to show
+how we can control how content is generated in different representations.</p>
+
+<p>This also illustrates how we can mix and match template types in the same file. Here we are using both <strong>erb</strong> and <strong>markdown</strong> content together - made possible by the multiple <strong>filter</strong> properties set in the <em>/Rules</em> configuration file.</p>
+
+<h2 id="representation-aware-content">Representation-Aware Content</h2>
+
+<p>One way we can extend <strong>nanoc</strong> is by adding helpers to the <em>/lib</em> folders. These helpers are similar to
+helpers in Rails - methods to generate smaller pieces of content. Here's the <strong>link_to_next_page</strong>
+method used above:</p>
+
+<p><strong>/lib/link_to_page.rb</strong></p>
+
+<pre><code class="language-text">include Nanoc3::Helpers::LinkTo
+
+module LinkToPage
+
+  def link_to_next_page(text)
+    if @item_rep.name == :epub
+      text
+    else
+      next_page_num = @item.identifier.gsub(/\//, '').to_i + 1
+      next_page_ident = next_page_num.to_s.rjust(3, '0')
+      # check if last page
+      next_page = @items.find { |i| i.identifier == "/#{next_page_ident}/" }
+      next_page ? link_to(text, "/#{next_page_ident}") : text
+    end
+  end
+end
+
+include LinkToPage
+</code></pre>
+
+<p>The code is a little crufty, but what it's basically doing is creating an href link between pages - but
+only in the default representation. With ePub we can assume that readers will navigate from page to page
+using the controls built into their ePub readers, so we don't want the <strong>link_to_next_page</strong> to do anything
+much at all, apart from returning the text passed to it.</p>
+
+<p>Add the <em>link_to_page.rb</em> code to <em>/lib</em> and run the command line run the following:</p>
+
+<pre><code class="language-text">nanoc compile
+</code></pre>
+
+<p>Have a look at the HTML and XHTML <strong>nanoc</strong> generates in the <em>/output</em> and <em>/output/epub</em> folders. Note how the same source files have produced two quite different sets of documents.</p>
+
+<h2 id="converting-output-to-epub">Converting output to epub</h2>
+
+<p>We need a mechanism to convert the generated XHTML into the final ePub format. Another way of extending
+<strong>nanoc</strong> is by adding to the set of command line actions. Create a <em>/commands</em> folder in the project
+root and add something like this:</p>
+
+<p><strong>/commands/convert_to_epub.rb</strong></p>
+
+<pre><code class="language-ruby">require 'eeepub'
+require 'yaml'
+
+usage       'convert_to_epub'
+summary     'build epub file from output/epub'
+description 'This is a rough and ready post-compile tool to build epub files from content.'
+
+run do |opts, args, cmd|
+  root_dir = File.join(File.dirname(__FILE__), '..')
+  config = YAML.load(File.read(File.join(root_dir, 'epub.yaml')))
+
+  nanoc_output_dir = File.join(root_dir, 'output') # TODO get this from *nanoc* config
+  file_list = Dir.glob("#{nanoc_output_dir}/epub/*.{html}")
+
+  epub = EeePub.make do
+    title       config['meta']['title']
+    creator     config['meta']['creator']
+    publisher   config['meta']['publisher']
+    date        config['meta']['date']
+    identifier  config['meta']['identifier']['url'],
+                  :scheme =&gt; 'URL',
+                  :id =&gt; config['meta']['identifier']['id']
+    uid         config['meta']['uid']
+
+    files file_list
+    nav file_list.collect {|f| {:label =&gt; "Page #{File::basename(f, '.html')}", :content =&gt; File::basename(f) }}
+  end
+
+  FileUtils.mkdir_p(File.join(root_dir, config['output_dir']))
+  epub_filename = File.join(root_dir, config['output_dir'], config['filename'])
+  epub.save(epub_filename)
+  FileUtils.rm_rf("#{nanoc_output_dir}/epub/") # remove epub XHTML files created by nanoc
+
+  puts "epub saved to #{epub_filename}"
+end
+</code></pre>
+
+<p>Again, the code is pretty ordinary - but it servers to demonstrate how we can extend <strong>nanoc</strong> to our own ends.</p>
+
+<p>Run the following from the command line:</p>
+
+<pre><code class="language-text">nanoc convert_to_epub
+</code></pre>
+
+<p>The XHTML files in <em>/output/epub/</em> will have been removed and the packaged version of your .epub file will now be available in <em>/output/book/</em>. Open the file in <a href="http://calibre-ebook.com">Calibre</a>, or one of the eBook readers available.</p>
+
+<p>You can also look at the content online. From the project root execute the following:</p>
+
+<pre><code class="language-text">nanoc view
+</code></pre>
+
+<p>Open a web browser and navigate to <em>http://localhost:3000</em>.
+Same content, two different representations.</p>
+
+<h2 id="example-project---this-purple-world">Example Project - This Purple World</h2>
+
+<p>The sample project used to test this technique is something I started years ago, when I was more vigorously engaged with writing. When I read the first few pages out at a writers' group a little old lady said, "It made me feel sick".</p>
+
+<p>The writing may not be your cup of tea, but the exercise was to see how quickly we could get something built - in the small amount of time I have for coding (moved into management, trying to keep it real).</p>
+
+<p>For the record, at the coffee break the little old lady told me, "I think you were trying to make me sick, so I guess it's effective writing".</p>
+
+<p>You can check out a draft version at <a href="http://thispurpleworld.com">thispupleworld.com</a>. The source code is available on <a href="https://github.com/ferrisoxide/this-purple-world">Github</a>. Bear in mind, this is still very much a work in progress. I've put 5 (out of around 100) pages up. It really needs a decent edit, so I'll put up more as I go through it - hopefully cleaning up the <strong>nanoc</strong> / <strong>eeepub</strong> project in the process as I get to understand both toolkits more throughly.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>This really is a quick and dirty project. There are number of ways to improve the product, and I'll look at this in a later (and hopefully shorter) post.</p>
+
+<p>Some things that come to mind:</p>
+
+<ul>
+  <li>Making use of ePub's hierarchical model for publications, separating the content into chapters and pages.</li>
+  <li>Replace the "001", "002" page numbering convention with use of <strong>nanoc</strong> meta data.</li>
+  <li>Styling ePub documents using CSS</li>
+  <li>That neglected <em>Step 2</em>: make it pretty</li>
+</ul>
+
+
+        </div>
+        <div class="row"><hr/></div>
+
+          <div class="row">
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+//<![CDATA[
+                  var disqus_shortname = 'rubyredbricks';
+                        var disqus_url = 'http://rubyredbricks.com/blog/2012/09/06/quick-and-dirty-epub-with-nanoc/';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ %>
+          </div>
+
+        <div class="row"><hr/></div>
+
+        <div class="row contact">
+          <div class="col-md-5">
+          <ul class="icons">
+            <li>
+                <a href="https://github.com/ferrisoxide" class="icon fa-github" target="_blank">
+                  <span class="fui-github"></span>
+              </a>
+            </li>
+
+            <li>
+                <a href="https://twitter.com/ferrisoxide" class="icon fa-twitter" target="_blank">
+                  <span class="fui-twitter"></span>
+                </a>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://linkedin.com/in/ferrisoxide" class="icon fa-linkedin" target="_blank">
+                <span class="fui-linkedin"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://plus.google.com/+TomTuddenham" class="icon fa-google-plus" target="_blank">
+                <span class="fui-google-plus"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://www.facebook.com/tom.tuddenham.7" class="icon fa-facebook" target="_blank">
+                <span class="fui-googleplus"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="mailto:ferrisoxide@gmail.com" class="icon fa-envelope-o">
+                <span class="fui-mail"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-4121694-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+  <script src="/javascripts/all.js"></script>
+</html>

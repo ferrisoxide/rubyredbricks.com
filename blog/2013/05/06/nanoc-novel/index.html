@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <title>Ruby Red Bricks - nanoc-novel</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/feed.xml" />
+    <link href="/stylesheets/all.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-centered">
+        <div class="banner">
+          <div class="row">
+            <div class="col-md-3">
+              <a href="/">
+                <img src="/images/avatar.png" class="image avatar">
+              </a>
+            </div>
+            <div class="col-md-9">
+              <a href="/">
+                <h1>Ruby Red Bricks</h1>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row"><hr/></div>
+        <div class="row post">
+          <p><img alt="nanoc and ePub logos" class="image right" src="/images/posts/nanoc-epub-logos.png" /></p>
+
+<p>Much to my wife's chagrin, I've been writing an online novel. My good lady doesn't mind me writing, it's the constant fiddling with the technology that drives her crazy. And to be honest, tweaking layouts, trying out new frameworks, <em>etc</em> is the e-version of sorting out your pens.</p>
+
+<!---->
+
+<p>I finally settled on <a href="http://nanoc.ws/">nanoc</a> a while ago, building a very rough draft using nanoc and <a href="https://github.com/bhollis/maruku">Maruku</a> to convert numerous 'pages' of Markdown content into a website. You're welcome to <a href="http://thispurpleworld.com">read it</a>, though bear in mind it is still a draft, still very rough - and certainly not to everyone tastes.</p>
+
+<p>The chief problem with writing like this is managing content split up over many files. If I want to insert a page, or move pages around, there's a fair bit of manual renumbering. It's also hard to edit, as I can't just read through the text as it flows. It's much easier to work with a single text file - and somehow break it up into individual pages for the final online version.</p>
+
+<p>To this end I built a very simple gem called <a href="https://github.com/ferrisoxide/breakdown">breakdown</a>, designed to split a large Markdown file into many smaller ones - based on directives within the file.</p>
+
+<p>Given my own novel is a work in progress I wanted to try this approach on a more substantial piece of text. Trawling through the <a href="http://gutenberg.net.au">Gutenberg Project</a>, I came across a wonderful set of short stories by <a href="http://en.wikipedia.org/wiki/Edward_Page_Mitchell">Edward Page Mitchell</a>. Mitchell wrote most of his stories in the 1870s and 1880s, making him an early contributor to American science fiction literature.</p>
+
+<p>The Gutenberg Project version of Mitchell's work is collected as a set of short stories, entitled <a href="http://gutenberg.net.au/ebooks06/0602521.txt">The Tachypomp and Other Stories</a>. As such it made a good candidate for breaking into smaller pieces using the <em>breakdown</em> gem. Because the gem splits on normal Markdown horizontal rules, marking up the original text - and adding small amounts of formatting - took only a few minutes. The single-file version of the text looks something like this:</p>
+
+<pre><code class="language-text">*** index
+
+| Title  | The Tachypomp and Other Stories |
+| Author | Edward Page Mitchell            |
+...
+...
+
+*** table-of-contents
+
+THE TACHYPOMP
+THE SOUL SPECTROSCOPE
+THE MAN WITHOUT A BODY
+...
+...
+
+*** section-1
+
+THE TACHYPOMP
+
+A Mathematical Demonstration
+
+There was nothing mysterious about Professor Surd's dislike for me. I
+was the only poor mathematician in an exceptionally mathematical
+class. The old gentleman sought the lecture-room every morning with
+...
+...
+</code></pre>
+
+<p>Once converted into several files, nanoc does the heavy lifting of converting the files into HTML. In the example above, the text is split into <code>index.md</code>, <code>table-of-contents.md</code> and <code>section-1.md</code> and placed in nanoc's content folder. From there nanoc processes the files, adds styles and other artefacts as determined in its Rules file, and builds the website.</p>
+
+<p>The process is still reasonably manual at present, requiring an import step and then build. By extending nanoc's command mechanism it should be relatively easy to wrap all the calls together compile the entire site from a single source file in one step.</p>
+
+<p>The resulting online book can be found here: <a href="http://tachypomp.rubyredbricks.com/">http://tachypomp.rubyredbricks.com/</a>.</p>
+
+<p>The source code for the books can be found here: <a href="https://github.com/ferrisoxide/tachypomp">https://github.com/ferrisoxide/tachypomp</a>.</p>
+
+<p>None of this is particularly clever or (ahem) novel. The <em>breakdown</em> gem is fairly naive - it's the first gem I've ever written and I'm already slightly embarrassed by it. But as someone who no longer codes professionally, it was a bit of fun getting back into hacking.</p>
+
+<p>There are a number of ways to improve this approach, but I'm already finding it paying dividends. Apart from the small amount of coding that went into the gem, I'm less inclined to fiddle with technology and more motivated to actually finish <a href="http://thispurpleworld.com">This Purple World</a>. And who knows, I might even make my wife happy in the process - though that's not a sure thing. For the record, she hates the novel.</p>
+
+        </div>
+        <div class="row"><hr/></div>
+
+          <div class="row">
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+//<![CDATA[
+                  var disqus_shortname = 'rubyredbricks';
+                        var disqus_url = 'http://rubyredbricks.com/blog/2013/05/06/nanoc-novel/';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ %>
+          </div>
+
+        <div class="row"><hr/></div>
+
+        <div class="row contact">
+          <div class="col-md-5">
+          <ul class="icons">
+            <li>
+                <a href="https://github.com/ferrisoxide" class="icon fa-github" target="_blank">
+                  <span class="fui-github"></span>
+              </a>
+            </li>
+
+            <li>
+                <a href="https://twitter.com/ferrisoxide" class="icon fa-twitter" target="_blank">
+                  <span class="fui-twitter"></span>
+                </a>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://linkedin.com/in/ferrisoxide" class="icon fa-linkedin" target="_blank">
+                <span class="fui-linkedin"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://plus.google.com/+TomTuddenham" class="icon fa-google-plus" target="_blank">
+                <span class="fui-google-plus"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://www.facebook.com/tom.tuddenham.7" class="icon fa-facebook" target="_blank">
+                <span class="fui-googleplus"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="mailto:ferrisoxide@gmail.com" class="icon fa-envelope-o">
+                <span class="fui-mail"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-4121694-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+  <script src="/javascripts/all.js"></script>
+</html>
