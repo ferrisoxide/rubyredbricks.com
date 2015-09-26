@@ -9,7 +9,7 @@ activate :blog do |blog|
   blog.prefix = "blog"
 
   blog.sources      = ":year-:month-:day-:title.html"
-  blog.permalink    = ":year-:month-:day-:title"
+  blog.permalink    = ":year/:month/:day/:title"
 
   # blog.permalink = "{year}/{month}/{day}/{title}"
   # # # Matcher for blog source files
