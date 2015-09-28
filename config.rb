@@ -44,6 +44,7 @@ activate :deploy do |deploy|
 
   # strategy is optional (default is :force_push)
   deploy.strategy = :force_push
+  deploy.build_before = true
 end
 
 activate :disqus do |disqus|

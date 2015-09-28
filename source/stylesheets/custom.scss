@@ -35,12 +35,15 @@
   font-size: floor(($font-size-base * 2.4));
 }
 
+
 .jumbotron {
   text-align: center;
 }
 
 .jumbotron h2 {
-  margin-top: 0px;
+//  margin-top: 20px;
+  padding-bottom: 25px;
+  font-size: floor(($font-size-base * 1.4));
 }
 
 .contact ul {
@@ -80,8 +83,17 @@
 }
 
 .post h2 {
+  font-size: floor(($font-size-base * 1.6));
+}
+
+.post h3 {
   font-size: floor(($font-size-base * 1.2));
 }
 
+ul {
+  list-style-type: none;
+}
 
-
+.articles li {
+  line-height: 42px;
+}

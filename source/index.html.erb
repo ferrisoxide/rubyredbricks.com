@@ -9,13 +9,11 @@ layout: layout
 
 <h4>Articles</h4>
 
-<ul>
+<ul class="articles">
 <% blog.articles.each do |article| %>
-  <article>
-    <li>
-      <time><%= article.date.strftime('%e %b %Y') %></time> &raquo;
-      <a href="<%= article.url %>"><%= article.title %></a>
-    </li>
-  </article>
+  <li>
+    <time><%= article.date.strftime('%e %b %Y') %></time> &raquo;
+    <a href="<%= article.url %>"><%= article.title %></a>
+  </li>
 <% end %>
 </ul>
