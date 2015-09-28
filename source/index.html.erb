@@ -1,0 +1,21 @@
+---
+layout: layout
+---
+
+<div class="jumbotron">
+  <h2><strong>Ruby, Lego&trade; and other things I dig</strong></h2>
+</div>
+<hr/>
+
+<h4>Articles</h4>
+
+<ul>
+<% blog.articles.each do |article| %>
+  <article>
+    <li>
+      <time><%= article.date.strftime('%e %b %Y') %></time> &raquo;
+      <a href="<%= article.url %>"><%= article.title %></a>
+    </li>
+  </article>
+<% end %>
+</ul>

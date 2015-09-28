@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <title>Ruby Red Bricks<%= ' - ' + current_article.title unless current_article.nil? %></title>
+    <%= feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed" %>
+    <%= stylesheet_link_tag "all" %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-centered">
+        <div class="banner">
+          <div class="row">
+            <div class="col-md-3">
+              <a href="/">
+                <img src="/images/avatar.png" class="image avatar">
+              </a>
+            </div>
+            <div class="col-md-9">
+              <a href="/">
+                <h1>Ruby Red Bricks</h1>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row"><hr/></div>
+        <div class="<%= current_article ? 'row post' : 'row' %>">
+          <%= yield %>
+        </div>
+        <div class="row"><hr/></div>
+
+        <% if current_article %>
+          <div class="row">
+            <%= disqus disqus_url: ("http://rubyredbricks.com" + current_page.url) %>
+          </div>
+        <% end %>
+
+        <div class="row"><hr/></div>
+
+        <div class="row contact">
+          <div class="col-md-5">
+          <ul class="icons">
+            <li>
+                <a href="https://github.com/ferrisoxide" class="icon fa-github" target="_blank">
+                  <span class="fui-github"></span>
+              </a>
+            </li>
+
+            <li>
+                <a href="https://twitter.com/ferrisoxide" class="icon fa-twitter" target="_blank">
+                  <span class="fui-twitter"></span>
+                </a>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://linkedin.com/in/ferrisoxide" class="icon fa-linkedin" target="_blank">
+                <span class="fui-linkedin"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://plus.google.com/+TomTuddenham" class="icon fa-google-plus" target="_blank">
+                <span class="fui-google-plus"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://www.facebook.com/tom.tuddenham.7" class="icon fa-facebook" target="_blank">
+                <span class="fui-googleplus"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="mailto:ferrisoxide@gmail.com" class="icon fa-envelope-o">
+                <span class="fui-mail"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <%= partial "layouts/shared/google_analytics" %>
+  </body>
+  <%= javascript_include_tag  "all" %>
+</html>
