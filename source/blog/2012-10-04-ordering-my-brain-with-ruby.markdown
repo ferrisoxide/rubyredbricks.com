@@ -1,6 +1,6 @@
 ---
 kind: article
-title: "ordering my brain with ruby"
+title: "Ordering my brain with ruby"
 created_at: 2012-10-04 21:05
 comments: true
 categories: project-argh, ruby
