@@ -6,10 +6,12 @@ kind: article
 comments: true
 ---
 
+_Update_: Still pleased with DigitalOcean’s offerings, I’ve decided to check out their referral program. Links to DigitalOcean in this post contain an affliate link.
+
 ![DigitalOcean logo with tick](/images/posts/digital-ocean-logo-with-tick.png){: class="left image"}
 
 
-Many readers have probably seen the advertising for [DigitalOcean](http://digitalocean.com){: target="_blank" } around the traps. Their logo appears pretty consistently in my Facebook advertising feed, probably FB clueing in to my general interest in all things webby.
+Many readers have probably seen the advertising for [DigitalOcean](http://digitalocean.com?refcode=3c73c2ef6e3b){: target="_blank" } [NB: affiliate link] around the traps. Their logo appears pretty consistently in my Facebook advertising feed, probably FB clueing in to my general interest in all things webby.
 
 My kids had been hassling me for a new Minecraft server, mostly to play with different mods and the like. Given their idea of "monetising Minecraft" hasn't paid off (what is it with kids these days - they all want to be e-entrepreneurs), the DigitalOcean offering seemed a reasonably inexpensive way for them to play.
 
@@ -102,7 +104,7 @@ _"You really should move to our new shiny, shiny infrastructure"_
 
 _"I'll need to get you to log a support ticket before I can help you with that"_
 
-I'd never speak to a client like that.
+I'd never speak to a client like that. And thankfully neither do the staff at Digital Ocean.
 
 At the end of the day, VM hosting providers are supplying a service to actual, real-life people. Having the technical competence is one thing. But to not acknowledge that someone is hurting is a terrible way to do business. If I want to keep a customer, my job is to make the problem go away - as best as I can.
 
@@ -110,4 +112,4 @@ I've also had some great experiences. One server, running on [Linode](https://ww
 
 The VM hosting market is wide and varied, and there's plenty good and bad players in the market. For the low-end of the market (in price and VM size) I'm pretty happy with the quality of the service that DigitalOcean offer. They are a relatively new player, but with their solid technical offering I imagine they are going to be around for a while. Their support may need a little tweaking, but they acknowledge that - and that's the main reason I'm staying.
 
-In the end, it's all about keeping your customers happy and treating them with respect. So that's a big tick to you DigitalOcean.
+In the end, it's all about keeping your customers happy and treating them with respect. So that's a big tick to you [DigitalOcean](http://digitalocean.com?refcode=3c73c2ef6e3b){: target="_blank" }.
