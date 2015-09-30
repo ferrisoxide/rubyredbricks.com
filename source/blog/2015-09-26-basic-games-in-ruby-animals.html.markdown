@@ -2,7 +2,7 @@
 title: BASIC Games in Ruby - Animals
 date: 2015-09-26 14:00 UTC
 tags:
-published: false
+published: true
 ---
 
 ![BASIC Computer Games Ruby Edition](/images/posts/basic-computer-games-ruby-edition.jpg){: class="image left"}
