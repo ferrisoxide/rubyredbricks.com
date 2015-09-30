@@ -1,5 +1,5 @@
 ---
-title: "BASIC Games in Ruby"
+title: "BASIC Games in Ruby - Acey Ducey"
 created_at: 2013-10-07 17:34
 description: This is the description
 kind: article
