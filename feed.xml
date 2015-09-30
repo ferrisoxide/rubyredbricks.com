@@ -5,10 +5,284 @@
   <id>http://blog.url.com/blog</id>
   <link href="http://blog.url.com/blog"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-12-14T10:30:00+10:30</updated>
+  <updated>2015-09-26T23:30:00+09:30</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>BASIC Games in Ruby - Animals</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2015/09/26/basic-games-in-ruby-animals/"/>
+    <id>http://blog.url.com/blog/2015/09/26/basic-games-in-ruby-animals/</id>
+    <published>2015-09-26T23:30:00+09:30</published>
+    <updated>2015-09-30T15:22:39+09:30</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="BASIC Computer Games Ruby Edition" class="image left" src="/images/posts/basic-computer-games-ruby-edition.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;NB This post is aimed at entry-level coders. It will have limited value or interest to experienced Rubyists.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id="introducing-animal"&gt;Introducing "Animal"&lt;/h2&gt;
+
+&lt;p&gt;An &lt;a href="/blog/2013/10/07/basic-games-in-ruby/"&gt;earlier post&lt;/a&gt; on converting the BASIC game Acey Ducey to Ruby garnered some great feedback, including &lt;a target="_blank" href="https://github.com/chris-hanson/basic-computer-games-ruby-edition/blob/master/acey-ducey.rb"&gt;some corrections&lt;/a&gt; as well as inspiring a &lt;a target="_blank" href="https://github.com/gscalzo/HaskellTheHardWay/tree/master/AceyDoucey"&gt;port to Haskell&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Inspired to continue working through David H. Ahl's &lt;a target="_blank" href="http://www.atariarchives.org/basicgames/index.php"&gt;BASIC Computer Games&lt;/a&gt; book from the 70s, I'm turning my attention to "Animal" – a 20-questions style game where the computer tries to guess the name of an animal you are thinking of:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;Animal
+Adapted from a BASIC game from Creative Computing - Morristown, New Jersey.
+
+Play 'Guess the Animal'
+Think of an animal and the computer will try and guess it.
+Are you thinking of an animal?
+N
+Are you thinking of an animal?
+Y
+Does it swim?
+Y
+Is it a fish
+N
+The animal you were thinking of was a?
+dolphin
+Please type a question that would distinguish a fish from a dolphin
+Is it a mammal?
+For a dolphin the answer would be?
+Y
+Are you thinking of an animal?
+LIST
+Animals I know
+dolphin
+fish
+bird
+Are you thinking of an animal?
+Y
+Does it swim?
+Y
+Is it a mammal?
+Y
+Is it a dolphin
+Y
+Why not try another animal?
+Are you thinking of an animal?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Animal was quite a popular BASIC game in its day. Along with &lt;a href="https://en.wikipedia.org/wiki/ELIZA"&gt;ELIZA&lt;/a&gt; it's an example of how simple programs can &lt;em&gt;simulate&lt;/em&gt; human-like behaviour - even on the limited computing platforms we had in the 70s and early 80s. It's also not hard to see it as the predecessor for modern web-based games like &lt;a href="http://en.akinator.com/"&gt;Akinator&lt;/a&gt;. Indeed, the accompanying text in Ahl's book suggests that the program could be reworked to cover different knowledge domains - geography, cell structures… even characters from television and movies. Akinator is a bit more sophisticated than "Animal", but the basic idea is the same.&lt;/p&gt;
+
+&lt;p&gt;"Animal" &lt;a target="_blank" href="http://www.atariarchives.org/basicgames/showpage.php?page=4"&gt;(source)&lt;/a&gt; is actually the third program in the David Ahl's "Basic Computer Games". I had intended on progressing through the book in sequence, but I'm skipping "Amazing" &lt;a target="_blank" href="http://www.atariarchives.org/basicgames/showpage.php?page=3"&gt;(source)&lt;/a&gt; as the code seems more convoluted than the mazes it produces. We may come back to that program in due course.&lt;/p&gt;
+
+&lt;p&gt;Apart from the obvious nostalgia value, the main reason for reviewing these old BASIC games is to be able to talk to my kids over the essentials of coding. After working in management for a decade, and having precious little time to sit down and code with them, I've long been concerned they'd pick up bad habits like I did as a young coder. Indeed, when I was interviewed for my first gig post-management I gave "making sure my kids don't end up as PHP hacks" as the chief reason for returning to coding.&lt;/p&gt;
+
+&lt;p&gt;My fears were somewhat realised when it became clear that my kids don't have a strong understanding of object-oriented programming. As such, this post is aimed at an introductory level and covers some of the basics of Ruby programming. It won't have huge value to a seasoned Rubyist, but at a personal level I hope it will remind me of some of the reasons why I love Ruby so much - and why I believe Ruby is an ideal first programming language.&lt;/p&gt;
+
+&lt;h2 id="data-model"&gt;Data Model&lt;/h2&gt;
+
+&lt;p&gt;The original Animal game stores knowledge of animals in a simple array:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-basic"&gt;70 DIM A$(200)
+80 FOR I=0 TO 3
+90 READ A$(I)
+100 NEXT I
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It took me a while to remember what this meant, but in BASIC the &lt;code&gt;READ&lt;/code&gt; command is used to load into memory data that is stored elsewhere in the program - often declared at the end of the rest of the code. In Animal's case, the data is embedded in the second half of the code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-basic"&gt;530 DATA "4", "\QDOES IT SWIM\Y2\N3", "\AFISH", "\ABIRD"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The upshot of this is we end up with an in-memory data model that looks something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;A$(0) "4"
+A$(1) "\QDOES IT SWIM\Y2\N3"
+A$(2) "\AFISH"
+A$(3) "\ABIRD"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Already we are seeing some of the limitations of the program. The BASIC version of Animal can only store 199 records - with the first element in the array being used to maintain a count of the questions and animals. This was fine in the days of VIC-20s and the like, but we're not so constrained with today's computing platforms.&lt;/p&gt;
+
+&lt;p&gt;The data model is also rather dense, with the questions and paths to other questions (the &lt;code&gt;\Y2\N3&lt;/code&gt; part of each question) packed into strings that have to be reinterpretted by the program itself.&lt;/p&gt;
+
+&lt;p&gt;Happily we can unpack the BASIC data model into Ruby objects with a clearer and cleaner intent, breaking it into the blocks of code - &lt;em&gt;i.e.&lt;/em&gt; classes - that make sense.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;class Animal
+  attr_reader :name
+
+  def initialize(args)
+    @name = args[:name]
+  end
+end
+
+class Question
+  attr_reader :text
+  attr_accessor :yes_path, :no_path
+
+  def initialize(args)
+    @text     = args[:text]
+    @yes_path = args[:yes_path]
+    @no_path  = args[:no_path]
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Our &lt;code&gt;Animal&lt;/code&gt; class represents an animal: a bird, frog, baboon, &lt;em&gt;etc&lt;/em&gt;. It is our &lt;em&gt;definition&lt;/em&gt;, as far as the game is concerned, of what an animal should look like. Similarly our &lt;code&gt;Question&lt;/code&gt; class captures the elements of a question: its text and where to take the user next based on a yes/no answer.&lt;/p&gt;
+
+&lt;p&gt;Now we have our new data model we can build the initial state of the program as Ruby objects:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;def starting_position
+  @starting_position ||= Question.new(
+    text: "Does it swim?",
+    yes_path: Animal.new(name: 'fish'),
+    no_path:  Animal.new(name: 'bird')
+  )
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The notion of a 'position' is used throughout the Ruby version, with the variables &lt;code&gt;current_position&lt;/code&gt; and &lt;code&gt;previous_position&lt;/code&gt; used internally to keep a track of where the user is in the tree as they progress through the tree.&lt;/p&gt;
+
+&lt;p&gt;Calling &lt;code&gt;starting_position&lt;/code&gt; generates a tree-like structure representing all the knowledge program holds about animals.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-text"&gt;            Question: Does it swim?
+                       /        \
+                     /            \
+               [yes path]       [no path]
+                  /                   \
+                /                       \
+            Animal: Fish             Animal: Bird
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As the user adds more knowledge the tree gradually expands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;            Question: Does it swim?
+                       /        \
+                     /            \
+               [yes path]       [no path]
+                  /                   \
+                /                       \
+        Question: Is it a mammal?    Animal: Bird
+               /        \
+             /            \
+       [yes path]       [no path]
+          /                   \
+        /                       \
+    Animal: Dolphin         Animal: Fish
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Side note: I considered drawing this tree as a graphic, but somehow using old-style ASCII just appeals. That old nostalgic feeling again.&lt;/p&gt;
+
+&lt;p&gt;Remininscing on how my friends and I learnt programming as kids, we spent a lot of time &lt;em&gt;reading&lt;/em&gt; code - and our spry little minds could tease out the data structures and flows despite the &lt;code&gt;GOTO&lt;/code&gt; spaghetti. Ahl's book packs in almost 100 example programs and so has little space for explanation of the internals of each. This, coupled with the mechanical activity of typing in each program (there were no downloads back then), meant that we had to get a good idea of the purpose of each line of code and how it related to the rest of the program.&lt;/p&gt;
+
+&lt;p&gt;The original draft of this post went into great detail about classes and objects, how to pass parameters and so forth. Given the value in reading code - it still takes up a large chunk of what I do as a day-to-day coder - I'd encourge my sons and other interested parties to read the code.&lt;/p&gt;
+
+&lt;p&gt;The full source of the Ruby version of Animal is available on &lt;a target="_blank" href="https://github.com/ferrisoxide/basic-computer-games-ruby-edition/blob/master/animal.rb"&gt;Github&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="recursing-the-tree"&gt;Recursing the Tree&lt;/h2&gt;
+
+&lt;p&gt;At the start of each run through the game, the user can type the 'LIST' command to retrieve all the animals the program currently knows about.&lt;/p&gt;
+
+&lt;p&gt;When I talked over this part of the program with my eldest, we came up with a variety of ways to list the animals. Initially we considered having a separate array of &lt;code&gt;Animal&lt;/code&gt; objects, but this would have required more code to maintain the list - both in the initial setup and as the game progresses.&lt;/p&gt;
+
+&lt;p&gt;Given that the data we need is already in the tree, we settled on simply 'walking' through it and finding all the animals.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;def list_animals
+  puts 'Animals I know'
+  animals = collect_animals(starting_position, [])
+  animals.each do |animal|
+    puts animal.name
+  end
+end
+
+def collect_animals(position, animals)
+  if position.is_a?(Animal)
+    animals &amp;lt;&amp;lt; position
+  else
+    animals = collect_animals(position.yes_path, animals)
+    animals = collect_animals(position.no_path, animals)
+  end
+  animals
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;collect_animals&lt;/code&gt; method is a recursive algorithm. In my experience a small number of otherwise good professional coders don't understand recursion very well, and will happily brute force their way through a data structure. Recursion is an important concept in coding and to this end it's probably worth deconstructing how &lt;code&gt;collect_animals&lt;/code&gt; works.&lt;/p&gt;
+
+&lt;p&gt;The method takes a &lt;code&gt;position&lt;/code&gt; - a node in our tree - and a list of animals as an array. The &lt;code&gt;list_animals&lt;/code&gt; method kicks this off by calling &lt;code&gt;collect_animals(starting_position, [])&lt;/code&gt;, passing in the start of our tree and an empty array. This empty array will act as an 'accumulator', filling up with &lt;code&gt;Animal&lt;/code&gt; objects as we find them.&lt;/p&gt;
+
+&lt;p&gt;The first thing we check for in &lt;code&gt;collect_animals&lt;/code&gt; is our end point - finding an Animal object at the end of a branch. It adds the animal to the &lt;code&gt;animals&lt;/code&gt; array and then returns the accumulating array.&lt;/p&gt;
+
+&lt;p&gt;If we don't find an &lt;code&gt;Animal&lt;/code&gt; (&lt;em&gt;i.e.&lt;/em&gt; the &lt;code&gt;position&lt;/code&gt; is a &lt;code&gt;Question&lt;/code&gt;) then we follow each yes or no path, continually calling &lt;code&gt;collect_animals&lt;/code&gt; until it finds terminating &lt;code&gt;Animal&lt;/code&gt; objects.&lt;/p&gt;
+
+&lt;p&gt;All in all, recursing through the tree like this is a more satisfactory solution than maintaining a separate list of &lt;code&gt;Animal&lt;/code&gt; objects. Obviously with a very large tree this could take some time, but it's not an issue at the moment. And in that we have another important lesson for young coders: don't complicate your code solving problems you don't currently have (otherwise known as the &lt;a target="_blank" href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it"&gt;YAGNI - You Aint Gonna Need It - principle&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h2 id="protecting-input-using-ruby-blocks"&gt;Protecting Input Using Ruby Blocks&lt;/h2&gt;
+
+&lt;p&gt;The original Animal BASIC code does little to check input and it's very easy to scramble the program by entering in bad data - or even just hitting return. My son and I decided to try and prevent bad data entry as much as possible, trapping empty responses or input that didn't make sense.&lt;/p&gt;
+
+&lt;p&gt;Doing this we found ourselves writing the same sort of code over and over, and I took it as a good moment to talk to him about reusing code via Ruby's blocks.&lt;/p&gt;
+
+&lt;p&gt;Our basic &lt;code&gt;get_input&lt;/code&gt; method takes a &lt;code&gt;prompt&lt;/code&gt; argument as text to present to the user.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;def get_input(prompt)
+  is_valid = false
+
+  while !is_valid
+    puts prompt
+    input = gets.chomp
+    is_valid = !input.empty?
+    is_valid = is_valid &amp;amp;&amp;amp; yield(input) if block_given?
+  end
+
+  input
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The method loops around while &lt;code&gt;is_valid&lt;/code&gt; remains false. A blank response from a user (&lt;em&gt;e.g.&lt;/em&gt; hitting the carriage return) will always mark the input as invalid. If a block is passed to the method (tested with &lt;code&gt;if block_given?&lt;/code&gt;) the block will be called to test if the input data is valid (returning a &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;In the &lt;code&gt;get_yn_answer&lt;/code&gt; method, calling the &lt;code&gt;get_input&lt;/code&gt; will loop until the user enters a 'Y' or 'N' (or 'y' / 'n') response to the prompt.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;def get_yn_answer(prompt)
+  get_input(prompt) do |input|
+    input.upcase == 'Y' || input.upcase == 'N'
+  end.upcase
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In &lt;code&gt;prompt_to_start&lt;/code&gt; the user can't continue through the program until a 'Y' (or 'y') response has been entered.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;def prompt_to_start
+  get_input "Are you thinking of an animal?" do |input|
+    case input.upcase
+    when 'Y' then true
+    when 'LIST' then
+      list_animals
+      false
+    else
+      false
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;prompt_to_start&lt;/code&gt; also allows the user to request a 'LIST' of existing animals. Arguably calling the &lt;code&gt;list_animals&lt;/code&gt; method potentially creates a side-effect and normally I'd discourage kids from this style of coding. But as the purpose is to manage the flow it's a reasonable compromise here.&lt;/p&gt;
+
+&lt;p&gt;This is quite a limited use of Ruby's block idiom, but the idea was to give my kids a taste of how sections of code can be reused.&lt;/p&gt;
+
+&lt;h2 id="going-forward"&gt;Going Forward&lt;/h2&gt;
+
+&lt;p&gt;The main game code is still quite procedural - it &lt;em&gt;feels&lt;/em&gt; like a BASIC program that's been converted to Ruby, albeit with some minor additions. There are probably things that can be done to make the code more Ruby-like.&lt;/p&gt;
+
+&lt;p&gt;Working on Animal together, my son and I managed to cover blocks, classes, tree structures and recursion. There were probably more informal lessons along the way - in just being able to sit down and talk code with my kids - but that's a reasonable take-away.&lt;/p&gt;
+
+&lt;p&gt;The question now is whether my kids take any of this on and do more coding of their own. They've both expressed a desire to get into software development as a career, but it doesn't feel like they have the same opportunities to learn their craft – to do the 10,000 hours that I did as a kid – with the constant distractions of the internet and games.&lt;/p&gt;
+
+&lt;p&gt;If I had my time again I'd find a way to record more of the conversations we had while coding.&lt;/p&gt;
+
+&lt;p&gt;I plan on taking more time to code with my kids, to talk through design and the sorts of compromises you always have to address even when building small applications.&lt;/p&gt;
+
+&lt;p&gt;As long as they end up doing what they want, what they enjoy… hell, I'd even be happy if they end up coding in PHP.&lt;/p&gt;
+
+&lt;p&gt;Feel free to look over the code for &lt;a target="_blank" href="https://github.com/ferrisoxide/basic-computer-games-ruby-edition"&gt;BASIC Computer Games (Ruby Edition)&lt;/a&gt;, make comments or criticism.&lt;/p&gt;
+
+&lt;p&gt;Any feedback is appreciated. Thanks for reading.&lt;/p&gt;
+
+</content>
+  </entry>
   <entry>
     <title>DigitalOcean - the Good, the Bad and .. well the Good</title>
     <link rel="alternate" href="http://blog.url.com/blog/2013/12/14/digitalocean-the-good-the-bad-and-well-the-good/"/>
@@ -895,158 +1169,6 @@ hpub:
 
 &lt;p&gt;You can view the online version at &lt;a href="http://tachypomp.rubyredbricks.com"&gt;tachypomp.rubyredbricks.com&lt;/a&gt;. The source code for this project can be found on &lt;a href="https://github.com/ferrisoxide/tachypomp"&gt;Github&lt;/a&gt;.&lt;/p&gt;
 
-</content>
-  </entry>
-  <entry>
-    <title>From Octopress to nanoc</title>
-    <link rel="alternate" href="http://blog.url.com/blog/2013/09/30/from-octopress-to-nanoc/"/>
-    <id>http://blog.url.com/blog/2013/09/30/from-octopress-to-nanoc/</id>
-    <published>2013-09-30T09:30:00+09:30</published>
-    <updated>2015-09-28T10:28:39+09:30</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;Regular visitors will have noticed recent changes to the Ruby Red Bricks blog. There are some
-visual differences, but more significantly the blog has been ported completely from
-&lt;a href="http://octopress.org"&gt;Octopress&lt;/a&gt; to &lt;a href="http://nanoc.ws/"&gt;nanoc&lt;/a&gt;.&lt;/p&gt;
-
-&lt;!----&gt;
-
-&lt;h2 id="why-the-change"&gt;Why the Change?&lt;/h2&gt;
-
-&lt;p&gt;The time I get to code is extremely limited - mainly on the bus to and fro work. Both Octopress and nanoc are excellent tools and - while I'd like to be able to keep my options option - I don't have the time to keep up to date with both static site compilers.&lt;/p&gt;
-
-&lt;p&gt;It also seems a little silly blogging about playing with nanoc using a Jekyll-based blogging tool. Running the whole show with nanoc gives me an opportunity to get half-decent with one tool (instead of being crap at two).&lt;/p&gt;
-
-&lt;h2 id="but-octopress-is-awesome"&gt;But Octopress is Awesome!&lt;/h2&gt;
-
-&lt;p&gt;Yes, Octopress is a fantastic blogging tool and has so much going for it: the Octopress community is as vibrant as the nanoc community (judging by Google Groups posts); it is part of the larger &lt;a href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt; family; and Octopress comes with pretty much everything you need for blogging, right out the box.&lt;/p&gt;
-
-&lt;p&gt;Octopress also comes with a bunch of stuff I never had any use for. I could have trimmed it down a little, but some of the code seems a bit magical - and I never knew what I might break. Octopress sites also tend to look like other Octpress sites. This is not a slight against Octopress - more an issue with me being lazy / time-poor.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Sad Octopress" class="image left" src="/images/posts/sad-octopress.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;In many ways it's not fair to compare the two systems, as Octopress is a much more a complete blogging tool than nanoc. With nanoc I had to build many things up from scratch, using advice from &lt;a href="http://jakoblaegdsmand.com/blog/2013/01/easy-blogging-with-nanoc/"&gt;here&lt;/a&gt; and &lt;a href="https://github.com/crazysim/nanoc-foundation-blog"&gt;there&lt;/a&gt; in the community. Though there's still work to be done, the  first cut has a smaller and more focused codebase than the original blog.&lt;/p&gt;
-
-&lt;p&gt;I'm sorry if I've made you sad, little Octopress creature, but I wish you all the best. And I really enjoyed the time we spent together.&lt;/p&gt;
-
-&lt;h2 id="nanoc-is-awesome-too"&gt;nanoc is Awesome Too!&lt;/h2&gt;
-
-&lt;p&gt;Where Octopress is reasonably prescriptive in how to construct blogs - it's probably fair to call it an "opinionated" blogging tool - nanoc is pretty much open-ended. There are benefits in its openness - I was able to move to &lt;a href="http://foundation.zurb.com/"&gt;Zurb's Foundation&lt;/a&gt; framework for the front-end - but the cost is having to rewrite much of the support code by hand.&lt;/p&gt;
-
-&lt;p&gt;nanoc does come with tools for maintaining blogs.  &lt;a href="http://nanoc.ws/docs/api/Nanoc/Helpers/Blogging.html"&gt;&lt;code&gt;Nanoc::Helpers::Blogging&lt;/code&gt;&lt;/a&gt; and related modules makes it relatively simple to port some of the parts of an Octopress blog. Rewriting the &lt;a href="/archives"&gt;Archives&lt;/a&gt; section was straightforward, thanks to all the blog articles being automatically collected in reverse date order within nanoc's &lt;a href="http://nanoc.ws/docs/api/Nanoc/Helpers/Blogging.html#sorted_articles-instance_method"&gt;&lt;code&gt;sorted_articles&lt;/code&gt;&lt;/a&gt; array.&lt;/p&gt;
-
-&lt;p&gt;Adding an RSS link was a painless one-liner, using the &lt;a href="http://nanoc.ws/docs/api/Nanoc/Helpers/Blogging.html#atom_feed-instance_method"&gt;&lt;code&gt;atom_feed&lt;/code&gt;&lt;/a&gt; method. But that's about where the easy fun stopped and we moved into "why am I doing this again?" territory.&lt;/p&gt;
-
-&lt;h2 id="porting"&gt;Porting&lt;/h2&gt;
-
-&lt;p&gt;Moving from Octopress to nanoc took about four or five hours. There were a couple of near rage-quit moments, but mostly due to my stupidity. Overall the process went fairly smoothly, thanks to a great deal of similarity between the two systems.&lt;/p&gt;
-
-&lt;h3 id="meta-data"&gt;Meta-data&lt;/h3&gt;
-
-&lt;p&gt;Octopress and nanoc share the same basic model for content. The meta-data header for pages is essentially the same and - apart from inserting a &lt;code&gt;kind: article&lt;/code&gt; entry in each post header - there was nothing to change other than move all the pages and posts into nanoc's &lt;code&gt;/content&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;h3 id="markup"&gt;Markup&lt;/h3&gt;
-
-&lt;p&gt;Markup proved a little trickier. Both nanoc and Octpress make use of a Mardown-style markup. Octopress also uses &lt;a href="http://liquidmarkup.org/"&gt;Liquid Markup&lt;/a&gt; for more programmatic bits, but Liquid support was removed from nanoc quite some time ago. nanoc has a range of filters available, but the most natural seemed to be a mixture of &lt;code&gt;kramdown&lt;/code&gt; (for Markdown) and &lt;code&gt;erb&lt;/code&gt; (for the programmatic parts). The porting process was mostly a matter of seeing what broke, and fixing with either layout changes or creating helper methods.&lt;/p&gt;
-
-&lt;h3 id="layouts-and-style"&gt;Layouts and Style&lt;/h3&gt;
-
-&lt;p&gt;Thankfully I hadn't used much of the plugins packaged with Octopress, otherwise I would have had more trouble replacing functionality. Rebuilding the layouts was more a matter of taking the example Foundation blog layout and reworking it to render the nanoc &lt;code&gt;item&lt;/code&gt; objects.&lt;/p&gt;
-
-&lt;p&gt;One neat trick I lifted from &lt;a href="http://clarkdave.net/2012/02/building-a-static-blog-with-nanoc/"&gt;Dave Clarke's blog&lt;/a&gt; is displaying an excerpt of recent blog posts on the front page. Previously Octopress would display the complete post for any recent articles, increasing the page load time. The front page is a lot shorter, with links to the full article. I'm hoping this will incline people to read and reply to comments, as the the Disqus widgets were not available on the index page. We'll have to see how that goes.&lt;/p&gt;
-
-&lt;p&gt;Foundation is a bit of a task master. There's no simple way to make use of the grid within Mardown posts, unless you're willing to sprinkle your otherwise clean text with a bunch of &lt;code&gt;divs&lt;/code&gt;. I had to cheat a bit, floating images to the left or right. It's not perfect, and I'm pretty sure it will choke the responsive layout. But it's a start.&lt;/p&gt;
-
-&lt;p&gt;One word about using the Foundation gem: pulling in the assets via Compass (&lt;a href="https://github.com/ferrisoxide/rubyredbricks.com/blob/master/compass/config.rb"&gt;source&lt;/a&gt;) sprinkles the root of the project with &lt;code&gt;robots.txt&lt;/code&gt; and other related files. I don't know how to prevent this, but it's just a matter of cleaning up after the event.&lt;/p&gt;
-
-&lt;h3 id="helpers--commands"&gt;Helpers &amp;amp; Commands&lt;/h3&gt;
-
-&lt;p&gt;As noted before, the standard &lt;code&gt;Nanoc::Helpers::Blogging&lt;/code&gt; module simplifies some of the core blogging functionality. It's missing the Twitter, Google Plus One, Disqus, Pinboard, Delicious and Google Analytics plugins provided by Octopress by default - but of these I was only really using Twitter, Disqus and Google Analytics.&lt;/p&gt;
-
-&lt;p&gt;The Twitter plugin stopped working when Twitter changed the terms of their API, so I've dropped that until I can think of a way to integrate it again (maybe as a third-party service). Google Analytics and Disqus integration is straightforward - it's just as simple as dropping the widget code into the layouts.&lt;/p&gt;
-
-&lt;p&gt;A modification of the &lt;code&gt;nanoc create_post&lt;/code&gt; command pilfered from &lt;a href="http://jakoblaegdsmand.com/blog/2013/01/easy-blogging-with-nanoc/"&gt;Jakob Lægdsmand's blog&lt;/a&gt; to build the scaffold for each new post and I had an almost complete blogging system again.&lt;/p&gt;
-
-&lt;h3 id="images"&gt;Images&lt;/h3&gt;
-
-&lt;p&gt;Octopress uses a helper provided via Liquid to create image tags. While I like the model, it seems unnecessary when ordinary Markdown offers a similar feature. Adding CSS - to float left and right as mentioned earlier - doesn't seem to be supported by the standard Markdown syntax, but thankfully the Kramdown filter adds support without the resulting code looking too weird.&lt;/p&gt;
-
-&lt;p&gt;So the original Octopress image tag:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;   \{\% img left /images/posts/adelaide-metro-old-style-ticket-machine.jpg 250 250 Adelaide Metro Ticket Machine in Action \%\}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;becomes something very similar (but more Markdowny).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    ![Adelaide Metro Ticket Machine in Action](/images/posts/adelaide-metro-old-style-ticket-machine.jpg){: class="image left"}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id="codeblocks"&gt;Codeblocks&lt;/h3&gt;
-
-&lt;p&gt;Codeblocks was where things really came unstuck. There are a few options in nanoc-land, but most seemed a bit clunky - at least compared to Octopress's really nice &lt;a href="http://ethanschoonover.com/solarized"&gt;Solarised&lt;/a&gt; solution.&lt;/p&gt;
-
-&lt;p&gt;I opted for simple, using Kramdown's built in support for Coderay. It doesn't look anywhere near as nice as the Octopress solution, but it will do in the short-term.&lt;/p&gt;
-
-&lt;p&gt;You can see various samples of Coderay in action in the refurbished &lt;a href="/blog/2012/09/19/more-epub-with-nanoc/"&gt;More ePub with nanoc&lt;/a&gt; post from last year.&lt;/p&gt;
-
-&lt;h2 id="the-future"&gt;The Future&lt;/h2&gt;
-
-&lt;p&gt;So where to from here? The blog is back up and running but will need a bit of tweaking - mostly removing inline CSS and other crufty artefacts from the port. I need to clean up the repo as well, as there are a few odd files left over from Octopress.&lt;/p&gt;
-
-&lt;p&gt;There's a hint of irony in what I've ended up with. Having wanting to move away from a blog that looks like other Octopress blogs, I've ended up with something that looks like every other Foundation based site. But the structure is in place now - there's something I feel I can work on.&lt;/p&gt;
-
-&lt;p&gt;The move has given me a fresh mindset. I like the simplicity of the new look and will strive to keep it like that. The main job ahead is to keep the content interesting and useful, so I've come up with a few basic rules I think will help:&lt;/p&gt;
-
-&lt;h3 id="keep-it-focused"&gt;1. Keep It Focused&lt;/h3&gt;
-
-&lt;p&gt;This is a technical blog, and it should stay that way.&lt;/p&gt;
-
-&lt;p&gt;Politics, religion and pop music should stay where belong - on Facebook. If I'm inclined to post personal rants, there are other places on the internet for that.&lt;/p&gt;
-
-&lt;h3 id="keep-it-real"&gt;2. Keep It Real&lt;/h3&gt;
-
-&lt;p&gt;Ruby and Lego™ - and other things I dig? So where's the Lego?&lt;/p&gt;
-
-&lt;p&gt;I kinda got distracted from the main game early on. This blog was meant to be about the fun to be had playing with Ruby and Lego, with the odd bit of interesting tech thrown in. I want to get back to that and, wherever possible, bring the two worlds of Lego™ and Ruby together.&lt;/p&gt;
-
-&lt;p&gt;And the things I dig? Cue &lt;a href="http://www.youtube.com/watch?v=k2rDbRUDkds"&gt;joke for the kids&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id="maintain-the-joy"&gt;3. Maintain the Joy&lt;/h3&gt;
-
-&lt;p&gt;This is my happy place. This is where I come to experiment with and think about code and stuff. In a world where I'm banned from bringing Nerf guns to work (well.. I did shoot one of the other senior managers in a surprise dive from behind the printer), this is my little space to remember the good times. Back when my business card read "Code Poet" and the Internet felt like a magic sandbox.&lt;/p&gt;
-
-&lt;h3 id="blog-early-blog-often"&gt;4. Blog Early, Blog Often&lt;/h3&gt;
-
-&lt;p&gt;As &lt;a href="https://twitter.com/technicalmoses"&gt;Jon Moses&lt;/a&gt; commented on an &lt;a href="/blog/2013/05/06/nanoc-novel/"&gt;old post&lt;/a&gt;, "If you're not embarrassed (in some way) by code you release, you waited too long to release it." Ditto for blogging. Any ideas I have can live or die under the unyielding scrutiny of the internet, or be shaped into something new by smarter minds than my own.&lt;/p&gt;
-
-&lt;p&gt;I've yet to find my voice as a blogger - or even as a writer in general. The path is through practise, practise, practise. There's no short cuts - and there's no shortage of things I want to write about.&lt;/p&gt;
-
-&lt;h2 id="final-notes"&gt;Final Notes&lt;/h2&gt;
-
-&lt;p&gt;Finally, a thank you. Firstly to you, for reading yet another lengthy blog post. Secondly, to the nanoc crowd, whose numerous posts helped get me back on track. But lastly to Octopress - thanks for a great tool that kept the blog running the last couple of years.&lt;/p&gt;
-
-&lt;h3 id="the-code"&gt;The Code&lt;/h3&gt;
-
-&lt;p&gt;You can grab the code for this blog from &lt;a href="https://github.com/ferrisoxide/rubyredbricks.com"&gt;Github&lt;/a&gt;. If you want to see the nitty-gritty of the changes feel free to trawl through the commit log. You probably won't find anything revolutionary, and I expect anyone doing the same sort of thing would do it a completely different way. But the meandering path is there for all to see.&lt;/p&gt;
-
-&lt;h3 id="credits"&gt;Credits&lt;/h3&gt;
-
-&lt;p&gt;I lifted most of the code from other people, so feel free to nick stuff from me. If I have pilfered code without appropriate attribution, please take me up on it. And if there's anyone I've forgotten to mention, let me know. But here's a list of nanoc people I feel I owe a debt to:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="http://jakoblaegdsmand.com/blog/2013/01/easy-blogging-with-nanoc/"&gt;Jakob Lægdsmand&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://clarkdave.net/2012/02/building-a-static-blog-with-nanoc/"&gt;Dave Clarke&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://www.danhoey.com/blog/2011_09_23_building_a_blog_with_nanoc/"&gt;Daniel Hoey&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://www.mindflakes.com/"&gt;Nelson Chen&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://www.starryhope.com/going-static-with-nanoc/"&gt;Jim Mendenhall&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;and of course:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="http://stoneship.org/"&gt;Denis Defreyne&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>

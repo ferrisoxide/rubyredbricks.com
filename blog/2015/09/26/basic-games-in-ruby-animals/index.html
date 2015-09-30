@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <title>Ruby Red Bricks - BASIC Games in Ruby - Animals</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/feed.xml" />
+    <link href="/stylesheets/all.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-centered">
+        <div class="banner">
+          <div class="row">
+            <div class="col-md-2">
+              <a href="/">
+                <img src="/images/avatar.png" class="image avatar">
+              </a>
+            </div>
+            <div class="col-md-9">
+              <a href="/">
+                <h1>Ruby Red Bricks</h1>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row"><hr class="jumbotron-hr"/></div>
+        <div class="row post">
+          <p><img alt="BASIC Computer Games Ruby Edition" class="image left" src="/images/posts/basic-computer-games-ruby-edition.jpg" /></p>
+
+<p><em>NB This post is aimed at entry-level coders. It will have limited value or interest to experienced Rubyists.</em></p>
+
+<h2 id="introducing-animal">Introducing "Animal"</h2>
+
+<p>An <a href="/blog/2013/10/07/basic-games-in-ruby/">earlier post</a> on converting the BASIC game Acey Ducey to Ruby garnered some great feedback, including <a target="_blank" href="https://github.com/chris-hanson/basic-computer-games-ruby-edition/blob/master/acey-ducey.rb">some corrections</a> as well as inspiring a <a target="_blank" href="https://github.com/gscalzo/HaskellTheHardWay/tree/master/AceyDoucey">port to Haskell</a>.</p>
+
+<p>Inspired to continue working through David H. Ahl's <a target="_blank" href="http://www.atariarchives.org/basicgames/index.php">BASIC Computer Games</a> book from the 70s, I'm turning my attention to "Animal" – a 20-questions style game where the computer tries to guess the name of an animal you are thinking of:</p>
+
+<pre><code class="language-text">Animal
+Adapted from a BASIC game from Creative Computing - Morristown, New Jersey.
+
+Play 'Guess the Animal'
+Think of an animal and the computer will try and guess it.
+Are you thinking of an animal?
+N
+Are you thinking of an animal?
+Y
+Does it swim?
+Y
+Is it a fish
+N
+The animal you were thinking of was a?
+dolphin
+Please type a question that would distinguish a fish from a dolphin
+Is it a mammal?
+For a dolphin the answer would be?
+Y
+Are you thinking of an animal?
+LIST
+Animals I know
+dolphin
+fish
+bird
+Are you thinking of an animal?
+Y
+Does it swim?
+Y
+Is it a mammal?
+Y
+Is it a dolphin
+Y
+Why not try another animal?
+Are you thinking of an animal?
+</code></pre>
+
+<p>Animal was quite a popular BASIC game in its day. Along with <a href="https://en.wikipedia.org/wiki/ELIZA">ELIZA</a> it's an example of how simple programs can <em>simulate</em> human-like behaviour - even on the limited computing platforms we had in the 70s and early 80s. It's also not hard to see it as the predecessor for modern web-based games like <a href="http://en.akinator.com/">Akinator</a>. Indeed, the accompanying text in Ahl's book suggests that the program could be reworked to cover different knowledge domains - geography, cell structures… even characters from television and movies. Akinator is a bit more sophisticated than "Animal", but the basic idea is the same.</p>
+
+<p>"Animal" <a target="_blank" href="http://www.atariarchives.org/basicgames/showpage.php?page=4">(source)</a> is actually the third program in the David Ahl's "Basic Computer Games". I had intended on progressing through the book in sequence, but I'm skipping "Amazing" <a target="_blank" href="http://www.atariarchives.org/basicgames/showpage.php?page=3">(source)</a> as the code seems more convoluted than the mazes it produces. We may come back to that program in due course.</p>
+
+<p>Apart from the obvious nostalgia value, the main reason for reviewing these old BASIC games is to be able to talk to my kids over the essentials of coding. After working in management for a decade, and having precious little time to sit down and code with them, I've long been concerned they'd pick up bad habits like I did as a young coder. Indeed, when I was interviewed for my first gig post-management I gave "making sure my kids don't end up as PHP hacks" as the chief reason for returning to coding.</p>
+
+<p>My fears were somewhat realised when it became clear that my kids don't have a strong understanding of object-oriented programming. As such, this post is aimed at an introductory level and covers some of the basics of Ruby programming. It won't have huge value to a seasoned Rubyist, but at a personal level I hope it will remind me of some of the reasons why I love Ruby so much - and why I believe Ruby is an ideal first programming language.</p>
+
+<h2 id="data-model">Data Model</h2>
+
+<p>The original Animal game stores knowledge of animals in a simple array:</p>
+
+<pre><code class="language-basic">70 DIM A$(200)
+80 FOR I=0 TO 3
+90 READ A$(I)
+100 NEXT I
+</code></pre>
+
+<p>It took me a while to remember what this meant, but in BASIC the <code>READ</code> command is used to load into memory data that is stored elsewhere in the program - often declared at the end of the rest of the code. In Animal's case, the data is embedded in the second half of the code.</p>
+
+<pre><code class="language-basic">530 DATA "4", "\QDOES IT SWIM\Y2\N3", "\AFISH", "\ABIRD"
+</code></pre>
+
+<p>The upshot of this is we end up with an in-memory data model that looks something like this:</p>
+
+<pre><code class="language-text">A$(0) "4"
+A$(1) "\QDOES IT SWIM\Y2\N3"
+A$(2) "\AFISH"
+A$(3) "\ABIRD"
+</code></pre>
+
+<p>Already we are seeing some of the limitations of the program. The BASIC version of Animal can only store 199 records - with the first element in the array being used to maintain a count of the questions and animals. This was fine in the days of VIC-20s and the like, but we're not so constrained with today's computing platforms.</p>
+
+<p>The data model is also rather dense, with the questions and paths to other questions (the <code>\Y2\N3</code> part of each question) packed into strings that have to be reinterpretted by the program itself.</p>
+
+<p>Happily we can unpack the BASIC data model into Ruby objects with a clearer and cleaner intent, breaking it into the blocks of code - <em>i.e.</em> classes - that make sense.</p>
+
+<pre><code class="language-ruby">class Animal
+  attr_reader :name
+
+  def initialize(args)
+    @name = args[:name]
+  end
+end
+
+class Question
+  attr_reader :text
+  attr_accessor :yes_path, :no_path
+
+  def initialize(args)
+    @text     = args[:text]
+    @yes_path = args[:yes_path]
+    @no_path  = args[:no_path]
+  end
+end
+</code></pre>
+
+<p>Our <code>Animal</code> class represents an animal: a bird, frog, baboon, <em>etc</em>. It is our <em>definition</em>, as far as the game is concerned, of what an animal should look like. Similarly our <code>Question</code> class captures the elements of a question: its text and where to take the user next based on a yes/no answer.</p>
+
+<p>Now we have our new data model we can build the initial state of the program as Ruby objects:</p>
+
+<pre><code class="language-ruby">def starting_position
+  @starting_position ||= Question.new(
+    text: "Does it swim?",
+    yes_path: Animal.new(name: 'fish'),
+    no_path:  Animal.new(name: 'bird')
+  )
+end
+</code></pre>
+
+<p>The notion of a 'position' is used throughout the Ruby version, with the variables <code>current_position</code> and <code>previous_position</code> used internally to keep a track of where the user is in the tree as they progress through the tree.</p>
+
+<p>Calling <code>starting_position</code> generates a tree-like structure representing all the knowledge program holds about animals.</p>
+
+<pre><code class="language-text">            Question: Does it swim?
+                       /        \
+                     /            \
+               [yes path]       [no path]
+                  /                   \
+                /                       \
+            Animal: Fish             Animal: Bird
+</code></pre>
+
+<p>As the user adds more knowledge the tree gradually expands:</p>
+
+<pre><code>            Question: Does it swim?
+                       /        \
+                     /            \
+               [yes path]       [no path]
+                  /                   \
+                /                       \
+        Question: Is it a mammal?    Animal: Bird
+               /        \
+             /            \
+       [yes path]       [no path]
+          /                   \
+        /                       \
+    Animal: Dolphin         Animal: Fish
+</code></pre>
+
+<p>Side note: I considered drawing this tree as a graphic, but somehow using old-style ASCII just appeals. That old nostalgic feeling again.</p>
+
+<p>Remininscing on how my friends and I learnt programming as kids, we spent a lot of time <em>reading</em> code - and our spry little minds could tease out the data structures and flows despite the <code>GOTO</code> spaghetti. Ahl's book packs in almost 100 example programs and so has little space for explanation of the internals of each. This, coupled with the mechanical activity of typing in each program (there were no downloads back then), meant that we had to get a good idea of the purpose of each line of code and how it related to the rest of the program.</p>
+
+<p>The original draft of this post went into great detail about classes and objects, how to pass parameters and so forth. Given the value in reading code - it still takes up a large chunk of what I do as a day-to-day coder - I'd encourge my sons and other interested parties to read the code.</p>
+
+<p>The full source of the Ruby version of Animal is available on <a target="_blank" href="https://github.com/ferrisoxide/basic-computer-games-ruby-edition/blob/master/animal.rb">Github</a></p>
+
+<h2 id="recursing-the-tree">Recursing the Tree</h2>
+
+<p>At the start of each run through the game, the user can type the 'LIST' command to retrieve all the animals the program currently knows about.</p>
+
+<p>When I talked over this part of the program with my eldest, we came up with a variety of ways to list the animals. Initially we considered having a separate array of <code>Animal</code> objects, but this would have required more code to maintain the list - both in the initial setup and as the game progresses.</p>
+
+<p>Given that the data we need is already in the tree, we settled on simply 'walking' through it and finding all the animals.</p>
+
+<pre><code class="language-ruby">def list_animals
+  puts 'Animals I know'
+  animals = collect_animals(starting_position, [])
+  animals.each do |animal|
+    puts animal.name
+  end
+end
+
+def collect_animals(position, animals)
+  if position.is_a?(Animal)
+    animals &lt;&lt; position
+  else
+    animals = collect_animals(position.yes_path, animals)
+    animals = collect_animals(position.no_path, animals)
+  end
+  animals
+end
+</code></pre>
+
+<p>The <code>collect_animals</code> method is a recursive algorithm. In my experience a small number of otherwise good professional coders don't understand recursion very well, and will happily brute force their way through a data structure. Recursion is an important concept in coding and to this end it's probably worth deconstructing how <code>collect_animals</code> works.</p>
+
+<p>The method takes a <code>position</code> - a node in our tree - and a list of animals as an array. The <code>list_animals</code> method kicks this off by calling <code>collect_animals(starting_position, [])</code>, passing in the start of our tree and an empty array. This empty array will act as an 'accumulator', filling up with <code>Animal</code> objects as we find them.</p>
+
+<p>The first thing we check for in <code>collect_animals</code> is our end point - finding an Animal object at the end of a branch. It adds the animal to the <code>animals</code> array and then returns the accumulating array.</p>
+
+<p>If we don't find an <code>Animal</code> (<em>i.e.</em> the <code>position</code> is a <code>Question</code>) then we follow each yes or no path, continually calling <code>collect_animals</code> until it finds terminating <code>Animal</code> objects.</p>
+
+<p>All in all, recursing through the tree like this is a more satisfactory solution than maintaining a separate list of <code>Animal</code> objects. Obviously with a very large tree this could take some time, but it's not an issue at the moment. And in that we have another important lesson for young coders: don't complicate your code solving problems you don't currently have (otherwise known as the <a target="_blank" href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI - You Aint Gonna Need It - principle</a>).</p>
+
+<h2 id="protecting-input-using-ruby-blocks">Protecting Input Using Ruby Blocks</h2>
+
+<p>The original Animal BASIC code does little to check input and it's very easy to scramble the program by entering in bad data - or even just hitting return. My son and I decided to try and prevent bad data entry as much as possible, trapping empty responses or input that didn't make sense.</p>
+
+<p>Doing this we found ourselves writing the same sort of code over and over, and I took it as a good moment to talk to him about reusing code via Ruby's blocks.</p>
+
+<p>Our basic <code>get_input</code> method takes a <code>prompt</code> argument as text to present to the user.</p>
+
+<pre><code class="language-ruby">def get_input(prompt)
+  is_valid = false
+
+  while !is_valid
+    puts prompt
+    input = gets.chomp
+    is_valid = !input.empty?
+    is_valid = is_valid &amp;&amp; yield(input) if block_given?
+  end
+
+  input
+end
+</code></pre>
+
+<p>The method loops around while <code>is_valid</code> remains false. A blank response from a user (<em>e.g.</em> hitting the carriage return) will always mark the input as invalid. If a block is passed to the method (tested with <code>if block_given?</code>) the block will be called to test if the input data is valid (returning a <code>true</code> or <code>false</code>).</p>
+
+<p>In the <code>get_yn_answer</code> method, calling the <code>get_input</code> will loop until the user enters a 'Y' or 'N' (or 'y' / 'n') response to the prompt.</p>
+
+<pre><code class="language-ruby">def get_yn_answer(prompt)
+  get_input(prompt) do |input|
+    input.upcase == 'Y' || input.upcase == 'N'
+  end.upcase
+end
+</code></pre>
+
+<p>In <code>prompt_to_start</code> the user can't continue through the program until a 'Y' (or 'y') response has been entered.</p>
+
+<pre><code class="language-ruby">def prompt_to_start
+  get_input "Are you thinking of an animal?" do |input|
+    case input.upcase
+    when 'Y' then true
+    when 'LIST' then
+      list_animals
+      false
+    else
+      false
+    end
+  end
+end
+</code></pre>
+
+<p>The <code>prompt_to_start</code> also allows the user to request a 'LIST' of existing animals. Arguably calling the <code>list_animals</code> method potentially creates a side-effect and normally I'd discourage kids from this style of coding. But as the purpose is to manage the flow it's a reasonable compromise here.</p>
+
+<p>This is quite a limited use of Ruby's block idiom, but the idea was to give my kids a taste of how sections of code can be reused.</p>
+
+<h2 id="going-forward">Going Forward</h2>
+
+<p>The main game code is still quite procedural - it <em>feels</em> like a BASIC program that's been converted to Ruby, albeit with some minor additions. There are probably things that can be done to make the code more Ruby-like.</p>
+
+<p>Working on Animal together, my son and I managed to cover blocks, classes, tree structures and recursion. There were probably more informal lessons along the way - in just being able to sit down and talk code with my kids - but that's a reasonable take-away.</p>
+
+<p>The question now is whether my kids take any of this on and do more coding of their own. They've both expressed a desire to get into software development as a career, but it doesn't feel like they have the same opportunities to learn their craft – to do the 10,000 hours that I did as a kid – with the constant distractions of the internet and games.</p>
+
+<p>If I had my time again I'd find a way to record more of the conversations we had while coding.</p>
+
+<p>I plan on taking more time to code with my kids, to talk through design and the sorts of compromises you always have to address even when building small applications.</p>
+
+<p>As long as they end up doing what they want, what they enjoy… hell, I'd even be happy if they end up coding in PHP.</p>
+
+<p>Feel free to look over the code for <a target="_blank" href="https://github.com/ferrisoxide/basic-computer-games-ruby-edition">BASIC Computer Games (Ruby Edition)</a>, make comments or criticism.</p>
+
+<p>Any feedback is appreciated. Thanks for reading.</p>
+
+
+        </div>
+
+          <div class="row"><hr/></div>
+          <div class="row">
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+//<![CDATA[
+                  var disqus_shortname = 'rubyredbricks';
+                        var disqus_url = 'http://rubyredbricks.com/blog/2015/09/26/basic-games-in-ruby-animals/';
+          
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+          </div>
+
+        <div class="row"><hr/></div>
+
+        <div class="row contact">
+          <div class="col-md-5">
+          <ul class="icons">
+            <li>
+              <a href="mailto:ferrisoxide@gmail.com" class="icon fa-envelope-o">
+                <span class="fui-mail"></span>
+              </a>
+            </li>
+
+            <li>
+                <a href="https://github.com/ferrisoxide" class="icon fa-github" target="_blank">
+                  <span class="fui-github"></span>
+              </a>
+            </li>
+
+            <li>
+                <a href="https://twitter.com/ferrisoxide" class="icon fa-twitter" target="_blank">
+                  <span class="fui-twitter"></span>
+                </a>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://linkedin.com/in/ferrisoxide" class="icon fa-linkedin" target="_blank">
+                <span class="fui-linkedin"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://plus.google.com/+TomTuddenham" class="icon fa-google-plus" target="_blank">
+                <span class="fui-google-plus"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://www.facebook.com/tom.tuddenham.7" class="icon fa-facebook" target="_blank">
+                <span class="fui-googleplus"></span>
+              </a>
+            </li>
+
+
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-4121694-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+  <script src="/javascripts/all.js"></script>
+</html>
