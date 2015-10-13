@@ -82,6 +82,9 @@
 	max-width: 40%;
 }
 
+.post h1 {
+  font-size: floor(($font-size-base * 1.9));
+}
 .post h2 {
   font-size: floor(($font-size-base * 1.6));
 }
