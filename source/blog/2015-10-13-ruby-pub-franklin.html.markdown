@@ -130,11 +130,11 @@ _Example config.rb settings_
 
 You don't need to worry about creating a `gh-pages` branch as **Middleman Deploy** takes care of this automatically. The only other steps required are to create an CNAME record with your domain provider and point it to your account on Github. For my project the CNAME record for `tachypomp.rubyredbricks.com` points to `ferrisoxide.github.io`.
 
-This assume you are using a subdomain for your book. You can use apex domains, but this will require creating two `A` records for your book's site and pointing them to `192.30.252.153` and `192.30.252.154`. If in doubt, refer to the Github Pages documentation for [setting up custom domains](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/){: target="_blank"}.
+This assumes you are using a subdomain for your book. You can use apex domains, but this will require creating two `A` records for your book's site and pointing them to `192.30.252.153` and `192.30.252.154`. If in doubt, refer to the Github Pages documentation for [setting up custom domains](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/){: target="_blank"}.
 
-One note not related to **Franklin** but has caught me up before. You will need to add your `CNAME` file to the `source` folder and commit it. The CNAME file contains a single line - the URI to your book's site (_e.g._ `tachypomp.rubyredbricks.com`). You need to do this even you are using A records, and the file still needs to be called `CNAME`.
+One note not related to **Franklin** but has caught me up before. You will need to add your `CNAME` file to the `source` folder and commit it. The CNAME file contains a single line - the URI to your book's site (_e.g._ `tachypomp.rubyredbricks.com`). You need to do this even if you are using A records, and the file still needs to be called `CNAME`.
 
-This is more an issue with deploying **Middleman** projects to **Github Pages**. I forgotten to do this a couple of times and been puzzled over where my site disappeared to.
+This is more an issue with deploying **Middleman** projects to **Github Pages**. I have forgotten to do this a couple of times and been puzzled over where my site disappeared to.
 
 **Middleman Deploy** provides mechanisms for other deployment models (rsync, FTP, _etc_), but given the simplicity of **Github Pages** (and the cost - free) it seems the best option for managing your ebook's site.
 
