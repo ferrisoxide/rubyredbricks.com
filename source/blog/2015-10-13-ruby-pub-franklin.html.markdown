@@ -2,6 +2,7 @@
 title: "Ruby Pub - Part 2: Franklin"
 date: 2015-10-13 00:18 UTC
 tags: ruby, epub
+published: true
 ---
 
 Ruby ePub: Franklin
