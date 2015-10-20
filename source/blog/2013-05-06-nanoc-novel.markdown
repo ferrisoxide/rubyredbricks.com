@@ -56,9 +56,9 @@ Once converted into several files, nanoc does the heavy lifting of converting th
 
 The process is still reasonably manual at present, requiring an import step and then build. By extending nanoc's command mechanism it should be relatively easy to wrap all the calls together compile the entire site from a single source file in one step.
 
-The resulting online book can be found here: [http://tachypomp.rubyredbricks.com/](http://tachypomp.rubyredbricks.com/).
+<del>The resulting online book can be found here: [http://tachypomp.rubyredbricks.com/](http://tachypomp.rubyredbricks.com/){: target="_blank"}.</del>
 
-The source code for the books can be found here: [https://github.com/ferrisoxide/tachypomp](https://github.com/ferrisoxide/tachypomp).
+_Update:_ The online version [now uses Franklin](/blog/2015/10/13/ruby-pub-franklin/){: target="_blank"}. The original source code for the book (nanoc version) can be found here: [https://github.com/ferrisoxide/tachypomp/tree/nanoc](https://github.com/ferrisoxide/tachypomp/tree/nanoc){: target="_blank"}.
 
 None of this is particularly clever or (ahem) novel. The *breakdown* gem is fairly naive - it's the first gem I've ever written and I'm already slightly embarrassed by it. But as someone who no longer codes professionally, it was a bit of fun getting back into hacking.
 

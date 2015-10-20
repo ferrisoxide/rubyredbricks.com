@@ -9,9 +9,13 @@ Ruby ePub: Franklin
 
 ![Franklin Logo](/images/posts/franklin.png){: class="image right"}
 
-Continuing from an [earlier post](/blog/2013/10/09/ruby-pub-part-1-toolchains/){: target="_blank"} examining Ruby-based e-Publishing systems, this article looks at **Franklin** - the toolkit used to generate content for Bryan Braun's "Bitbooks" service.
+For the aspiring Rubyist-cum-writer there are a number of options when it comes to self-publishing online -- ranging from Ruby-based publishing platforms like the Michael Hartl-led [Softcover](https://github.com/softcover/softcover){: target="_blank"} project, down to hand-crafted solutions (e.g. my own [earlier experiments](/blog/2013/05/06/nanoc-novel/){: target="_blank"}). And if you don't need to own the whole pipeline, [Gitbook](https://www.gitbook.com/){: target="_blank"} and [Leanpub](https://leanpub.com/){: target="_blank"} offer comprehensive toolchains to help get your book out and into the hands of the reading public.
 
-The timing could perhaps have been better, with Bryan announcing that as of October 8th, 2015 the [Bitbooks site](https://web.archive.org/web/20150915034729/http://bitbooks.cc/){: target="_blank"} [archived link] will be closing down. I managed to talk to Bryan shortly before his service shutting off. Thankfully Bryan assures us the **Franklin** source code will remain [available on Github](https://github.com/bryanbraun/franklin){: target="_blank"} and he will continue offering support for **Franklin**.
+In fact, there's probably not been a better time to be writing a self-published book than right now. But with all the competition between publishing platforms it's natural that some solutions don't get the attention they deserve and fall by the way side.
+
+Sadly, this was the case with Bryan Braun's [Bitbooks service](https://web.archive.org/web/20150915034729/http://bitbooks.cc/){: target="_blank"} [archived link]. Earlier this year Bryan announced that, as of October 2015, his site would be shutting down. Thankfully [Franklin](https://github.com/bryanbraun/franklin){: target="_blank"}, the open-source mechanism for generating content through **Bitbooks**, remains available and presents a simple and elegant solution for self-publishing authors wanting to get their work online.
+
+We'll take a quick look at the **Markdown**-friendly **Franklin** tool in a moment, but before we do let's hear from Bryan himself - from an interview conducted shortly before his site closed down.
 
 <hr/>
 
@@ -42,10 +46,10 @@ I hope Franklin continues to be the best solution for building ebooks with Middl
 
 <hr/>
 
-Setting Up Franklin
+Franklin - A Quick Peek
 -----
 
-**Franklin** works as a template for the [Middleman](https://middlemanapp.com/){: target="_blank"} static site generation tool. The complete setup instructions are available on [Franklin's Github page](https://github.com/bryanbraun/franklin){: target="_blank"}, but a shortend version is as follows:
+First off, what I really like about Franklin is it's **Middleman** base. **Franklin** works as a **Middleman** template, and takes almost no time to set up. The complete setup instructions are available on [Franklin's Github page](https://github.com/bryanbraun/franklin){: target="_blank"}, but a short version is as follows:
 
 {:.language-bash}
     gem install middleman
@@ -55,13 +59,9 @@ Setting Up Franklin
     cd mysite
     bundle install
 
-These steps generate a basic **Franklin** project, including a default `index.md` page, several sample pages and a default 404 page.
+These steps generate a basic **Franklin** project, including a default `index.md` page, several sample pages and a default 404 page. A fairly standard **Middleman** `config.rb` and the **Franklin**-specific `data/book.yml` and `data/tree.yml` files will also be created.
 
-The generated `config.rb` file contains fairly standard **Middleman** configuration data, as well as helpers specifically for **Franklin**. You probably won't need to modify this file at all, unless it's to add extra **Middleman** extensions.
-
-The ebook-specific configuration files are located in the template-generated `/data` folder, with `/data/book.yml` containing metadata for your book. Again, details on how to configure these are available on the Github pages, but the purpose of each configuration item (_e.g._ `title`, `author`, `github_url`, _etc_) is straightforward and easy to understand.
-
-The actual contents for your book are defined in `/data/tree.yml`. There is no convention for setting up the index for your book -- _i.e._ the name of each page doesn't imply an order -- but again the process for setting out your index is relatively straightfoward.
+Nothing in the **Franklin** configuration files will confuse you. Each item in the `book.yml` file (_e.g._ `title`, `author`, `github_url`, _etc_) is straightforward and easy to understand. Similarly, `tree.yml` is a simple list of all the sections of your ebook.
 
 _Example tree.yml_
 {:.language-yaml}
@@ -70,44 +70,34 @@ _Example tree.yml_
     section-1.md: "/section-1.md"
     section-2.md: "/section-2.md"
 
-This could become laborious if you have a large number of pages to manage. Having a command line mechanism to insert new pages (or even create new pages) would be a nice thing to have, but any additions to the available **Middleman** command line options have to be done through custom extensions. Converting the **Franklin** template to a **Middleman** extension would be a major rewrite.
+As a side note, you don't actually have to build the `tree.yml` file yourself. As long as you have an `index.md` file for the front page of your book -- and you order your pages alphabetically (`01-page.md`, `02-page.md`, _etc_) -- the sequencing of pages happens automatically.
 
-As such, the template approach works well. The trade off is doing some of the content management (creating new pages, looking after the index) by hand.
-
-Some interesting 'gotchas'. The **Franklin**-generated `Gemfile` uses `'http://rubygems.org'` as the rubygems source, rather than the now default `https://..`. I assume this was to support Windows, or environments without OpenSSL installed.
-
-**Franklin** also uses an older version of the **Middleman** gem (`~> 3.3.2`). It's probably a good idea to change the `Gemfile` to use `https` and use a more current version of Middleman (_e.g._ `~> 3.4.0`). Doing either works fine and won't affect Franklin's operation.
-
-A note for OS X users: the default version of [Eventmachine](https://github.com/eventmachine/eventmachine/){: target="_blank"} used by **Middleman** (version 1.0.3) is incompatible with Yosemite and later. You may need to run `bundle update` after installing to bring **Eventmachine** up to version 1.0.8 or later.
+All the content is managed in the [Markdown](http://daringfireball.net/projects/markdown/){: target="_blank"} format, so if you're coming from a **Jekyll** or **nanoc** background you'll find this comfortable. **Franklin** uses [Redcarpet](https://github.com/vmg/redcarpet){: target="_blank"} out of the box, but swapping to [Kramdown](http://kramdown.gettalong.org/){: target="_blank"} or a similar formatting mechanism should be a simple matter of changing the Gemfile and rebundling.
 
 Converting Existing eBooks
 ----
 
-Earlier efforts at [producing an ebook using Ruby](/blog/2013/05/06/nanoc-novel/){: target="_blank"} relied on **nanoc** to do the heavy lifting. The resulting [Tachypomp project](https://github.com/ferrisoxide/tachypomp){: target="_blank"} could produce content in the [Baker Framework](http://bakerframework.com/){: target="_blank"}'s hPub format - at the cost of considerable customisation. While this will be missed, being able to quickly set up and build an HTML-base ebook using **Middleman** and **Franklin** more than makes up for it.
+The [Tachypomp project](https://github.com/ferrisoxide/tachypomp){: target="_blank"} is a good test for converting an existing ebook project to **Franklin**. Based on **nanoc**, the original **Tachypomp Project** could produce content in the [Baker Framework](http://bakerframework.com/){: target="_blank"}'s hPub format - at the cost of considerable customisation. While this will be missed, being able to quickly set up and build an HTML-base ebook using **Middleman** and **Franklin** more than makes up for it.
 
 Converting any existing Jekyll or nanoc ebook should be relatively straightforward, providing the content is in a fairly standard Markdown format. This was certainly the case for **Tachypomp**, and only required copying the markdown files from `/content` to `/source`. **Jekyll** and **nanoc** share similar conventions for front-matter contents (the YAML header for each content source file). **Tachypomp** only uses `title` in the front-matter configuration, so no changes were necessary.
 
-**Tachypomp** already had an index file, due to the `book.json` file required by the Baker Framework. Converting this to **Franklin's** `tree.yml` structure took no time, but if I didn't have this I could have piped `ls` to a text editor and modified the output accordingly. If a book already has a regular page naming convention (e.g. `page-1.md`, `page-2.md`, _etc_) a trick like this should suffice.
-
-Probably the only thing I would change would be using a different Markdown processor, as [redcarpet](https://github.com/vmg/redcarpet){: target="_blank"} doesn't support all the features I'm after. Previously I used [kramdown](http://kramdown.gettalong.org/){: target="_blank"}, and swapping to this should be a simple matter of changing the `Gemfile` and rebundling.
+**Tachypomp** already had an index file, due to the `book.json` file required by the Baker Framework -- readily converted to  the **Franklin's** `tree.yml` structure.
 
 Themes
 ---
 
-**Franklin** comes with three built in themes: _Hamilton_ - a serif-font style with drop down table of content; _Epsilon_ - a more futuristic looking theme with a pop out sidebar navigation; and _Glide_ - a responsive theme using a clean sans font set.
+**Franklin** comes with three built in themes: _Hamilton_ - a serif-font style with drop down table of contents; _Epsilon_ - a more futuristic looking theme with a pop out sidebar navigation; and _Glide_ - a responsive theme using a clean sans font set.
 
 _Example theme: Epsilon_
 
 ![Epsilon Theme](/images/posts/epsilon-theme.png){: width="60%"}
 
-For **Tachypomp** I opted for the _Glide_ theme, but adding a new theme in the future shouldn't be too onerous. Modifying an existing theme or adding a new one involves creating a new **Middleman** `layout.erb` and supplying the required javascript and stylesheets.
-
-Changing themes is trivial - just modify the `theme:` setting in `/data/book.yml` and run `middleman build`.
+For **Tachypomp** I opted for the _Glide_ theme for that nice responsive styling. Changing themes is trivial - just modify the `theme:` setting in `/data/book.yml` and run `middleman build`.
 
 Hosting on Github
 ---
 
-While not part of **Franklin** or **Middleman** specifically, ultimately the ebook needs to be hosted somewhere. Thanks to the [Middleman Deploy](https://github.com/middleman-contrib/middleman-deploy){: target="_blank"} extension, deploying to a remote site only takes a few minutes.
+This is where using **Middleman** as the basis for **Franklin** shines. Thanks to the [Middleman Deploy](https://github.com/middleman-contrib/middleman-deploy){: target="_blank"} extension, deploying to a remote site only takes a few minutes.
 
 I'm using [Github Pages](https://pages.github.com/){: target="_blank"} to host **Tachypomp**. Apart from adding `gem 'middleman-deploy', '~> 1.0'` to the `Gemfile` the main configuration changes required are settings in the **Middleman** `config.rb`.
 
@@ -143,8 +133,8 @@ If you are interested, the **Franklin**-generated ebook is available at [http://
 Final Thoughts
 ---
 
-**Tachypomp** only contains text, so it's perhaps not the best test of **Franklin's** features. But given it took less that 15 minutes to go from my older **nanoc**-based book to a working, online version it's reasonable to assume that more complex texts would not require an order of magnitude more work.
+**Tachypomp** only contains text, so it's not a complete test of **Franklin's** features. But given it took less that 15 minutes to go from my older **nanoc**-based book to a working, online version it's reasonable to assume that more complex texts would not require an order of magnitude more work.
 
-As noted earlier, one "nice to have" would be a command line mechanism for managing content. A search function would also be useful. These features are possibly best served by other **Middleman** extensions.
+The ability to leverage existing **Middleman** extensions is a huge plus.
 
 All-in-all **Franklin** (plus Github Pages) is a simple and inexpensive way to develop and deliver your ebook. Being able to deploy to other formats (e.g PDF) and having a way to control access would be good if you are aiming to monetise your book, but if the goal is to "get it out there" **Franklin** seems a reasonable approach.
