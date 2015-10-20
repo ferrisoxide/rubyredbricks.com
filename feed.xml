@@ -5,10 +5,148 @@
   <id>http://blog.url.com/blog</id>
   <link href="http://blog.url.com/blog"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2015-09-26T23:30:00+09:30</updated>
+  <updated>2015-10-13T10:48:00+10:30</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Ruby Pub - Part 2: Franklin</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2015/10/13/ruby-pub-franklin/"/>
+    <id>http://blog.url.com/blog/2015/10/13/ruby-pub-franklin/</id>
+    <published>2015-10-13T10:48:00+10:30</published>
+    <updated>2015-10-20T22:56:55+10:30</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h1 id="ruby-epub-franklin"&gt;Ruby ePub: Franklin&lt;/h1&gt;
+
+&lt;p&gt;&lt;img alt="Franklin Logo" class="image right" src="/images/posts/franklin.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;For the aspiring Rubyist-cum-writer there are a number of options when it comes to self-publishing online – ranging from Ruby-based publishing platforms like the Michael Hartl-led &lt;a target="_blank" href="https://github.com/softcover/softcover"&gt;Softcover&lt;/a&gt; project, down to hand-crafted solutions (e.g. my own &lt;a target="_blank" href="/blog/2013/05/06/nanoc-novel/"&gt;earlier experiments&lt;/a&gt;). And if you don't need to own the whole pipeline, &lt;a target="_blank" href="https://www.gitbook.com/"&gt;Gitbook&lt;/a&gt; and &lt;a target="_blank" href="https://leanpub.com/"&gt;Leanpub&lt;/a&gt; offer comprehensive toolchains to help get your book out and into the hands of the reading public.&lt;/p&gt;
+
+&lt;p&gt;In fact, there's probably not been a better time to be writing a self-published book than right now. But with all the competition between publishing platforms it's natural that some solutions don't get the attention they deserve and fall by the way side.&lt;/p&gt;
+
+&lt;p&gt;Sadly, this was the case with Bryan Braun's &lt;a target="_blank" href="https://web.archive.org/web/20150915034729/http://bitbooks.cc/"&gt;Bitbooks service&lt;/a&gt; [archived link]. Earlier this year Bryan announced that, as of October 2015, his site would be shutting down. Thankfully &lt;a target="_blank" href="https://github.com/bryanbraun/franklin"&gt;Franklin&lt;/a&gt;, the open-source mechanism for generating content through &lt;strong&gt;Bitbooks&lt;/strong&gt;, remains available and presents a simple and elegant solution for self-publishing authors wanting to get their work online.&lt;/p&gt;
+
+&lt;p&gt;We'll take a quick look at the &lt;strong&gt;Markdown&lt;/strong&gt;-friendly &lt;strong&gt;Franklin&lt;/strong&gt; tool in a moment, but before we do let's hear from Bryan himself - from an interview conducted shortly before his site closed down.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id="interview-with-bryan-braun"&gt;Interview with Bryan Braun&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;You chose Middleman as the engine for Franklin. What made you pick this static site generator tool over similar tools like &lt;a target="_blank" href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt; and &lt;a target="_blank" href="http://nanoc.ws/"&gt;nanoc&lt;/a&gt;?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I looked into Jekyll when I was getting started but at the time it relied on front-matter and filename conventions for defining the urls and templates being used. That was a non-starter for me. My goal was that people could just write markdown and the tool would take care of the rest. I didn't want them to have to worry about using a special "Franklin" format, or front-matter convention.&lt;/p&gt;
+
+&lt;p&gt;Eventually I discovered &lt;a target="_blank" href="https://middlemanapp.com/"&gt;Middleman&lt;/a&gt;, which was a great fit. It was flexible enough for me to configure all the default behaviors in a config.rb file. Also, it provided interfaces for extensions and project templates, which allowed for a clean way to add customizations and release parts (like Franklin) as open source.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Are there any publishing success stories from Bitbooks you'd like to share?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I enjoyed seeing the new books people were writing with Bitbooks (like &lt;a target="_blank" href="http://www.kevinlamping.com/hands-on-visual-regression-testing/"&gt;Hands on Visual Regression Testing&lt;/a&gt;, for example). However, my favorite experience was seeing content once locked in PDFs being liberated as HTML, where it could be referenced, linked to, and made available to search engines and screen readers. John Wiegley's &lt;a target="_blank" href="https://jwiegley.github.io/git-from-the-bottom-up/"&gt;"Git From the Bottom Up"&lt;/a&gt;, was a good success story in that regard.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;What's your motivation for mothballing Bitbooks? And what impact will this have on your existing users?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I saw other organizations beginning to deliver on my vision for Bitbooks, and once I saw that I wasn't going to be able to compete with them, my efforts subsided significantly. Bitbooks was designed to be low maintenance, but I knew that focusing on other things while leaving Bitbooks in limbo wasn't fair to users.&lt;/p&gt;
+
+&lt;p&gt;Also, by splitting my attention, I was doing several things poorly, which is against my principles. Anything worth doing, is worth doing to the best of your ability, and for me that means committing 100%. I couldn't do that for Bitbooks anymore.&lt;/p&gt;
+
+&lt;p&gt;Fortunately, this choice had minimal impact on Bitbooks users. Everybody's books were hosted on Github pages, meaning that nobody lost their content, and all books remained live at their original URLs.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;What do you hope for the future of Franklin?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I hope Franklin continues to be the best solution for building ebooks with Middleman. It has several strengths, including a separation of book metadata from content, support for pure markdown documents, and a theme structure that provides full stylistic control. I intend to continue supporting it, and I expect people to find it valuable for years to come.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id="franklin---a-quick-peek"&gt;Franklin - A Quick Peek&lt;/h2&gt;
+
+&lt;p&gt;First off, what I really like about Franklin is it's &lt;strong&gt;Middleman&lt;/strong&gt; base. &lt;strong&gt;Franklin&lt;/strong&gt; works as a &lt;strong&gt;Middleman&lt;/strong&gt; template, and takes almost no time to set up. The complete setup instructions are available on &lt;a target="_blank" href="https://github.com/bryanbraun/franklin"&gt;Franklin's Github page&lt;/a&gt;, but a short version is as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-bash"&gt;gem install middleman
+mkdir -p ~/.middleman  # ensure Middleman's template folder exists
+git clone git@github.com:bryanbraun/franklin.git ~/.middleman/franklin
+middleman init mysite --template=franklin
+cd mysite
+bundle install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;These steps generate a basic &lt;strong&gt;Franklin&lt;/strong&gt; project, including a default &lt;code&gt;index.md&lt;/code&gt; page, several sample pages and a default 404 page. A fairly standard &lt;strong&gt;Middleman&lt;/strong&gt; &lt;code&gt;config.rb&lt;/code&gt; and the &lt;strong&gt;Franklin&lt;/strong&gt;-specific &lt;code&gt;data/book.yml&lt;/code&gt; and &lt;code&gt;data/tree.yml&lt;/code&gt; files will also be created.&lt;/p&gt;
+
+&lt;p&gt;Nothing in the &lt;strong&gt;Franklin&lt;/strong&gt; configuration files will confuse you. Each item in the &lt;code&gt;book.yml&lt;/code&gt; file (&lt;em&gt;e.g.&lt;/em&gt; &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;author&lt;/code&gt;, &lt;code&gt;github_url&lt;/code&gt;, &lt;em&gt;etc&lt;/em&gt;) is straightforward and easy to understand. Similarly, &lt;code&gt;tree.yml&lt;/code&gt; is a simple list of all the sections of your ebook.&lt;/p&gt;
+
+&lt;p class="language-yaml"&gt;&lt;em&gt;Example tree.yml&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+index.md: "/index.md"
+section-1.md: "/section-1.md"
+section-2.md: "/section-2.md"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As a side note, you don't actually have to build the &lt;code&gt;tree.yml&lt;/code&gt; file yourself. As long as you have an &lt;code&gt;index.md&lt;/code&gt; file for the front page of your book – and you order your pages alphabetically (&lt;code&gt;01-page.md&lt;/code&gt;, &lt;code&gt;02-page.md&lt;/code&gt;, &lt;em&gt;etc&lt;/em&gt;) – the sequencing of pages happens automatically.&lt;/p&gt;
+
+&lt;p&gt;All the content is managed in the &lt;a target="_blank" href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt; format, so if you're coming from a &lt;strong&gt;Jekyll&lt;/strong&gt; or &lt;strong&gt;nanoc&lt;/strong&gt; background you'll find this comfortable. &lt;strong&gt;Franklin&lt;/strong&gt; uses &lt;a target="_blank" href="https://github.com/vmg/redcarpet"&gt;Redcarpet&lt;/a&gt; out of the box, but swapping to &lt;a target="_blank" href="http://kramdown.gettalong.org/"&gt;Kramdown&lt;/a&gt; or a similar formatting mechanism should be a simple matter of changing the Gemfile and rebundling.&lt;/p&gt;
+
+&lt;h2 id="converting-existing-ebooks"&gt;Converting Existing eBooks&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a target="_blank" href="https://github.com/ferrisoxide/tachypomp"&gt;Tachypomp project&lt;/a&gt; is a good test for converting an existing ebook project to &lt;strong&gt;Franklin&lt;/strong&gt;. Based on &lt;strong&gt;nanoc&lt;/strong&gt;, the original &lt;strong&gt;Tachypomp Project&lt;/strong&gt; could produce content in the &lt;a target="_blank" href="http://bakerframework.com/"&gt;Baker Framework&lt;/a&gt;'s hPub format - at the cost of considerable customisation. While this will be missed, being able to quickly set up and build an HTML-base ebook using &lt;strong&gt;Middleman&lt;/strong&gt; and &lt;strong&gt;Franklin&lt;/strong&gt; more than makes up for it.&lt;/p&gt;
+
+&lt;p&gt;Converting any existing Jekyll or nanoc ebook should be relatively straightforward, providing the content is in a fairly standard Markdown format. This was certainly the case for &lt;strong&gt;Tachypomp&lt;/strong&gt;, and only required copying the markdown files from &lt;code&gt;/content&lt;/code&gt; to &lt;code&gt;/source&lt;/code&gt;. &lt;strong&gt;Jekyll&lt;/strong&gt; and &lt;strong&gt;nanoc&lt;/strong&gt; share similar conventions for front-matter contents (the YAML header for each content source file). &lt;strong&gt;Tachypomp&lt;/strong&gt; only uses &lt;code&gt;title&lt;/code&gt; in the front-matter configuration, so no changes were necessary.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tachypomp&lt;/strong&gt; already had an index file, due to the &lt;code&gt;book.json&lt;/code&gt; file required by the Baker Framework – readily converted to  the &lt;strong&gt;Franklin's&lt;/strong&gt; &lt;code&gt;tree.yml&lt;/code&gt; structure.&lt;/p&gt;
+
+&lt;h2 id="themes"&gt;Themes&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Franklin&lt;/strong&gt; comes with three built in themes: &lt;em&gt;Hamilton&lt;/em&gt; - a serif-font style with drop down table of contents; &lt;em&gt;Epsilon&lt;/em&gt; - a more futuristic looking theme with a pop out sidebar navigation; and &lt;em&gt;Glide&lt;/em&gt; - a responsive theme using a clean sans font set.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Example theme: Epsilon&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Epsilon Theme" width="60%" src="/images/posts/epsilon-theme.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;For &lt;strong&gt;Tachypomp&lt;/strong&gt; I opted for the &lt;em&gt;Glide&lt;/em&gt; theme for that nice responsive styling. Changing themes is trivial - just modify the &lt;code&gt;theme:&lt;/code&gt; setting in &lt;code&gt;/data/book.yml&lt;/code&gt; and run &lt;code&gt;middleman build&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id="hosting-on-github"&gt;Hosting on Github&lt;/h2&gt;
+
+&lt;p&gt;This is where using &lt;strong&gt;Middleman&lt;/strong&gt; as the basis for &lt;strong&gt;Franklin&lt;/strong&gt; shines. Thanks to the &lt;a target="_blank" href="https://github.com/middleman-contrib/middleman-deploy"&gt;Middleman Deploy&lt;/a&gt; extension, deploying to a remote site only takes a few minutes.&lt;/p&gt;
+
+&lt;p&gt;I'm using &lt;a target="_blank" href="https://pages.github.com/"&gt;Github Pages&lt;/a&gt; to host &lt;strong&gt;Tachypomp&lt;/strong&gt;. Apart from adding &lt;code&gt;gem 'middleman-deploy', '~&amp;gt; 1.0'&lt;/code&gt; to the &lt;code&gt;Gemfile&lt;/code&gt; the main configuration changes required are settings in the &lt;strong&gt;Middleman&lt;/strong&gt; &lt;code&gt;config.rb&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p class="language-ruby"&gt;&lt;em&gt;Example config.rb settings&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;activate :deploy do |deploy|
+  deploy.method = :git
+  # remote is optional (default is "origin")
+  # run `git remote -v` to see a list of possible remotes
+  deploy.remote = "origin"
+
+  # branch is optional (default is "gh-pages")
+  # run `git branch -a` to see a list of possible branches
+  deploy.branch = "gh-pages"
+
+  # strategy is optional (default is :force_push)
+  deploy.strategy = :force_push
+  deploy.build_before = true
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You don't need to worry about creating a &lt;code&gt;gh-pages&lt;/code&gt; branch as &lt;strong&gt;Middleman Deploy&lt;/strong&gt; takes care of this automatically. The only other steps required are to create an CNAME record with your domain provider and point it to your account on Github. For my project the CNAME record for &lt;code&gt;tachypomp.rubyredbricks.com&lt;/code&gt; points to &lt;code&gt;ferrisoxide.github.io&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This assumes you are using a subdomain for your book. You can use apex domains, but this will require creating two &lt;code&gt;A&lt;/code&gt; records for your book's site and pointing them to &lt;code&gt;192.30.252.153&lt;/code&gt; and &lt;code&gt;192.30.252.154&lt;/code&gt;. If in doubt, refer to the Github Pages documentation for &lt;a target="_blank" href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/"&gt;setting up custom domains&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;One note not related to &lt;strong&gt;Franklin&lt;/strong&gt; but has caught me up before. You will need to add your &lt;code&gt;CNAME&lt;/code&gt; file to the &lt;code&gt;source&lt;/code&gt; folder and commit it. The CNAME file contains a single line - the URI to your book's site (&lt;em&gt;e.g.&lt;/em&gt; &lt;code&gt;tachypomp.rubyredbricks.com&lt;/code&gt;). You need to do this even if you are using A records, and the file still needs to be called &lt;code&gt;CNAME&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This is more an issue with deploying &lt;strong&gt;Middleman&lt;/strong&gt; projects to &lt;strong&gt;Github Pages&lt;/strong&gt;. I have forgotten to do this a couple of times and been puzzled over where my site disappeared to.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Middleman Deploy&lt;/strong&gt; provides mechanisms for other deployment models (rsync, FTP, &lt;em&gt;etc&lt;/em&gt;), but given the simplicity of &lt;strong&gt;Github Pages&lt;/strong&gt; (and the cost - free) it seems the best option for managing your ebook's site.&lt;/p&gt;
+
+&lt;p&gt;If you are interested, the &lt;strong&gt;Franklin&lt;/strong&gt;-generated ebook is available at &lt;a target="_blank" href="http://tachypomp.rubyredbricks.com/"&gt;http://tachypomp.rubyredbricks.com/&lt;/a&gt;. It needs some cleaning up, but it's not bad for 10-15 minutues of work.&lt;/p&gt;
+
+&lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Tachypomp&lt;/strong&gt; only contains text, so it's not a complete test of &lt;strong&gt;Franklin's&lt;/strong&gt; features. But given it took less that 15 minutes to go from my older &lt;strong&gt;nanoc&lt;/strong&gt;-based book to a working, online version it's reasonable to assume that more complex texts would not require an order of magnitude more work.&lt;/p&gt;
+
+&lt;p&gt;The ability to leverage existing &lt;strong&gt;Middleman&lt;/strong&gt; extensions is a huge plus.&lt;/p&gt;
+
+&lt;p&gt;All-in-all &lt;strong&gt;Franklin&lt;/strong&gt; (plus Github Pages) is a simple and inexpensive way to develop and deliver your ebook. Being able to deploy to other formats (e.g PDF) and having a way to control access would be good if you are aiming to monetise your book, but if the goal is to "get it out there" &lt;strong&gt;Franklin&lt;/strong&gt; seems a reasonable approach.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>BASIC Games in Ruby - Animals</title>
     <link rel="alternate" href="http://blog.url.com/blog/2015/09/26/basic-games-in-ruby-animals/"/>
@@ -917,258 +1055,6 @@ What is your bet?
 &lt;h2 id="credits"&gt;Credits&lt;/h2&gt;
 
 &lt;p&gt;The original "Creeper looking through broken glass" image was sourced from &lt;a href="http://hdw.eweb4.com/out/945751.html"&gt;http://hdw.eweb4.com/out/945751.html&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Tachypomp: from ePub to HPub</title>
-    <link rel="alternate" href="http://blog.url.com/blog/2013/10/02/ruby-and-hpub/"/>
-    <id>http://blog.url.com/blog/2013/10/02/ruby-and-hpub/</id>
-    <published>2013-10-02T09:30:00+09:30</published>
-    <updated>2015-09-28T10:28:39+09:30</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;The Tachypomp project is an attempt to build an ebook, using Ruby to convert a Markdown-based text into a variety of e-publishing formats. The &lt;a href="/blog/2013/05/06/nanoc-novel/"&gt;first cut&lt;/a&gt; of the project served as a "proof of concept" for producing content in both ePub and HTML formats.&lt;/p&gt;
-
-&lt;!----&gt;
-
-&lt;p&gt;The next stage looks at producing an eBook within the &lt;a href="http://bakerframework.com/"&gt;Baker Framework&lt;/a&gt;, a e-publishing system for producing ebooks for the iPad. The Tachypomp project aims to produce content in HTML, ePub and the Baker Framework's &lt;a href="https://github.com/Simbul/baker/wiki/hpub-specification"&gt;HPub&lt;/a&gt; formats, using the &lt;a href="http://nanoc.ws/"&gt;nanoc&lt;/a&gt; gem to generate content in all formats from the same source text.&lt;/p&gt;
-
-&lt;p&gt;This project is still very much a work in progress. The long-term goal is to develop a general-purpose framework for
-publishing content in a wide range of formats.&lt;/p&gt;
-
-&lt;h2 id="the-tachypomp-and-other-stories"&gt;The Tachypomp and Other Stories&lt;/h2&gt;
-
-&lt;p&gt;&lt;img alt="Edward Page Mitchell" class="image right" src="/images/posts/edward-page-mitchell.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The source text for the project has an interesting background. &lt;a href="http://en.wikipedia.org/wiki/Edward_Page_Mitchell"&gt;Edward Page Mitchell&lt;/a&gt; first published 'The Tachypomp' in 1874, while working as an editor for a New York City newspaper. Over the next decade and a half he produced several short stories that contain ideas and writing styles that were both novel and prescient - or at least interesting to look back at through the lens of time.&lt;/p&gt;
-
-&lt;p&gt;Often publishing anonymously, Edward Page Mitchell was only recognised as a leading early science-fiction author many years after his death in 1927. His work predates H.G. Wells own time-travel stories by several years.&lt;/p&gt;
-
-&lt;p&gt;Several articles have been written about Edward Page Mitchell, and are worthwhile reading by fans of speculative fiction:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="http://autodidactproject.org/bib/timemachine03.html"&gt;Edward Page Mitchell (1852-1927), Science Fiction Pioneer&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="http://www.unwinnable.com/2010/09/27/the-man-that-time-forgot-%E2%80%93-edward-page-mitchell-and-the-burden-of-anonymity/"&gt;The Man That Time Forgot&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Mitchell also has an entry in &lt;a href="http://www.sf-encyclopedia.com/entry/mitchell_edward_page"&gt;The Encyclopedia of Science Fiction&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The original text was sourced from the &lt;a href="http://gutenberg.net.au/ebooks06/0602521.txt"&gt;Gutenberg Project&lt;/a&gt;. The copyright has expired and these wonderful stories and now part of the public domain.&lt;/p&gt;
-
-&lt;h2 id="hpub---an-open-specification"&gt;HPub - an Open Specification&lt;/h2&gt;
-
-&lt;p&gt;&lt;img alt="Baker Logo" class="image left" src="/images/posts/baker-logo.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href="http://bakerframework.com/"&gt;Baker Framework&lt;/a&gt; is an open-source publishing system for producing content for the iPad and similar devices. It packages ebooks by wrapping a small executable around HTML content and allows the inclusion of Javascript and CSS to create compelling, interactive e-reading experiences.&lt;/p&gt;
-
-&lt;p&gt;A showcase of the kind of publications that can be generated using the framework is available on the &lt;a href="http://bakerframework.com/books"&gt;Backer Framework website&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The principles behind the &lt;a href="https://github.com/Simbul/baker/wiki/hpub-specification"&gt;HPub specification&lt;/a&gt; that forms the core of the Baker Framework declares a digital publishing format that:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Allows great designs&lt;/li&gt;
-  &lt;li&gt;Allows both pixel-perfect and flexible reflowable publications&lt;/li&gt;
-  &lt;li&gt;Is simple for authors&lt;/li&gt;
-  &lt;li&gt;Is simple for parsers&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The heart of the HPub specification is JSON-based manifest file that declares the properties of a publication. A example (taken from the Tachypomp project):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-json"&gt;{
-  "hpub": 1,
-  "title": "The Tachypomp and Other Stories",
-  "author": [
-    "Edward Page Mitchells"
-  ],
-  "creator": [
-    "Project Gutenberg"
-  ],
-  "date": "2006-07-01",
-  "url": "book://tachypomp.rubyredbricks.com/ebook",
-  "contents": [
-    "index.html",
-    "table-of-contents.html",
-    "section-1.html",
-    "section-2.html",
-    "section-3.html",
-
-    ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Individual sections are created as HTML5 pages and compiled using an XCode project included in the Baker Framework into an executable application suitable for delivery via Apple's iTunes store.&lt;/p&gt;
-
-&lt;p&gt;For Android users, the compatible &lt;a href="http://www.friarframework.com/"&gt;Friar Framework&lt;/a&gt; provides equivalent functionality, and can use the same JSON manifest and HTML5 pages as defined in the HPub Specification.&lt;/p&gt;
-
-&lt;h2 id="nanoc-representations"&gt;nanoc Representations&lt;/h2&gt;
-
-&lt;p&gt;One of the key features of nanoc is the ability to have &lt;a href="http://nanoc.ws/docs/glossary/#glossary-representation"&gt;different representations of the same source&lt;/a&gt;. For instance, in the &lt;code&gt;Rules&lt;/code&gt; file below the default representation uses the 'default' layout, whereas the epub and hpub representations use 'epub' and 'hpub' layouts respectively.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-ruby"&gt;compile '*' do
-  if item.binary?
-    # don’t filter binary items
-  else
-    filter :erb
-    filter :kramdown
-    layout 'default'
-  end
-end
-
-compile '*', :rep =&amp;gt; :epub do
-  if item.binary?
-    # don’t filter binary items
-  else
-    filter :erb
-    filter :kramdown
-    layout 'epub'
-  end
-end
-
-compile '*', :rep =&amp;gt; :hpub do
-  if item.binary?
-    # don’t filter binary items
-  else
-    filter :erb
-    filter :kramdown
-    layout 'hpub'
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;:rep =&amp;gt; [:name]&lt;/code&gt; parameter provides differing compilation rules for the same basic items. In Tachypomp's case, generating XHTML (for ePub) and HTML5 (for online and HPub) allows for different presentation models for the different output formats.&lt;/p&gt;
-
-&lt;p&gt;Similarly nanoc representations allow the generated content to be created in different target locations.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-ruby"&gt;route '*' do
-  if item.binary?
-    # Write item with identifier /foo/ to /foo.ext
-    item.identifier.chop + '.' + item[:extension]
-  else
-    # Write item with identifier /foo/ to /foo/index.html
-    item.identifier + 'index.html'
-  end
-end
-
-route '*', :rep =&amp;gt; :epub do
-  if item.binary?
-    # Don't build binary items
-  else
-    item_identifier = item.identifier.chop
-    item_identifier = '/index' if item_identifier.empty?
-    '/epub' + item_identifier + '.xhtml'
-  end
-end
-
-route '*', :rep =&amp;gt; :hpub do
-  if item.binary?
-    # Don't build binary items
-  else
-    item_identifier = item.identifier.chop
-    item_identifier = '/index' if item_identifier.empty?
-    '/hpub' + item_identifier + '.html'
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this example the default online representation is generated in nanoc's &lt;code&gt;/output&lt;/code&gt; folder. ePub and HPub representions are generated in &lt;code&gt;/output/epub&lt;/code&gt; and &lt;code&gt;/output/hpub&lt;/code&gt; respectively.&lt;/p&gt;
-
-&lt;p&gt;This outlines how nanoc processes the items normally found in nanoc's &lt;code&gt;/content&lt;/code&gt; folder. Importing the content and generating packages ready for delivery requires stepping through Tachypomp's installation process.&lt;/p&gt;
-
-&lt;h2 id="installation"&gt;Installation&lt;/h2&gt;
-
-&lt;p&gt;Clone the project into your local filesystem:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-text"&gt;git clone git@github.com:ferrisoxide/tachypomp.git
-cd tachypomp
-cp nanoc.yaml.example nanoc.yaml
-bundle install
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The project assumes Ruby 1.9.3 is installed and will use RVM if available.&lt;/p&gt;
-
-&lt;h2 id="importing-content"&gt;Importing Content&lt;/h2&gt;
-
-&lt;p&gt;The sample text "The Tachypomp and Other Stories" is a collection of short stories. The source is maintained in a single text file to simplify editing. A &lt;code&gt;ebook.yaml&lt;/code&gt; file is expected to be found in the project's root directory, defining the location of the source text and related meta data.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-yaml"&gt;source: the-tachypomp-and-other-stories.md
-
-meta:
-  title: The Tachypomp and Other Stories
-  creator: Edward Page Mitchells
-  publisher: Project Gutenberg
-  date: 2006-07-1
-
-epub:
-  identifier:
-      url: :scheme =&amp;gt; 'URL'
-      id: ??
-  uid: ??
-
-hpub:
-  version: 1
-  url: book://tachypomp.rubyredbricks.com/ebook
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To import the source text, run the following from within the project's root folder:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;nanoc import&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;This will generate content files by breaking the larger file into several smaller ones, using the &lt;a href="https://github.com/ferrisoxide/breakdown"&gt;Breakdown gem&lt;/a&gt;. The Breakdown gem is also used to insert nanoc meta data into each processed page.&lt;/p&gt;
-
-&lt;p&gt;The import process will also create an &lt;code&gt;book.json&lt;/code&gt; file in the &lt;code&gt;/content folder&lt;/code&gt;. The &lt;code&gt;book.json&lt;/code&gt; file is loosely based on the hPub ebook specification, and is used by other processes to build table of contents for alternative formats.&lt;/p&gt;
-
-&lt;h2 id="compiling-content"&gt;Compiling Content&lt;/h2&gt;
-
-&lt;p&gt;The imported content will need to be compiled using nanoc:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;nanoc compile&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Once the content is compiled it can be packaged into different formats. Currently only ePub 2 and HPub formats are supported, but there's no reason why alternative formats (&lt;em&gt;e.g.&lt;/em&gt; PDF) couldn't also be added. To package the ebook run the following:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;nanoc build&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;This will build ePub and hPub compatible files in &lt;code&gt;/output/ebook&lt;/code&gt; and &lt;code&gt;/output/hpub&lt;/code&gt; respectively. The process also generates a zipped version of the HPub book with the &lt;code&gt;/output/ebook&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;h2 id="viewing-the-epub-book"&gt;Viewing the ePub Book&lt;/h2&gt;
-
-&lt;p&gt;&lt;img alt="Tachypomp view in Calibre" class="image-left image-medium" src="/images/posts/tachypomp-calibre.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Open the generated &lt;code&gt;/output/ebook/tachypomp.epub&lt;/code&gt; in any ePub reader. I use &lt;a href="http://calibre-ebook.com/"&gt;Calibre&lt;/a&gt; on the Mac, but any eBook reader capable of rendering ePub v 2 format books should work.&lt;/p&gt;
-
-&lt;p&gt;The output isn't particularly beautiful, but the ePub version is currently lacking any stylesheets. CSS support in ePub 2 is quite limited, so the options that will be available will be to just format the layout a little better.&lt;/p&gt;
-
-&lt;p&gt;There's no mechanism to add more interactive content via Javascript - though ePub 3 does have some support for more dynamic content. At present I can't find a decent ePub 3 reader for testing the content, but I can't imagine adding support will be much harder than developing the HPub version.&lt;/p&gt;
-
-&lt;h2 id="building-the-hpub-book"&gt;Building the HPub Book&lt;/h2&gt;
-
-&lt;p&gt;&lt;img alt="Tachypomp view in iPad simulator" class="image-right image-medium" src="/images/posts/tachypomp-ipad.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Download the &lt;a href="http://bakerframework.com/"&gt;Backer Framework&lt;/a&gt;. NB: you must have a recent version of XCode installed.&lt;/p&gt;
-
-&lt;p&gt;Copy the &lt;code&gt;/output/hpub/&lt;/code&gt; folder from the Tachypomp project into the &lt;code&gt;/Baker Framework [version]/books/&lt;/code&gt; folder, overwriting the existing &lt;code&gt;/book&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;p&gt;Open the &lt;code&gt;/Baker Framework [version]/Baker.xcodeproj&lt;/code&gt; file in XCode and build it. You should be able to run the book as an app within an iPad simulator.&lt;/p&gt;
-
-&lt;p&gt;As for the ePub version, there are no CSS styles applied. The Baker Framework does support CSS3 - adding a stylesheet simply wasn't a high priority for this proof-of-concept.&lt;/p&gt;
-
-&lt;p&gt;There are also some odd artefacts in the text where “ and ” aren't rendered properly. This may be related to the original source being in Latin-1 encoding. These could be cleaned up using a nanoc filter.&lt;/p&gt;
-
-&lt;h2 id="end-notes"&gt;End Notes&lt;/h2&gt;
-
-&lt;p&gt;While overall I'm happy with this as a proof-of-concept, there is a lot to do to take this prototype and work it into something useful. Not the least of which, I need to:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Clean up the code (was a bit of a hack)&lt;/li&gt;
-  &lt;li&gt;Add support for PDF&lt;/li&gt;
-  &lt;li&gt;Stylesheets for ePub and hPub versions&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I also intend moving much of the functionality into a Ruby gem to simplify the process of building new e-books.&lt;/p&gt;
-
-&lt;p&gt;Longer term the goal is to develop a complete publishing solution around nanoc.&lt;/p&gt;
-
-&lt;p&gt;You can view the online version at &lt;a href="http://tachypomp.rubyredbricks.com"&gt;tachypomp.rubyredbricks.com&lt;/a&gt;. The source code for this project can be found on &lt;a href="https://github.com/ferrisoxide/tachypomp"&gt;Github&lt;/a&gt;.&lt;/p&gt;
-
 </content>
   </entry>
 </feed>
